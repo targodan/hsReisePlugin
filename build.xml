@@ -70,4 +70,15 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <target name="-pre-compile">
+        <exec dir="." executable="xjc">
+            <arg value="-encoding" /><arg value="utf8" />
+            <arg value="-d" /><arg path="src" />
+            <arg value="-p" /><arg value="reiseplugin.data.jaxb" />
+            <arg file="xml/native.xsd" />
+        </exec>
+    </target>
+    <target name="-post-clean">
+        <deltree dir="src/reiseplugin/data/jaxb" />
+    </target>
 </project>

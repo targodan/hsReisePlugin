@@ -22,3 +22,6 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 
+
+# Generated stuff
+src/reiseplugin/data/jaxb/*
