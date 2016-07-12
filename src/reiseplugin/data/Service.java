@@ -19,7 +19,9 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import reiseplugin.data.entities.*;
+import reiseplugin.data.entities.jaxb.*;
+import reiseplugin.data.entities.Daten;
+import reiseplugin.data.entities.ObjectFactory;
 
 /**
  *
