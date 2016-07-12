@@ -25,6 +25,10 @@ public class ReisePanel extends javax.swing.JPanel {
         this.jTable1.setDefaultRenderer(Object.class, this.reiseTableConfig.getRenderer());
     }
 
+    public ReiseTableConfig getReiseTableConfig() {
+        return reiseTableConfig;
+    }
+    
     public JTextArea getjTextArea1() {
         return jTextArea1;
     }

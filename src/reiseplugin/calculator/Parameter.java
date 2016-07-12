@@ -96,5 +96,14 @@ public class Parameter {
         public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
             this.überanstrengungProStunde = überanstrengungProStunde;
         }
+        
+        public boolean matchStunde(int st) {
+            if(this.start > this.ende) {
+                // über nacht
+                return this.start <= st || st <= this.ende;
+            } else {
+                return this.start <= st && st <= this.ende;
+            }
+        }
     }
 }

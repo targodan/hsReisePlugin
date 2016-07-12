@@ -42,6 +42,7 @@ public class ReiseTableConfig {
 
     public void setData(ErgebnisTag data) {
         this.data = data;
+        this.model.fireTableStructureChanged();
         this.model.fireTableDataChanged();
     }
 
@@ -113,8 +114,9 @@ public class ReiseTableConfig {
             }
             
             Parameter.Rast rast = ReiseTableConfig.this.parameter.getErholung().stream()
-                    .filter(r -> r.getStart() <= rowIndex && rowIndex < r.getEnde())
+                    .filter(r -> r.matchStunde(rowIndex))
                     .findFirst().orElse(null);
+            
             if(rast == null) {
                 return 0;
             } else {
@@ -139,6 +141,10 @@ public class ReiseTableConfig {
                     l.setBackground(new Color(0, 255, 0, this.calcAlpha(erholung)));
                 } else {
                     l.setBackground(Color.WHITE);
+                }
+            } else {
+                if(ReiseTableConfig.this.model.isÜberanstrengt(row, column)) {
+                    l.setBackground(Color.RED);
                 }
             }
             

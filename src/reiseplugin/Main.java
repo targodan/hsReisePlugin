@@ -13,6 +13,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Object o = new reiseplugin.gui.Controller(new Service(null));
+        reiseplugin.gui.Controller c = new reiseplugin.gui.Controller(new DummyService());
+        c.test();
     }
 }

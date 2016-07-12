@@ -5,9 +5,13 @@
  */
 package reiseplugin.gui;
 
+import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import reiseplugin.calculator.Held;
+import reiseplugin.calculator.Parameter;
+import reiseplugin.calculator.ReiseCalculator;
 import reiseplugin.data.IService;
 
 /**
@@ -44,6 +48,12 @@ public class Controller {
     }
     
     public void test() {
-        this.setText(this.service.getSelectedHeld().toString());
+        Held h = new Held("Ich", 12, 1);
+        Parameter.Rast r = new Parameter.Rast(22, 5, 2, 1);
+        Parameter p = new Parameter(new Held[]{h}, 1, Arrays.asList(new Parameter.Rast[] {r}));
+        this.reisePanel.getReiseTableConfig().setParameter(p);
+        
+        ReiseCalculator c = new ReiseCalculator(p);
+        this.reisePanel.getReiseTableConfig().setData(c.getTag(0));
     }
 }

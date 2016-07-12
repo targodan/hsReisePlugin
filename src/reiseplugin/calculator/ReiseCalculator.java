@@ -5,6 +5,7 @@
  */
 package reiseplugin.calculator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -18,9 +19,17 @@ public class ReiseCalculator {
     
     public ReiseCalculator(Parameter parameter) {
         this.parameter = parameter;
+        this.ergebnis = new ArrayList<>();
     }
     
-    public void calculate(int tag) {
+    public ErgebnisTag getTag(int tag) {
+        if(this.ergebnis.size() <= tag) {
+            this.calculate(tag);
+        }
+        return this.ergebnis.get(tag);
+    }
+    
+    private void calculate(int tag) {
         while(ergebnis.size() <= tag) {
             ErgebnisTag lastDay;
             if(ergebnis.size() > 0) {
@@ -39,26 +48,27 @@ public class ReiseCalculator {
                 }
                         
                 newDay.addHeld(h);
-                IntStream.range(0, 23).forEach(st -> {
-                    this.calculateStunde(h, lastZustand, newDay, st);
-                });
+                for(int st = 0; st < 24; ++st) {
+                    lastZustand = this.calculateStunde(h, lastZustand, newDay, st);
+                }
             });
             
             this.ergebnis.add(newDay);
         }
     }
     
-    public void calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
+    public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
         int ersch = lastZustand.getErschöpfung();
         int überanst = lastZustand.getÜberanstregnung();
 
         Parameter.Rast rast = this.parameter.getErholung().stream()
-                .filter(r -> r.getStart() <= st && st <= r.getEnde()) // TODO: Check limits
+                .filter(r -> r.matchStunde(st))
                 .findFirst().orElse(null);
+        
         if(rast == null) {
             ersch += this.parameter.getErschöpfungProStunde();
             if(ersch > h.getKO()) {
-                überanst = ersch - h.getKO();
+                überanst += ersch - h.getKO();
                 ersch = h.getKO();
             }
         } else {
@@ -67,8 +77,12 @@ public class ReiseCalculator {
             } else {
                 ersch -= rast.getErschöpfungProStunde();
             }
+            überanst = Math.max(0, überanst);
+            ersch = Math.max(0, ersch);
         }
 
-        newDay.setZustand(h, st, new ErgebnisTag.Zustand(ersch, überanst));
+        ErgebnisTag.Zustand z = new ErgebnisTag.Zustand(ersch, überanst);
+        newDay.setZustand(h, st, z);
+        return z;
     }
 }
