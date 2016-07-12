@@ -2,6 +2,7 @@ package reiseplugin;
 
 import helden.plugin.HeldenPlugin;
 import helden.plugin.HeldenWertePlugin3;
+import helden.plugin.HeldenXMLDatenPlugin3;
 import helden.plugin.datenplugin.DatenPluginHeldenWerkzeug;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import helden.plugin.datenxmlplugin.DatenAustauschImpl;
@@ -12,12 +13,17 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import reiseplugin.data.IService;
+import reiseplugin.data.Service;
+import reiseplugin.gui.Controller;
 
 /**
  *
  * @author Luca Corbatto
  */
 public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
+    private IService service;
+    private Controller controller;
     
     public HeldenStart() {
         super();
@@ -60,41 +66,44 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
 
     @Override
     public String getType() {
-        return HeldenWertePlugin3.DATEN3;
+        return HeldenXMLDatenPlugin3.DATEN;
     }
 
     @Override
     public void doWork(JFrame jframe) {
-        Object o = new reiseplugin.gui.Controller(jframe);
+        this.controller = new Controller(this.service, jframe);
     }
 
     @Override
     public void click() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.controller.test();
     }
 
     @Override
     public JComponent getPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public boolean hatMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public boolean hatTab() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public void init(DatenAustausch3Interface dai, JFrame jframe) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // called on opening the tool
+        this.service = new Service(dai);
+        this.controller = new Controller(this.service, jframe);
     }
 
     @Override
     public ArrayList<JComponent> getUntermenus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<JComponent> ret = new ArrayList<>();
+        return ret;
     }
 }
