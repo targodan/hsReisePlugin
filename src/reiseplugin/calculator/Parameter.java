@@ -15,10 +15,12 @@ import java.util.List;
 public class Parameter {
     private final Held[] helden;
     private int erschöpfungProStunde;
+    private List<Rast> erholung;
     
-    public Parameter(Held[] helden, int erschöpfungProStunde) {
+    public Parameter(Held[] helden, int erschöpfungProStunde, List<Rast> erholung) {
         this.helden = helden;
         this.erschöpfungProStunde = erschöpfungProStunde;
+        this.erholung = erholung;
     }
 
     public Held getHeld(int i) {
@@ -41,16 +43,26 @@ public class Parameter {
         this.erschöpfungProStunde = erschöpfungProStunde;
     }
     
+    public List<Rast> getErholung() {
+        return this.erholung;
+    }
+    
+    public void addRast(Rast r) {
+        this.erholung.add(r);
+    }
+    
     
     public static class Rast {
         private int start;
         private int ende;
-        private int erholungProStunde;
+        private int erschöpfungProStunde;
+        private int überanstrengungProStunde;
 
-        public Rast(int start, int ende, int erholungProStunde) {
+        public Rast(int start, int ende, int erschöpfungProStunde, int überanstrengungProStunde) {
             this.start = start;
             this.ende = ende;
-            this.erholungProStunde = erholungProStunde;
+            this.erschöpfungProStunde = erschöpfungProStunde;
+            this.überanstrengungProStunde = überanstrengungProStunde;
         }
 
         public int getStart() {
@@ -69,12 +81,20 @@ public class Parameter {
             this.ende = ende;
         }
 
-        public int getErholungProStunde() {
-            return erholungProStunde;
+        public int getErschöpfungProStunde() {
+            return erschöpfungProStunde;
         }
 
-        public void setErholungProStunde(int erholungProStunde) {
-            this.erholungProStunde = erholungProStunde;
+        public void setErschöpfungProStunde(int erschöpfungProStunde) {
+            this.erschöpfungProStunde = erschöpfungProStunde;
+        }
+
+        public int getÜberanstrengungProStunde() {
+            return überanstrengungProStunde;
+        }
+
+        public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
+            this.überanstrengungProStunde = überanstrengungProStunde;
         }
     }
 }

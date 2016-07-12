@@ -9,20 +9,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
 public class ErgebnisTag {
+    public static final int STUNDEN = 24;
+    
     private Map<Held, Zustand[]> ergebnis;
+    private List<Held> helden;
 
     public ErgebnisTag() {
         this.ergebnis = new HashMap<>();
+        this.helden = new ArrayList<>();
     }
     
     public void addHeld(Held h) {
-        this.ergebnis.put(h, new Zustand[24]);
+        if(this.ergebnis.put(h, new Zustand[24]) == null) {
+            // neuer Held
+            this.helden.add(h);
+        }
     }
     
     public void setZustand(Held held, int stunde, Zustand z) {
@@ -35,6 +43,10 @@ public class ErgebnisTag {
     
     public Zustand getZustand(Held h, int stunde) {
         return this.ergebnis.get(h)[stunde];
+    }
+    
+    public List<Held> getHelden() {
+        return this.helden;
     }
     
     public static class Zustand {

@@ -7,6 +7,7 @@ package reiseplugin.gui;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import reiseplugin.data.IService;
 
 /**
@@ -20,6 +21,7 @@ public class Controller {
     
     public Controller(IService service) {
         this.dialog = new JDialog();
+        this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupDialog();
     }
     
