@@ -14,10 +14,10 @@ import java.util.Map;
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
-public class Ergebnis {
+public class ErgebnisTag {
     private Map<Held, Zustand[]> ergebnis;
 
-    public Ergebnis() {
+    public ErgebnisTag() {
         this.ergebnis = new HashMap<>();
     }
     

@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  */
 public class ReiseCalculator {
     private Parameter parameter;
-    private List<Ergebnis> ergebnis;
+    private List<ErgebnisTag> ergebnis;
     
     public ReiseCalculator(Parameter parameter) {
         this.parameter = parameter;
@@ -22,20 +22,20 @@ public class ReiseCalculator {
     
     public void calculate(int tag) {
         while(ergebnis.size() <= tag) {
-            Ergebnis lastDay;
+            ErgebnisTag lastDay;
             if(ergebnis.size() > 0) {
                 lastDay = ergebnis.get(ergebnis.size()-1);
             } else {
                 lastDay = null;
             }
-            Ergebnis newDay = new Ergebnis();
+            ErgebnisTag newDay = new ErgebnisTag();
             
             parameter.getHelden().stream().forEach(h -> {
-                Ergebnis.Zustand lastZustand;
+                ErgebnisTag.Zustand lastZustand;
                 if(lastDay != null) {
                     lastZustand = lastDay.getZustand(h, 23);
                 } else {
-                    lastZustand = new Ergebnis.Zustand(0, 0);
+                    lastZustand = new ErgebnisTag.Zustand(0, 0);
                 }
                         
                 newDay.addHeld(h);
@@ -47,7 +47,7 @@ public class ReiseCalculator {
                     } else {
                         ++überanst;
                     }
-                    newDay.setZustand(h, st, new Ergebnis.Zustand(ersch, überanst));
+                    newDay.setZustand(h, st, new ErgebnisTag.Zustand(ersch, überanst));
                 });
             });
             
