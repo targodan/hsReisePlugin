@@ -58,15 +58,21 @@ public class ReiseCalculator {
     }
     
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
-        int ersch = lastZustand.getErschöpfung();
-        int überanst = lastZustand.getÜberanstregnung();
-
         Parameter.Rast rast = this.parameter.getErholung().stream()
                 .filter(r -> r.matchStunde(st))
                 .findFirst().orElse(null);
         
+        ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
+        newDay.setZustand(h, st, z);
+        return z;
+    }
+    
+    private ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Parameter.Rast rast) {
+        int ersch = lastZustand.getErschöpfung();
+        int überanst = lastZustand.getÜberanstregnung();
+        
         if(rast == null) {
-            ersch += this.parameter.getErschöpfungProStunde();
+            ersch += this.parameter.getErschöpfungProStunde() + h.getMod();
             if(ersch > h.getKO()) {
                 überanst += ersch - h.getKO();
                 ersch = h.getKO();
@@ -80,9 +86,6 @@ public class ReiseCalculator {
             überanst = Math.max(0, überanst);
             ersch = Math.max(0, ersch);
         }
-
-        ErgebnisTag.Zustand z = new ErgebnisTag.Zustand(ersch, überanst);
-        newDay.setZustand(h, st, z);
-        return z;
+        return new ErgebnisTag.Zustand(ersch, überanst);
     }
 }
