@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.AbstractSpinnerModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import reiseplugin.calculator.ErgebnisTag;
@@ -58,7 +59,7 @@ public class Model implements Observer {
         this.reiseTableConfig.setData(this.calculator.getTag(this.tagSpinnerModel.getTag()));
     }
     
-    public class TagSpinnerModel extends AbstractSpinnerModel {
+    public class TagSpinnerModel extends SpinnerNumberModel {
         private List<ChangeListener> listener;
         private int tag = 0;
 
