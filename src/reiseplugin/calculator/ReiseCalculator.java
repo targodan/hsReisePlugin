@@ -7,18 +7,21 @@ package reiseplugin.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.IntStream;
 
 /**
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
-public class ReiseCalculator {
+public class ReiseCalculator implements Observer {
     private Parameter parameter;
     private List<ErgebnisTag> ergebnis;
     
     public ReiseCalculator(Parameter parameter) {
         this.parameter = parameter;
+        this.parameter.addObserver(this);
         this.ergebnis = new ArrayList<>();
     }
     
@@ -27,6 +30,10 @@ public class ReiseCalculator {
             this.calculate(tag);
         }
         return this.ergebnis.get(tag);
+    }
+
+    public Parameter getParameter() {
+        return parameter;
     }
     
     private void calculate(int tag) {
@@ -87,5 +94,12 @@ public class ReiseCalculator {
             ersch = Math.max(0, ersch);
         }
         return new ErgebnisTag.Zustand(ersch, überanst);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof Parameter) {
+            this.ergebnis.clear();
+        }
     }
 }

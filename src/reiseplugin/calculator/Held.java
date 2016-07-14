@@ -5,11 +5,13 @@
  */
 package reiseplugin.calculator;
 
+import java.util.Observable;
+
 /**
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
-public class Held {
+public class Held extends Observable {
     private String name;
     private int KO;
     private int mod;

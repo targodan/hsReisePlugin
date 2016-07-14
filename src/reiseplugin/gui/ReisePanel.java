@@ -14,19 +14,19 @@ import javax.swing.table.TableModel;
  */
 public class ReisePanel extends javax.swing.JPanel {
     
-    private ReiseTableConfig reiseTableConfig;
+    private final Model model;
 
     /**
      * Creates new form ReisePanel
      */
     public ReisePanel() {
-        this.reiseTableConfig = new ReiseTableConfig();
+        this.model = new Model();
         initComponents();
-        this.jTable1.setDefaultRenderer(Object.class, this.reiseTableConfig.getRenderer());
+        this.jTable1.setDefaultRenderer(Object.class, this.model.getReiseTableConfig().getRenderer());
     }
 
-    public ReiseTableConfig getReiseTableConfig() {
-        return reiseTableConfig;
+    public Model getModel() {
+        return model;
     }
     
     public JTextArea getjTextArea1() {
@@ -47,7 +47,7 @@ public class ReisePanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        jSpinnerTag = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -67,6 +67,8 @@ public class ReisePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Erschöpfung/Stunde");
 
+        jSpinnerTag.setModel(this.model.getTagSpinnerModel());
+
         jLabel2.setText("Tag");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -80,7 +82,7 @@ public class ReisePanel extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jSpinnerTag, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                     .addComponent(jSpinner1))
                 .addContainerGap(322, Short.MAX_VALUE))
         );
@@ -93,7 +95,7 @@ public class ReisePanel extends javax.swing.JPanel {
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -193,7 +195,7 @@ public class ReisePanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea1);
         jTextArea1.getAccessibleContext().setAccessibleName("ta");
 
-        jTable1.setModel(this.reiseTableConfig.getModel());
+        jTable1.setModel(this.model.getReiseTableConfig().getModel());
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 
@@ -210,7 +212,7 @@ public class ReisePanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -232,7 +234,7 @@ public class ReisePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinnerTag;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;

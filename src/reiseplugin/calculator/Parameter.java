@@ -6,21 +6,30 @@
 package reiseplugin.calculator;
 
 import java.util.Arrays;
+import java.util.EventListener;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
-public class Parameter {
+public class Parameter extends Observable implements Observer {
     private final Held[] helden;
     private int erschöpfungProStunde;
     private List<Rast> erholung;
     
     public Parameter(Held[] helden, int erschöpfungProStunde, List<Rast> erholung) {
         this.helden = helden;
+        for(Held h : this.helden) {
+            h.addObserver(this);
+        }
         this.erschöpfungProStunde = erschöpfungProStunde;
         this.erholung = erholung;
+        this.erholung.stream().forEach((r) -> {
+            r.addObserver(this);
+        });
     }
 
     public Held getHeld(int i) {
@@ -40,7 +49,11 @@ public class Parameter {
     }
 
     public void setErschöpfungProStunde(int erschöpfungProStunde) {
-        this.erschöpfungProStunde = erschöpfungProStunde;
+        if(this.erschöpfungProStunde != erschöpfungProStunde) {
+            this.erschöpfungProStunde = erschöpfungProStunde;
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
     
     public List<Rast> getErholung() {
@@ -49,10 +62,18 @@ public class Parameter {
     
     public void addRast(Rast r) {
         this.erholung.add(r);
+        r.addObserver(this);
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.notifyObservers(o);
     }
     
     
-    public static class Rast {
+    public static class Rast extends Observable {
         private int start;
         private int ende;
         private int erschöpfungProStunde;
@@ -70,7 +91,11 @@ public class Parameter {
         }
 
         public void setStart(int start) {
-            this.start = start;
+            if(this.start != start) {
+                this.start = start;
+                this.setChanged();
+                this.notifyObservers();
+            }
         }
 
         public int getEnde() {
@@ -78,7 +103,11 @@ public class Parameter {
         }
 
         public void setEnde(int ende) {
-            this.ende = ende;
+            if(this.ende != ende) {
+                this.ende = ende;
+                this.setChanged();
+                this.notifyObservers();
+            }
         }
 
         public int getErschöpfungProStunde() {
@@ -86,7 +115,11 @@ public class Parameter {
         }
 
         public void setErschöpfungProStunde(int erschöpfungProStunde) {
-            this.erschöpfungProStunde = erschöpfungProStunde;
+            if(this.erschöpfungProStunde != erschöpfungProStunde) {
+                this.erschöpfungProStunde = erschöpfungProStunde;
+                this.setChanged();
+                this.notifyObservers();
+            }
         }
 
         public int getÜberanstrengungProStunde() {
@@ -94,7 +127,11 @@ public class Parameter {
         }
 
         public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
-            this.überanstrengungProStunde = überanstrengungProStunde;
+            if(this.erschöpfungProStunde != erschöpfungProStunde) {
+                this.überanstrengungProStunde = überanstrengungProStunde;
+                this.setChanged();
+                this.notifyObservers();
+            }
         }
         
         public boolean matchStunde(int st) {
