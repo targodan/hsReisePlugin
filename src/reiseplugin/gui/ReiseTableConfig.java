@@ -145,6 +145,8 @@ public class ReiseTableConfig {
             } else {
                 if(ReiseTableConfig.this.model.isÜberanstrengt(row, column)) {
                     l.setBackground(Color.RED);
+                } else {
+                    l.setBackground(Color.WHITE);
                 }
             }
             

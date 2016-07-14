@@ -33,7 +33,6 @@ public class Controller {
         this.service = service;
         this.dialog = new JDialog(parent, "Reise", false);
         this.setupDialog();
-        this.reisePanel.getjTextArea1().setText("plane");
     }
     
     private void setupDialog() {
@@ -48,10 +47,11 @@ public class Controller {
     }
     
     public void test() {
-        Held h = new Held("Ich", 12, 1);
+        Held h = new Held("Rimaldo", 12, 1);
+        Held h2 = new Held("Janon", 13, 0);
         Parameter.Rast r = new Parameter.Rast(22, 5, 2, 1);
         Parameter.Rast r2 = new Parameter.Rast(12, 14, 1, 0);
-        Parameter p = new Parameter(new Held[]{h}, 1, Arrays.asList(new Parameter.Rast[] {r, r2}));
+        Parameter p = new Parameter(new Held[]{h, h2}, 1, Arrays.asList(new Parameter.Rast[] {r, r2}));
         this.reisePanel.getReiseTableConfig().setParameter(p);
         
         ReiseCalculator c = new ReiseCalculator(p);
