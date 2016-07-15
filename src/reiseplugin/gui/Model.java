@@ -21,13 +21,15 @@ import reiseplugin.calculator.ReiseCalculator;
 public class Model implements Observer {
     private ReiseCalculator calculator = null;
     private Parameter parameter = null;
-    private TagSpinnerModel tagSpinnerModel = null;
+    private SpinnerModel tagSpinnerModel = null;
+    private SpinnerModel erschSpinnerModel = null;
     
     private ReiseTableConfig reiseTableConfig = null;
 
     public Model() {
         this.reiseTableConfig = new ReiseTableConfig();
-        this.tagSpinnerModel = new TagSpinnerModel();
+        this.tagSpinnerModel = new SpinnerModel();
+        this.erschSpinnerModel = new SpinnerModel();
     }
 
     public Parameter getParameter() {
@@ -47,50 +49,54 @@ public class Model implements Observer {
     }
 
     public int getTag() {
-        return this.tagSpinnerModel.getTag();
+        return this.tagSpinnerModel.getInt();
     }
 
-    public TagSpinnerModel getTagSpinnerModel() {
+    public int getErschöpfung() {
+        return this.erschSpinnerModel.getInt();
+    }
+
+    public SpinnerModel getTagSpinnerModel() {
         return tagSpinnerModel;
+    }
+
+    public SpinnerModel getErschöpfungSpinnerModel() {
+        return erschSpinnerModel;
     }
     
     @Override
     public void update(Observable o, Object arg) {
-        this.reiseTableConfig.setData(this.calculator.getTag(this.tagSpinnerModel.getTag()));
+        this.parameter.setErschöpfungProStunde(this.erschSpinnerModel.getInt());
+        this.reiseTableConfig.setData(this.calculator.getTag(this.tagSpinnerModel.getInt()));
     }
     
-    public class TagSpinnerModel extends SpinnerNumberModel {
-        private List<ChangeListener> listener;
-        private int tag = 0;
-
-        public TagSpinnerModel() {
-            this.listener = new ArrayList<>();
-        }
+    public class SpinnerModel extends SpinnerNumberModel {
+        private int value = 0;
         
-        public int getTag() {
-            return tag;
+        public int getInt() {
+            return this.value;
         }
         
         @Override
         public Object getValue() {
-            return this.tag;
+            return this.value;
         }
 
         @Override
         public void setValue(Object value) {
-            this.tag = (int)value;
-            Model.this.update(null, null);
+            this.value = (int)value;
+            Model.this.update(null, this);
             this.fireStateChanged();
         }
 
         @Override
         public Object getNextValue() {
-            return this.tag+1;
+            return this.value+1;
         }
 
         @Override
         public Object getPreviousValue() {
-            return Math.max(0, this.tag-1);
+            return Math.max(0, this.value-1);
         }
     }
 }

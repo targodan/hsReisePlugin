@@ -41,9 +41,11 @@ public class ReiseTableConfig {
     }
 
     public void setData(ErgebnisTag data) {
-        this.data = data;
-        this.model.fireTableStructureChanged();
-        this.model.fireTableDataChanged();
+        if(this.data == null || !this.data.equals(data)) {
+            this.data = data;
+            this.model.fireTableStructureChanged();
+            this.model.fireTableDataChanged();
+        }
     }
 
     public Parameter getParameter() {

@@ -66,4 +66,13 @@ public class ErgebnisTag {
             return überanstregnung;
         }
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof ErgebnisTag)) {
+            return false;
+        }
+        ErgebnisTag et = (ErgebnisTag)o;
+        return this.ergebnis.equals(et.ergebnis) && this.helden.equals(et.helden);
+    }
 }

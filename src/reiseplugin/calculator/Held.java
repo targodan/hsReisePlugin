@@ -6,6 +6,7 @@
 package reiseplugin.calculator;
 
 import java.util.Observable;
+import javax.swing.Action;
 
 /**
  *
@@ -44,5 +45,14 @@ public class Held extends Observable {
 
     public void setMod(int mod) {
         this.mod = mod;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Held)) {
+            return false;
+        }
+        Held h = (Held)o;
+        return this.name.equals(h.name) && this.KO == h.KO && this.mod == h.mod;
     }
 }

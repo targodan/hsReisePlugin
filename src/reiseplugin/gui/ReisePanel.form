@@ -151,6 +151,11 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="jSpinner1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="this.model.getErsch&#xf6;pfungSpinnerModel()" type="code"/>
+                        </Property>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="jSpinnerTag">
                       <Properties>

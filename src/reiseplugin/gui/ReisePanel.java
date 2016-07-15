@@ -82,6 +82,8 @@ public class ReisePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Erschöpfung/Stunde");
 
+        jSpinner1.setModel(this.model.getErschöpfungSpinnerModel());
+
         jSpinnerTag.setModel(this.model.getTagSpinnerModel());
         jSpinnerTag.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerTag, ""));
 
