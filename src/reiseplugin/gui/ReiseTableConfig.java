@@ -94,7 +94,7 @@ public class ReiseTableConfig {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             if (columnIndex == 0) {
-                return rowIndex + ":00";
+                return String.format("%02d:00 - %02d:00", rowIndex, rowIndex+1);
             } else {
                 ErgebnisTag.Zustand z = ReiseTableConfig.this.data.getZustand(ReiseTableConfig.this.data.getHelden().get(columnIndex - 1), rowIndex);
                 return z.getErschöpfung() + " / " + z.getÜberanstregnung();
