@@ -66,9 +66,17 @@ public class Parameter extends Observable implements Observer {
         this.setChanged();
         this.notifyObservers();
     }
+    
+    public void removeRast(Rast r) {
+        this.erholung.remove(r);
+        r.deleteObserver(this);
+        this.setChanged();
+        this.notifyObservers();
+    }
 
     @Override
     public void update(Observable o, Object arg) {
+        this.setChanged();
         this.notifyObservers(o);
     }
     
@@ -92,6 +100,10 @@ public class Parameter extends Observable implements Observer {
 
         public void setStart(int start) {
             if(this.start != start) {
+                if(start < 0 || start > 23) {
+                    throw new IllegalArgumentException("The time must be between 0 and 23.");
+                }
+                
                 this.start = start;
                 this.setChanged();
                 this.notifyObservers();
@@ -104,6 +116,9 @@ public class Parameter extends Observable implements Observer {
 
         public void setEnde(int ende) {
             if(this.ende != ende) {
+                if(start < 0 || start > 23) {
+                    throw new IllegalArgumentException("The time must be between 0 and 23.");
+                }
                 this.ende = ende;
                 this.setChanged();
                 this.notifyObservers();

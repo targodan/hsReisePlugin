@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -65,14 +66,57 @@ public class ErgebnisTag {
         public int getÜberanstregnung() {
             return überanstregnung;
         }
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 97 * hash + this.erschöpfung;
+            hash = 97 * hash + this.überanstregnung;
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Zustand other = (Zustand) obj;
+            if (this.erschöpfung != other.erschöpfung) {
+                return false;
+            }
+            if (this.überanstregnung != other.überanstregnung) {
+                return false;
+            }
+            return true;
+        }
     }
     
     @Override
-    public boolean equals(Object o) {
-        if(!(o instanceof ErgebnisTag)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        ErgebnisTag et = (ErgebnisTag)o;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ErgebnisTag et = (ErgebnisTag)obj;
         return this.ergebnis.equals(et.ergebnis) && this.helden.equals(et.helden);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.ergebnis);
+        hash = 53 * hash + Objects.hashCode(this.helden);
+        return hash;
     }
 }

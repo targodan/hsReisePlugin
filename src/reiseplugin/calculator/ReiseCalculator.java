@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
-public class ReiseCalculator implements Observer {
+public class ReiseCalculator extends Observable implements Observer {
     private Parameter parameter;
     private List<ErgebnisTag> ergebnis;
     
@@ -98,8 +98,8 @@ public class ReiseCalculator implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if(o instanceof Parameter) {
-            this.ergebnis.clear();
-        }
+        this.ergebnis.clear();
+        this.setChanged();
+        this.notifyObservers();
     }
 }
