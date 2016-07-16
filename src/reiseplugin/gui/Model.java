@@ -24,14 +24,16 @@ public class Model implements Observer {
     private SpinnerModel tagSpinnerModel = null;
     private SpinnerModel erschSpinnerModel = null;
     private RastTableModel rastTableModel = null;
+    private HeldenTableModel heldenTableModel = null;
     
     private ReiseTableConfig reiseTableConfig = null;
 
     public Model() {
         this.reiseTableConfig = new ReiseTableConfig();
-        this.tagSpinnerModel = new SpinnerModel();
-        this.erschSpinnerModel = new SpinnerModel();
+        this.tagSpinnerModel = new SpinnerModel(0);
+        this.erschSpinnerModel = new SpinnerModel(1);
         this.rastTableModel = new RastTableModel();
+        this.heldenTableModel = new HeldenTableModel();
     }
 
     public Parameter getParameter() {
@@ -44,6 +46,7 @@ public class Model implements Observer {
         this.calculator.addObserver(this);
         this.rastTableModel.setParameter(this.parameter);
         this.reiseTableConfig.setParameter(this.parameter);
+        this.heldenTableModel.setParameter(this.parameter);
         this.update(null, null);
     }
 
@@ -70,6 +73,10 @@ public class Model implements Observer {
     public SpinnerModel getErschöpfungSpinnerModel() {
         return erschSpinnerModel;
     }
+
+    public HeldenTableModel getHeldenTableModel() {
+        return heldenTableModel;
+    }
     
     @Override
     public void update(Observable o, Object arg) {
@@ -80,6 +87,11 @@ public class Model implements Observer {
     
     public class SpinnerModel extends SpinnerNumberModel {
         private int value = 0;
+
+        public SpinnerModel(int value) {
+            super();
+            this.value = value;
+        }
         
         public int getInt() {
             return this.value;

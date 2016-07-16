@@ -5,6 +5,7 @@
  */
 package reiseplugin.calculator;
 
+import java.util.Objects;
 import java.util.Observable;
 import javax.swing.Action;
 
@@ -28,7 +29,11 @@ public class Held extends Observable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(this.name == null || this.name.equals(name)) {
+            this.name = name;
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
 
     public int getKO() {
@@ -36,7 +41,11 @@ public class Held extends Observable {
     }
 
     public void setKO(int KO) {
-        this.KO = KO;
+        if(this.KO != KO) {
+            this.KO = KO;
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
 
     public int getMod() {
@@ -44,7 +53,11 @@ public class Held extends Observable {
     }
 
     public void setMod(int mod) {
-        this.mod = mod;
+        if(this.mod != mod) {
+            this.mod = mod;
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
     
     @Override
@@ -54,5 +67,14 @@ public class Held extends Observable {
         }
         Held h = (Held)o;
         return this.name.equals(h.name) && this.KO == h.KO && this.mod == h.mod;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + this.KO;
+        hash = 53 * hash + this.mod;
+        return hash;
     }
 }
