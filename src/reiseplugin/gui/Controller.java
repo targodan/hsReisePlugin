@@ -8,6 +8,7 @@ package reiseplugin.gui;
 import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import reiseplugin.calculator.Held;
 import reiseplugin.calculator.Parameter;
@@ -22,30 +23,40 @@ public class Controller {
     private IService service;
     private JDialog dialog;
     private ReisePanel reisePanel;
+    private JFrame parent;
     
     public Controller(IService service) {
         this.service = service;
         this.dialog = new JDialog();
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.reisePanel = new ReisePanel();
         this.setupDialog();
     }
     
     public Controller(IService service, JFrame parent) {
+        this.parent = parent;
         this.service = service;
-        this.dialog = new JDialog(parent, "Reise", false);
-        this.setupDialog();
+        this.reisePanel = new ReisePanel();
     }
     
     private void setupDialog() {
         this.dialog.setSize(800, 600);
-        this.reisePanel = new ReisePanel();
         this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, null));
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
     }
     
+    public void showWindow() {
+        this.dialog = new JDialog(this.parent, "Reise", false);
+        this.setupDialog();
+    }
+    
     public void setText(String s) {
         this.reisePanel.getjTextArea1().setText(s);
+    }
+    
+    public JPanel getPanel() {
+        return this.reisePanel;
     }
     
     public void test() {

@@ -76,7 +76,7 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
 
     @Override
     public void click() {
-        this.controller.test();
+        this.controller.showWindow();
     }
 
     @Override
