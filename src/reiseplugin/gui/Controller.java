@@ -6,6 +6,7 @@
 package reiseplugin.gui;
 
 import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,19 +30,27 @@ public class Controller {
         this.service = service;
         this.dialog = new JDialog();
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.reisePanel = new ReisePanel();
+        this.setupPanel();
         this.setupDialog();
     }
     
     public Controller(IService service, JFrame parent) {
         this.parent = parent;
         this.service = service;
+        this.setupPanel();
+    }
+    
+    private void setupPanel() {
         this.reisePanel = new ReisePanel();
+        Parameter.Rast[] defaultRasten = {
+            new Parameter.Rast(22, 6, 2, 1),
+            new Parameter.Rast(12, 13, 1, 0)
+        };
+        this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, Arrays.asList(defaultRasten)));
     }
     
     private void setupDialog() {
         this.dialog.setSize(800, 600);
-        this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, null));
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
     }
@@ -57,12 +66,5 @@ public class Controller {
     
     public JPanel getPanel() {
         return this.reisePanel;
-    }
-    
-    public void test() {
-        Parameter.Rast r = new Parameter.Rast(22, 5, 2, 1);
-        Parameter.Rast r2 = new Parameter.Rast(12, 14, 1, 0);
-        this.reisePanel.getModel().getParameter().addRast(r);
-        this.reisePanel.getModel().getParameter().addRast(r2);
     }
 }

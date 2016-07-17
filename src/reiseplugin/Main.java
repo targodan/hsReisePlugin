@@ -14,6 +14,5 @@ public class Main {
      */
     public static void main(String[] args) {
         reiseplugin.gui.Controller c = new reiseplugin.gui.Controller(new DummyService());
-        c.test();
     }
 }

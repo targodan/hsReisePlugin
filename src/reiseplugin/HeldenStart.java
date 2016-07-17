@@ -71,7 +71,7 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
 
     @Override
     public void doWork(JFrame jframe) {
-        this.controller = new Controller(this.service, jframe);
+        // unused
     }
 
     @Override
@@ -81,7 +81,7 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
 
     @Override
     public JComponent getPanel() {
-        return null;
+        return this.controller.getPanel();
     }
 
     @Override
