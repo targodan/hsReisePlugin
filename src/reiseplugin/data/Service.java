@@ -1,5 +1,6 @@
 package reiseplugin.data;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -127,12 +128,29 @@ public class Service implements IService {
         return d;
     }
     
+    public Daten getHeld(int i) {
+        Daten d = (Daten)this.unmarshal(
+                this.sendRequest(
+                this.buildXMLRequest("held", 
+                        "id", String.valueOf(i)
+                )));
+        return d;
+    }
+    
     private Held nativeToHeld(Daten d) {
         return new Held(d.getAngaben().getName(), d.getEigenschaften().getKonstitution().getAkt().intValue(), 0);
     }
 
     @Override
     public Held[] getAllHelden() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Held> ret = new ArrayList<>();
+        try {
+            for(int i = 0; true; ++i) {
+                ret.add(this.nativeToHeld(this.getHeld(i)));
+            }
+        } catch(Exception e) {
+            // last Held was read already
+        }
+        return ret.toArray(new Held[0]);
     }
 }
