@@ -70,14 +70,15 @@ public class ReisePanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea1);
         jTextArea1.getAccessibleContext().setAccessibleName("ta");
 
-        jSplitPane2.setDividerLocation(100);
+        jSplitPane2.setDividerLocation(130);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jSplitPane1.setDividerLocation(500);
         jSplitPane1.setMinimumSize(new java.awt.Dimension(98, 100));
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(612, 100));
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(612, 120));
 
-        jTabbedPane2.setMinimumSize(new java.awt.Dimension(200, 100));
-        jTabbedPane2.setPreferredSize(new java.awt.Dimension(450, 100));
+        jTabbedPane2.setMinimumSize(new java.awt.Dimension(200, 120));
+        jTabbedPane2.setPreferredSize(new java.awt.Dimension(450, 120));
 
         jLabel1.setText("Erschöpfung/Stunde");
 
@@ -101,7 +102,7 @@ public class ReisePanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jSpinnerTag))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +121,7 @@ public class ReisePanel extends javax.swing.JPanel {
         jTabbedPane2.addTab("Reise", jPanel1);
 
         jTable4.setModel(this.model.getRastTableModel());
+        jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable4);
 
         jButton1.setText("Hinzufügen");
@@ -133,13 +135,13 @@ public class ReisePanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1))
         );
@@ -151,17 +153,18 @@ public class ReisePanel extends javax.swing.JPanel {
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(150, 100));
 
         jTable3.setModel(this.model.getHeldenTableModel());
+        jTable3.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTable3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Helden", jPanel4);
