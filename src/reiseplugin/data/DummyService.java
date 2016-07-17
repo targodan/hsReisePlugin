@@ -5,6 +5,7 @@
  */
 package reiseplugin.data;
 
+import reiseplugin.calculator.Held;
 import reiseplugin.data.entities.Daten;
 
 /**
@@ -13,9 +14,14 @@ import reiseplugin.data.entities.Daten;
  */
 public class DummyService implements IService {
 
-    @Override
     public Daten getSelectedHeld() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public Held[] getAllHelden() {
+        Held h = new Held("Rimaldo", 12, 0);
+        Held h2 = new Held("Janon", 13, 0);
+        return new Held[]{h, h2};
+    }
 }

@@ -27,7 +27,11 @@ public class Parameter extends Observable implements Observer {
             h.addObserver(this);
         }
         this.erschöpfungProStunde = erschöpfungProStunde;
-        this.erholung = new ArrayList<>(erholung);
+        if(erholung == null) {
+            this.erholung = new ArrayList<>();
+        } else {
+            this.erholung = new ArrayList<>(erholung);
+        }
         this.erholung.stream().forEach((r) -> {
             r.addObserver(this);
         });

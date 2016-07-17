@@ -24,6 +24,7 @@ public class Controller {
     private ReisePanel reisePanel;
     
     public Controller(IService service) {
+        this.service = service;
         this.dialog = new JDialog();
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupDialog();
@@ -38,6 +39,7 @@ public class Controller {
     private void setupDialog() {
         this.dialog.setSize(800, 600);
         this.reisePanel = new ReisePanel();
+        this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, null));
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
     }
@@ -47,11 +49,9 @@ public class Controller {
     }
     
     public void test() {
-        Held h = new Held("Rimaldo", 12, 1);
-        Held h2 = new Held("Janon", 13, 0);
         Parameter.Rast r = new Parameter.Rast(22, 5, 2, 1);
         Parameter.Rast r2 = new Parameter.Rast(12, 14, 1, 0);
-        Parameter p = new Parameter(new Held[]{h, h2}, 1, Arrays.asList(new Parameter.Rast[] {r, r2}));
-        this.reisePanel.getModel().setParameter(p);
+        this.reisePanel.getModel().getParameter().addRast(r);
+        this.reisePanel.getModel().getParameter().addRast(r2);
     }
 }

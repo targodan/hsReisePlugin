@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import reiseplugin.calculator.Held;
 
 import reiseplugin.data.entities.jaxb.*;
 import reiseplugin.data.entities.Daten;
@@ -117,7 +118,6 @@ public class Service implements IService {
         return this.buildRequest(action, tmp.toArray(new String[0]));
     }
     
-    @Override
     public Daten getSelectedHeld() {
         Daten d = (Daten)this.unmarshal(
                 this.sendRequest(
@@ -125,5 +125,14 @@ public class Service implements IService {
                         "id", "selected"
                 )));
         return d;
+    }
+    
+    private Held nativeToHeld(Daten d) {
+        return new Held(d.getAngaben().getName(), d.getEigenschaften().getKonstitution().getAkt().intValue(), 0);
+    }
+
+    @Override
+    public Held[] getAllHelden() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
