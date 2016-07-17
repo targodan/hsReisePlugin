@@ -78,6 +78,11 @@ public class Model implements Observer {
         return heldenTableModel;
     }
     
+    public void addRast() {
+        this.parameter.addRast(new Parameter.Rast(0, 0, 0, 0));
+        this.getRastTableModel().fireTableDataChanged();
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         this.parameter.setErschöpfungProStunde(this.erschSpinnerModel.getInt());

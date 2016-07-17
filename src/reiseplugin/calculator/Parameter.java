@@ -5,6 +5,7 @@
  */
 package reiseplugin.calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EventListener;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Parameter extends Observable implements Observer {
             h.addObserver(this);
         }
         this.erschöpfungProStunde = erschöpfungProStunde;
-        this.erholung = erholung;
+        this.erholung = new ArrayList<>(erholung);
         this.erholung.stream().forEach((r) -> {
             r.addObserver(this);
         });
@@ -142,7 +143,7 @@ public class Parameter extends Observable implements Observer {
         }
 
         public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
-            if(this.erschöpfungProStunde != erschöpfungProStunde) {
+            if(this.überanstrengungProStunde != überanstrengungProStunde) {
                 this.überanstrengungProStunde = überanstrengungProStunde;
                 this.setChanged();
                 this.notifyObservers();

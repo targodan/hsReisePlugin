@@ -17,7 +17,7 @@ import reiseplugin.calculator.Parameter;
  */
 public class RastTableModel extends AbstractTableModel {
     private static final String[] COLUMNS = {
-        "Von", "Bis", "-Ersch.", "-Überanst."
+        "Von", "Bis", "-Ersch.", "-Überanst.", "Löschen"
     };
     
     private static final Pattern timePattern = Pattern.compile("^(\\d{1,2})(:00)?$");
@@ -65,6 +65,8 @@ public class RastTableModel extends AbstractTableModel {
                 return rast.getErschöpfungProStunde();
             case 3:
                 return rast.getÜberanstrengungProStunde();
+            case 4:
+                return "X";
             default:
                 throw new WTFException();
         }
@@ -109,7 +111,7 @@ public class RastTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
+        return columnIndex != 4;
     }
 
     @Override
