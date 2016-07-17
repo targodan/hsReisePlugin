@@ -23,6 +23,8 @@ public class ReisePanel extends javax.swing.JPanel {
         this.model = new Model();
         initComponents();
         this.jTable1.setDefaultRenderer(Object.class, this.model.getReiseTableConfig().getRenderer());
+        this.jTable4.setDefaultRenderer(Object.class, this.model.getRastTableConfig().getRenderer());
+        this.jTable4.setDefaultEditor(Object.class, this.model.getRastTableConfig().getEditor());
     }
 
     public Model getModel() {
@@ -120,7 +122,7 @@ public class ReisePanel extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Reise", jPanel1);
 
-        jTable4.setModel(this.model.getRastTableModel());
+        jTable4.setModel(this.model.getRastTableConfig().getModel());
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable4);
 

@@ -66,6 +66,10 @@ public class Parameter extends Observable implements Observer {
         return this.erholung;
     }
     
+    public Rast getRast(int i) {
+        return this.erholung.get(i);
+    }
+    
     public void addRast(Rast r) {
         this.erholung.add(r);
         r.addObserver(this);
