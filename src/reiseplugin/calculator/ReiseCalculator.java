@@ -67,7 +67,14 @@ public class ReiseCalculator extends Observable implements Observer {
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
         Parameter.Rast rast = this.parameter.getErholung().stream()
                 .filter(r -> r.matchStunde(st))
-                .findFirst().orElse(null);
+                .reduce(null, (r1, r2) -> {
+                    if(r1 == null) {
+                        r1 = new Parameter.Rast(0, 0, 0, 0);
+                    }
+                    return new Parameter.Rast(0, 0,
+                            r1.getErschöpfungProStunde() + r2.getErschöpfungProStunde(),
+                            r1.getÜberanstrengungProStunde() + r2.getÜberanstrengungProStunde());
+                });
         
         ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
         newDay.setZustand(h, st, z);
