@@ -24,6 +24,7 @@ public class ReisePanel extends javax.swing.JPanel {
         this.jTable1.setDefaultRenderer(Object.class, this.model.getReiseTableConfig().getRenderer());
         this.jTable4.setDefaultRenderer(Object.class, this.model.getRastTableConfig().getRenderer());
         this.jTable4.setDefaultEditor(Object.class, this.model.getRastTableConfig().getEditor());
+        this.setDebugVisibility(false);
     }
 
     /**
@@ -35,11 +36,19 @@ public class ReisePanel extends javax.swing.JPanel {
     }
     
     /**
+     * Sets the visibility of the debug region at the bottom of the window.
+     * @param visibility true if it should be visible.
+     */
+    public final void setDebugVisibility(boolean visibility) {
+        this.jScrollPaneDebug.setVisible(visibility);
+    }
+    
+    /**
      * Returns the debug JTextArea at the bottom of the window.
      * @return The debug JTextArea at the bottom of the window.
      */
     public JTextArea getjDebugTextArea() {
-        return jTextArea1;
+        return jTextAreaDebug;
     }
 
     /**
@@ -51,8 +60,8 @@ public class ReisePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPaneDebug = new javax.swing.JScrollPane();
+        jTextAreaDebug = new javax.swing.JTextArea();
         jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane1 = new javax.swing.JSplitPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -74,10 +83,10 @@ public class ReisePanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleName("ta");
+        jTextAreaDebug.setColumns(20);
+        jTextAreaDebug.setRows(5);
+        jScrollPaneDebug.setViewportView(jTextAreaDebug);
+        jTextAreaDebug.getAccessibleContext().setAccessibleName("ta");
 
         jSplitPane2.setDividerLocation(130);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -193,17 +202,17 @@ public class ReisePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane2)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPaneDebug)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPaneDebug, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jScrollPane1.getAccessibleContext().setAccessibleName("jsp");
+        jScrollPaneDebug.getAccessibleContext().setAccessibleName("jsp");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -218,10 +227,10 @@ public class ReisePanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPaneDebug;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinnerTag;
     private javax.swing.JSplitPane jSplitPane1;
@@ -231,6 +240,6 @@ public class ReisePanel extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaDebug;
     // End of variables declaration//GEN-END:variables
 }

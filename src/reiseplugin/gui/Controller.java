@@ -35,6 +35,7 @@ public class Controller {
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupPanel();
         this.setupDialog();
+        this.reisePanel.setDebugVisibility(true);
     }
     
     /**
