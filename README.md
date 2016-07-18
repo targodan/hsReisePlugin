@@ -1,6 +1,8 @@
 # hsReisePlugin
 Ein Plugin für die [HeldenSoftware](http://www.helden-software.de/), welches die Erschöpfung und Überanstrengung der Helden berechnet.
 
+Die JavaDocs sind [hier](https://targodan.github.io/hsReisePlugin/) zu finden.
+
 ## Lizenz
 Dieses Plugin unterliegt der GNU General Public License Version 3. Genaueres könnt ihr [hier](http://www.gnu.org/licenses/) nachlesen, oder in der [LICENSE](https://github.com/targodan/hsReisePlugin/blob/master/LICENSE) Datei.
 
