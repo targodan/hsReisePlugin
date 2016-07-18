@@ -1,4 +1,4 @@
-# ReisePlugin
+# hsReisePlugin
 Ein Plugin für die [HeldenSoftware](http://www.helden-software.de/), welches die Erschöpfung und Überanstrengung der Helden berechnet.
 
 ## Lizenz
@@ -45,6 +45,19 @@ Die Benutzung von Umlauten ist nicht nur gestattet sondern erwünscht.
 Wenn ein "ü" in dem Wort vorkommt, dann schreibt auch bitte ein "ü" und kein "ue".
 Java kommt damit poblemlos klar und ich finde es macht das ganze etwas leserlicher.
 
+- **Commits:**
+Die commit messages bitte auch möglichst auf Englisch halten.
+Es muss mindestens drin stehen, was ihr getan/verändert habt.
+Sollte es sich um die bearbeitung eines Issues handeln, dann verweist in der message auch bitte auf das entsprechende Issue.
+Solltet ihr im Laufe der Arbeit unsaubere commits gemacht haben, kein Problem aber bitte bearbeitet diese bevor ihr den Pull-request macht.
+[Hier](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) ein nützlicher Artikel zu diesem Thema.
+
+- **Bibliotheken:**
+Ihr könnt alles verwenden, was in der Java-API enthalten ist.
+[Java-Streams](http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html) sind gerne gesehen.
+Von dritt-Bibliotheken bitte absehen.
+Wenn es garnicht ohne geht tretet bitte bevor ihr euch die Arbeit macht mit mir in Kontakt z. B. über ein Issue oder über E-Mail etc.
+
 - **Kommentare:**
 JavaDocs sind Pflicht, der Rest ist Kür.
 Wenn ich den Code jedoch nicht verstehe werde ich euch beim Pull-request wahrscheinlich darum bitten ein paar Kommentare einzufügen.
@@ -57,3 +70,17 @@ Wenn ihr NetBeans benutzt, sollte es das automatisch für euch machen.
 Wer eine Klasse erweitert oder neu erstellt, der trägt sich bitte in den JavaDocs als (zusätzlicher) `@author` ein.
 Hier könnt ihr selbstverständlich euren echten Namen angeben, ein Pseudonym ist aber auch in Ordnung.
 Wer will kann auch seine E-Mail Adresse angeben, das ist allerdings keinesfalls Pflicht.
+
+## Aufbau dieses Projekts
+Hier noch ein paar Worte zum Aufbau dieses Projekts.
+
+### Die Branches
+Die `master` Branch soll ab dem ersten Release sauber bleiben und nur stabilen Code enthalten.
+Entwickelt wird auf dem `development` Branch.
+Je nachdem wie groß das Projekt wird werden wenn nötig auch `feature` und evtl. `release` Branches angelegt.
+In Anlenung an den [git-flow Workflow](http://danielkummer.github.io/git-flow-cheatsheet/).
+
+### Versionierung
+Die Versionsnummern werden nach dem [Semantic-Versioning](http://semver.org/) vergeben wobei ich um ehrlich zu sein zu faul bin zu diesem Zeitpunkt eine saubere Definition der API zu geben.
+Daher werde ich die Backwards-Compatibility hier eher intuitiv angehen.
+Wenn eine Änderung gefahr Läuft alten Code oder bereits aktive Pull-request kaputt zu machen, dann ist das für mich ein Bruch der Backwards-Compatibility.
