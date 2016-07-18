@@ -1,7 +1,6 @@
 package reiseplugin;
 
 import reiseplugin.data.DummyService;
-import reiseplugin.data.Service;
 
 /**
  *

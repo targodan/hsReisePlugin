@@ -1,21 +1,8 @@
 package reiseplugin.gui;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.AbstractSpinnerModel;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.table.TableCellEditor;
-import reiseplugin.data.ErgebnisTag;
 import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
 import reiseplugin.data.ReiseCalculator;

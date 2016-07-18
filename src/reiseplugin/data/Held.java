@@ -7,7 +7,6 @@ package reiseplugin.data;
 
 import java.util.Objects;
 import java.util.Observable;
-import javax.swing.Action;
 
 /**
  *

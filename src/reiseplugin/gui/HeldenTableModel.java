@@ -1,12 +1,6 @@
 package reiseplugin.gui;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 import reiseplugin.WTFException;
 import reiseplugin.data.Parameter;

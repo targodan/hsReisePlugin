@@ -1,28 +1,14 @@
 package reiseplugin.data;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.w3c.dom.*;
-import javax.xml.bind.JAXB;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import reiseplugin.data.helden.entities.Daten;
 import reiseplugin.data.helden.entities.HeldenService;
-import reiseplugin.data.helden.entities.ObjectFactory;
 
 /**
  *
@@ -32,7 +18,7 @@ public class Service implements IService {
     private DatenAustausch3Interface dai;
     private DocumentBuilder documentBuilder;
     private Unmarshaller unmarshaller;
-    private HeldenService service;
+    private final HeldenService service;
     
     public Service(DatenAustausch3Interface dai) {
         this.service = new HeldenService(dai);

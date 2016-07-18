@@ -1,14 +1,7 @@
 package reiseplugin;
 
-import helden.plugin.HeldenPlugin;
-import helden.plugin.HeldenWertePlugin3;
 import helden.plugin.HeldenXMLDatenPlugin3;
-import helden.plugin.datenplugin.DatenPluginHeldenWerkzeug;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
-import helden.plugin.datenxmlplugin.DatenAustauschImpl;
-import helden.plugin.werteplugin2.PluginHeld2;
-import helden.plugin.werteplugin3.PluginHeldenWerteWerkzeug3;
-import java.util.List;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;

@@ -6,14 +6,11 @@
 package reiseplugin.gui;
 
 import java.util.Arrays;
-import java.util.Collections;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import reiseplugin.data.Held;
 import reiseplugin.data.Parameter;
-import reiseplugin.data.ReiseCalculator;
 import reiseplugin.data.IService;
 import reiseplugin.data.Rast;
 

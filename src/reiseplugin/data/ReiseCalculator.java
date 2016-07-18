@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.stream.IntStream;
 
 /**
  *
  * @author Luca Corbatto<luca@corbatto.de>
  */
 public class ReiseCalculator extends Observable implements Observer {
-    private Parameter parameter;
-    private List<ErgebnisTag> ergebnis;
+    private final Parameter parameter;
+    private final List<ErgebnisTag> ergebnis;
     
     public ReiseCalculator(Parameter parameter) {
         this.parameter = parameter;

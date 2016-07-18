@@ -6,7 +6,6 @@
 package reiseplugin.gui;
 
 import javax.swing.JTextArea;
-import javax.swing.table.TableModel;
 
 /**
  *

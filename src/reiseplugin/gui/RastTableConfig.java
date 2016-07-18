@@ -1,23 +1,14 @@
 package reiseplugin.gui;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import reiseplugin.WTFException;
@@ -33,7 +24,7 @@ public class RastTableConfig implements TableButtonListener {
         "Von", "Bis", "-Ersch.", "-Überanst.", "Löschen"
     };
     
-    private static final Pattern timePattern = Pattern.compile("^(\\d{1,2})(:00)?$");
+    private static final Pattern TIME_PATTERN = Pattern.compile("^(\\d{1,2})(:00)?$");
     
     private Parameter data = null;
     
@@ -121,14 +112,14 @@ public class RastTableConfig implements TableButtonListener {
             Matcher m;
             switch(columnIndex) {
                 case 0:
-                    m = RastTableConfig.timePattern.matcher(text);
+                    m = RastTableConfig.TIME_PATTERN.matcher(text);
                     if(m.matches()) {
                         rast.setStart(Integer.parseInt(m.group(1)));
                     }
                     break;
 
                 case 1:
-                    m = RastTableConfig.timePattern.matcher(text);
+                    m = RastTableConfig.TIME_PATTERN.matcher(text);
                     if(m.matches()) {
                         rast.setEnde(Integer.parseInt(m.group(1)));
                     }
@@ -176,7 +167,7 @@ public class RastTableConfig implements TableButtonListener {
     
     public class Editor extends DefaultCellEditor {
         
-        private List<TableButtonListener> listeners;
+        private final List<TableButtonListener> listeners;
         
         public Editor() {
             super(new JTextField());

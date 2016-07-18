@@ -1,7 +1,5 @@
 package reiseplugin.data;
 
-import reiseplugin.data.helden.entities.Daten;
-
 /**
  *
  * @author Luca Corbatto

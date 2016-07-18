@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  *
@@ -19,8 +18,8 @@ import java.util.Set;
 public class ErgebnisTag {
     public static final int STUNDEN = 24;
     
-    private Map<Held, Zustand[]> ergebnis;
-    private List<Held> helden;
+    private final Map<Held, Zustand[]> ergebnis;
+    private final List<Held> helden;
 
     public ErgebnisTag() {
         this.ergebnis = new HashMap<>();

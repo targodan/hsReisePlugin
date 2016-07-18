@@ -8,7 +8,6 @@ package reiseplugin.data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.EventListener;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,7 +19,7 @@ import java.util.Observer;
 public class Parameter extends Observable implements Observer {
     private final Held[] helden;
     private int erschöpfungProStunde;
-    private List<Rast> erholung;
+    private final List<Rast> erholung;
     
     public Parameter(Held[] helden, int erschöpfungProStunde, Collection<Rast> erholung) {
         this.helden = helden;

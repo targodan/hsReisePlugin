@@ -7,16 +7,10 @@ package reiseplugin.gui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.color.ColorSpace;
-import java.util.Enumeration;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.TableColumnModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import reiseplugin.data.ErgebnisTag;
 import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
@@ -29,8 +23,8 @@ public class ReiseTableConfig {
     private ErgebnisTag data = null;
     private Parameter parameter = null;
     
-    private Model model;
-    private Renderer renderer;
+    private final Model model;
+    private final Renderer renderer;
 
     public ReiseTableConfig() {
         this.model = new Model();
