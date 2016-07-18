@@ -4,9 +4,6 @@ import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-
 import reiseplugin.data.helden.entities.Daten;
 import reiseplugin.data.helden.entities.HeldenService;
 
@@ -15,9 +12,6 @@ import reiseplugin.data.helden.entities.HeldenService;
  * @author Luca Corbatto
  */
 public class Service implements IService {
-    private DatenAustausch3Interface dai;
-    private DocumentBuilder documentBuilder;
-    private Unmarshaller unmarshaller;
     private final HeldenService service;
     
     public Service(DatenAustausch3Interface dai) {
@@ -30,6 +24,7 @@ public class Service implements IService {
 
     @Override
     public Held[] getAllHelden() {
+        // Highly unclean but the best I can do until I find the documentation of the API
         List<Held> ret = new ArrayList<>();
         try {
             for(int i = 0; true; ++i) {
