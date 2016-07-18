@@ -11,10 +11,11 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import reiseplugin.calculator.Held;
-import reiseplugin.calculator.Parameter;
-import reiseplugin.calculator.ReiseCalculator;
+import reiseplugin.data.Held;
+import reiseplugin.data.Parameter;
+import reiseplugin.data.ReiseCalculator;
 import reiseplugin.data.IService;
+import reiseplugin.data.Rast;
 
 /**
  *
@@ -42,9 +43,9 @@ public class Controller {
     
     private void setupPanel() {
         this.reisePanel = new ReisePanel();
-        Parameter.Rast[] defaultRasten = {
-            new Parameter.Rast(22, 6, 2, 1),
-            new Parameter.Rast(12, 13, 1, 0)
+        Rast[] defaultRasten = {
+            new Rast(22, 6, 2, 1),
+            new Rast(12, 13, 1, 0)
         };
         this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, Arrays.asList(defaultRasten)));
     }

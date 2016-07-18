@@ -9,8 +9,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 import reiseplugin.WTFException;
-import reiseplugin.calculator.Parameter;
-import reiseplugin.calculator.Held;
+import reiseplugin.data.Parameter;
+import reiseplugin.data.Held;
 
 /**
  *
@@ -73,7 +73,9 @@ public class HeldenTableModel extends AbstractTableModel {
         String text = (String)aValue;
         Matcher m;
         if(columnIndex == 2) {
-            held.setMod(Integer.parseInt(text));
+            try {
+                held.setMod(Integer.parseInt(text));
+            } catch(Exception e) {}
         } else {
             throw new WTFException();
         }

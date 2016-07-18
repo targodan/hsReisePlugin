@@ -17,8 +17,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import reiseplugin.calculator.ErgebnisTag;
-import reiseplugin.calculator.Parameter;
+import reiseplugin.data.ErgebnisTag;
+import reiseplugin.data.Parameter;
+import reiseplugin.data.Rast;
 
 /**
  *
@@ -115,7 +116,7 @@ public class ReiseTableConfig {
                 return 0;
             }
             
-            Parameter.Rast rast = ReiseTableConfig.this.parameter.getErholung().stream()
+            Rast rast = ReiseTableConfig.this.parameter.getErholung().stream()
                     .filter(r -> r.matchStunde(rowIndex))
                     .findFirst().orElse(null);
             

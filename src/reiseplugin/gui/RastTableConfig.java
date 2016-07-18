@@ -21,7 +21,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import reiseplugin.WTFException;
-import reiseplugin.calculator.Parameter;
+import reiseplugin.data.Parameter;
+import reiseplugin.data.Rast;
 
 /**
  *
@@ -93,7 +94,7 @@ public class RastTableConfig implements TableButtonListener {
             if(RastTableConfig.this.data == null) {
                 return null;
             }
-            Parameter.Rast rast = RastTableConfig.this.data.getErholung().get(rowIndex);
+            Rast rast = RastTableConfig.this.data.getErholung().get(rowIndex);
             switch(columnIndex) {
                 case 0:
                     return String.format("%02d:00", rast.getStart());
@@ -115,7 +116,7 @@ public class RastTableConfig implements TableButtonListener {
             if(columnIndex == 4) {
                 return;
             }
-            Parameter.Rast rast = RastTableConfig.this.data.getErholung().get(rowIndex);
+            Rast rast = RastTableConfig.this.data.getErholung().get(rowIndex);
             String text = (String)aValue;
             Matcher m;
             switch(columnIndex) {
@@ -123,8 +124,6 @@ public class RastTableConfig implements TableButtonListener {
                     m = RastTableConfig.timePattern.matcher(text);
                     if(m.matches()) {
                         rast.setStart(Integer.parseInt(m.group(1)));
-                    } else {
-                        // check for this
                     }
                     break;
 
@@ -132,17 +131,19 @@ public class RastTableConfig implements TableButtonListener {
                     m = RastTableConfig.timePattern.matcher(text);
                     if(m.matches()) {
                         rast.setEnde(Integer.parseInt(m.group(1)));
-                    } else {
-                        // check for this
                     }
                     break;
 
                 case 2:
-                    rast.setErschöpfungProStunde(Integer.parseInt(text));
+                    try {
+                        rast.setErschöpfungProStunde(Integer.parseInt(text));
+                    } catch(Exception e) {}
                     break;
 
                 case 3:
-                    rast.setÜberanstrengungProStunde(Integer.parseInt(text));
+                    try {
+                        rast.setÜberanstrengungProStunde(Integer.parseInt(text));
+                    } catch(Exception e) {}
                     break;
 
                 default:
@@ -153,7 +154,6 @@ public class RastTableConfig implements TableButtonListener {
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return true;
-//            return columnIndex != 4;
         }
 
         @Override

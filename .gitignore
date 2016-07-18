@@ -24,4 +24,4 @@ nb-configuration.xml
 
 
 # Generated stuff
-src/reiseplugin/data/entities/jaxb/*
+src/reiseplugin/data/helden/entities/jaxb/*

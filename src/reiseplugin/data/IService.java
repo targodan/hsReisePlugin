@@ -1,7 +1,6 @@
 package reiseplugin.data;
 
-import reiseplugin.data.entities.Daten;
-import reiseplugin.calculator.Held;
+import reiseplugin.data.helden.entities.Daten;
 
 /**
  *

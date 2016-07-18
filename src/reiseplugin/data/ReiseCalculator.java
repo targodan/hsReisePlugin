@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reiseplugin.calculator;
+package reiseplugin.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +65,13 @@ public class ReiseCalculator extends Observable implements Observer {
     }
     
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
-        Parameter.Rast rast = this.parameter.getErholung().stream()
+        Rast rast = this.parameter.getErholung().stream()
                 .filter(r -> r.matchStunde(st))
                 .reduce(null, (r1, r2) -> {
                     if(r1 == null) {
-                        r1 = new Parameter.Rast(0, 0, 0, 0);
+                        r1 = new Rast(0, 0, 0, 0);
                     }
-                    return new Parameter.Rast(0, 0,
+                    return new Rast(0, 0,
                             r1.getErschöpfungProStunde() + r2.getErschöpfungProStunde(),
                             r1.getÜberanstrengungProStunde() + r2.getÜberanstrengungProStunde());
                 });
@@ -81,7 +81,7 @@ public class ReiseCalculator extends Observable implements Observer {
         return z;
     }
     
-    private ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Parameter.Rast rast) {
+    private ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
         int ersch = lastZustand.getErschöpfung();
         int überanst = lastZustand.getÜberanstregnung();
         

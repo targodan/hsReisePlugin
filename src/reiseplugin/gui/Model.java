@@ -15,9 +15,10 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
-import reiseplugin.calculator.ErgebnisTag;
-import reiseplugin.calculator.Parameter;
-import reiseplugin.calculator.ReiseCalculator;
+import reiseplugin.data.ErgebnisTag;
+import reiseplugin.data.Parameter;
+import reiseplugin.data.Rast;
+import reiseplugin.data.ReiseCalculator;
 
 /**
  *
@@ -84,7 +85,7 @@ public class Model implements Observer {
     }
     
     public void addRast() {
-        this.parameter.addRast(new Parameter.Rast(0, 0, 0, 0));
+        this.parameter.addRast(new Rast(0, 0, 0, 0));
         this.getRastTableConfig().getModel().fireTableDataChanged();
     }
     

@@ -74,11 +74,11 @@
         <exec dir="." executable="xjc">
             <arg value="-encoding" /><arg value="utf8" />
             <arg value="-d" /><arg path="src" />
-            <arg value="-p" /><arg value="reiseplugin.data.entities.jaxb" />
+            <arg value="-p" /><arg value="reiseplugin.data.helden.entities.jaxb" />
             <arg file="xml/native.xsd" />
         </exec>
     </target>
     <target name="-post-clean">
-        <deltree dir="src/reiseplugin/data/entities/jaxb" />
+        <deltree dir="src/reiseplugin/data/helden/entities/jaxb" />
     </target>
 </project>
