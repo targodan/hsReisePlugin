@@ -11,21 +11,24 @@ import reiseplugin.data.Service;
 import reiseplugin.gui.Controller;
 
 /**
- *
- * @author Luca Corbatto
+ * Loader-class that gets instantiated by the HeldenSoftware.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     private IService service;
     private Controller controller;
     
+    /**
+     * Constructor.
+     */
     public HeldenStart() {
         super();
     }
 
     /**
-     * Gibt den Namen des Plugins an.
-     * Wird verwendet um das Menu auf zu bauen.
-     * @return name
+     * Returns the name of the plugin.
+     * Used to build up the menu.
+     * @return Name of the plugin
      */
     @Override
     public String getMenuName() {
@@ -33,8 +36,8 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     }
 
     /**
-     * Wird angezeigt, wenn die maus über den Menu schwebt.
-     * @return tooltip
+     * Returns the ToolTip text showed when hovering over the menu entry.
+     * @return ToolTip text
      */
     @Override
     public String getToolTipText() {
@@ -42,8 +45,8 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     }
 
     /**
-     * Liefert das ImageIcon für das Menü
-     * @return ImageIcon oder null 
+     * Returns the icon used in the menu.
+     * @return ImageIcon|null
      */
     @Override
     public ImageIcon getIcon() {
@@ -51,42 +54,71 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
         ProtectionDomain currentProtectionDomain = getClass().getProtectionDomain();
         CodeSource codeSource = currentProtectionDomain.getCodeSource();
         URL icon = new URLClassLoader(new URL[]{codeSource.getLocation()})
-            .getResource("mondkalender/madamal.gif");
+            .getResource("FILE");
         return new ImageIcon(icon);
         */
         return null;
     }
 
+    /**
+     * Returns the type of the plugin.
+     * @return The plugin type.
+     */
     @Override
     public String getType() {
         return HeldenXMLDatenPlugin3.DATEN;
     }
 
+    /**
+     * Unused in this plugin
+     * @param jframe 
+     */
     @Override
     public void doWork(JFrame jframe) {
         // unused
     }
 
+    /**
+     * Invoked when the user clicks on the menu entry.
+     */
     @Override
     public void click() {
         this.controller.showWindow();
     }
 
+    /**
+     * Returns the JPanel that is shown in the tab, if enabled.
+     * @return The JPanel representing the gui of this plugin.
+     */
     @Override
     public JComponent getPanel() {
         return this.controller.getPanel();
     }
 
+    /**
+     * Returns true if the menu entry should be shown.
+     * @return true
+     */
     @Override
     public boolean hatMenu() {
         return true;
     }
 
+    /**
+     * Returns true if the tab should be shown.
+     * @return false
+     */
     @Override
     public boolean hatTab() {
         return false;
     }
 
+    /**
+     * Initializes the plugin.
+     * Is invoked on startup of the HeldenSoftware and provides the interfaces.
+     * @param dai The data interface.
+     * @param jframe The JFrame that provides the look and feel settings.
+     */
     @Override
     public void init(DatenAustausch3Interface dai, JFrame jframe) {
         // called on opening the tool
@@ -94,6 +126,10 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
         this.controller = new Controller(this.service, jframe);
     }
 
+    /**
+     * Returns the names of the submenu entries.
+     * @return The menu entries.
+     */
     @Override
     public ArrayList<JComponent> getUntermenus() {
         ArrayList<JComponent> ret = new ArrayList<>();

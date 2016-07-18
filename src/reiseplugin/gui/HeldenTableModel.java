@@ -7,8 +7,8 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Held;
 
 /**
- *
- * @author Luca Corbatto
+ * GUI Model for the JTable containing the Helden.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class HeldenTableModel extends AbstractTableModel {
     private static final String[] COLUMNS = {
@@ -16,20 +16,28 @@ public class HeldenTableModel extends AbstractTableModel {
     };
     
     private Parameter data = null;
-    
-    public HeldenTableModel() {
-    }
 
+    /**
+     * Returns the Parameter.
+     * @return The Parameter.
+     */
     public Parameter getParameter() {
         return this.data;
     }
 
+    /**
+     * Sets the Parameter and triggers a redraw.
+     * @param data The Parameter.
+     */
     public void setParameter(Parameter data) {
         this.data = data;
         this.fireTableStructureChanged();
         this.fireTableDataChanged();
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getRowCount() {
         if(this.data == null) {
@@ -38,11 +46,17 @@ public class HeldenTableModel extends AbstractTableModel {
         return this.data.getHeldenCount();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getColumnCount() {
         return HeldenTableModel.COLUMNS.length;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if(this.data == null) {
@@ -61,6 +75,9 @@ public class HeldenTableModel extends AbstractTableModel {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Held held = this.data.getHeld(rowIndex);
@@ -75,11 +92,17 @@ public class HeldenTableModel extends AbstractTableModel {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 2;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getColumnName(int column) {
         return HeldenTableModel.COLUMNS[column];

@@ -16,8 +16,8 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
 
 /**
- *
- * @author Luca Corbatto
+ * This class contains the Model, the Renderer and the Editor for the JTable representing the Rasten.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class RastTableConfig implements TableButtonListener {
     private static final String[] COLUMNS = {
@@ -32,6 +32,9 @@ public class RastTableConfig implements TableButtonListener {
     private Renderer renderer = null;
     private Editor editor = null;
     
+    /**
+     * Creates a new RastTableConfig.
+     */
     public RastTableConfig() {
         this.model = new Model();
         this.renderer = new Renderer();
@@ -39,34 +42,64 @@ public class RastTableConfig implements TableButtonListener {
         this.editor.addTableButtonListener(this);
     }
     
+    /**
+     * Returns the Parameter.
+     * @return The Parameter.
+     */
     public Parameter getParameter() {
         return this.data;
     }
 
+    /**
+     * Sets the Parameter and triggers a redraw.
+     * @param data The new Parameter.
+     */
     public void setParameter(Parameter data) {
         this.data = data;
         this.model.fireTableStructureChanged();
         this.model.fireTableDataChanged();
     }
     
+    /**
+     * Returns the Model.
+     * @return The Model.
+     */
     public Model getModel() {
         return this.model;
     }
 
+    /**
+     * Returns the Renderer.
+     * @return The Renderer.
+     */
     public Renderer getRenderer() {
         return renderer;
     }
 
+    /**
+     * Returns the Editor.
+     * @return The Editor.
+     */
     public Editor getEditor() {
         return editor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void tableButtonClicked(int row, int col) {
         this.data.removeRast(this.data.getRast(row));
     }
     
+    /**
+     * The Model of the RastTable.
+     * This class implements the access to the table data and the ability to change the data.
+     */
     public class Model extends AbstractTableModel {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public int getRowCount() {
             if(RastTableConfig.this.data == null) {
@@ -75,11 +108,17 @@ public class RastTableConfig implements TableButtonListener {
             return RastTableConfig.this.data.getErholung().size();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public int getColumnCount() {
             return RastTableConfig.COLUMNS.length;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             if(RastTableConfig.this.data == null) {
@@ -102,6 +141,9 @@ public class RastTableConfig implements TableButtonListener {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
             if(columnIndex == 4) {
@@ -142,18 +184,31 @@ public class RastTableConfig implements TableButtonListener {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return true;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public String getColumnName(int column) {
             return RastTableConfig.COLUMNS[column];
         }
     }
     
+    /**
+     * The Renderer of the RastTable.
+     * This makes the delete-buttons look like buttons.
+     */
     public class Renderer extends DefaultTableCellRenderer {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             if(column != 4) {
@@ -165,27 +220,51 @@ public class RastTableConfig implements TableButtonListener {
         }
     }
     
+    /**
+     * The Editor of the RastTable.
+     * This makes the buttons actually trigger and makes the other fields editable.
+     */
     public class Editor extends DefaultCellEditor {
         
         private final List<TableButtonListener> listeners;
         
+        /**
+         * Creates a new editor.
+         */
         public Editor() {
             super(new JTextField());
             this.listeners = new ArrayList<>();
         }
-
+        
+        /**
+         * Registers a new TableButtonListener.
+         * @param e A TableButtonListener.
+         * @return true (as specified in {@link java.util.Collection.add})
+         */
         public boolean addTableButtonListener(TableButtonListener e) {
             return listeners.add(e);
         }
 
+        /**
+         * Removed a TableButtonListener.
+         * @param e The TableButtonListener to be removed.
+         */
         public void removeTableButtonListener(TableButtonListener e) {
             listeners.remove(e);
         }
         
+        /**
+         * Notifies the TableButtonListeners.
+         * @param row The row of the clicked button.
+         * @param column The column of the clicked button.
+         */
         private void fireButtonClicked(int row, int column) {
             this.listeners.stream().forEach(l -> {l.tableButtonClicked(row, row);});
         }
         
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             if(column == 4) {

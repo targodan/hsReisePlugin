@@ -16,8 +16,8 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
 
 /**
- *
- * @author Luca Corbatto
+ * This class contains the Model and the Renderer for the JTable representing the calculated results.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class ReiseTableConfig {
     private ErgebnisTag data = null;
@@ -26,15 +26,26 @@ public class ReiseTableConfig {
     private final Model model;
     private final Renderer renderer;
 
+    /**
+     * Creates a new ReiseTableConfig.
+     */
     public ReiseTableConfig() {
         this.model = new Model();
         this.renderer = new Renderer();
     }
     
+    /**
+     * Returns the currently shown calculation result.
+     * @return 
+     */
     public ErgebnisTag getData() {
         return data;
     }
 
+    /**
+     * Sets the new calculation result and triggers a redraw.
+     * @param data 
+     */
     public void setData(ErgebnisTag data) {
         if(this.data == null || !this.data.equals(data)) {
             this.data = data;
@@ -43,25 +54,47 @@ public class ReiseTableConfig {
         }
     }
 
+    /**
+     * Returns the Parameter.
+     * @return The Parameter.
+     */
     public Parameter getParameter() {
         return parameter;
     }
 
+    /**
+     * Sets the Parameter and triggers a redraw.
+     * @param parameter The new Parameter.
+     */
     public void setParameter(Parameter parameter) {
         this.parameter = parameter;
         this.model.fireTableDataChanged();
     }
 
+    /**
+     * Returns the Model.
+     * @return The Model.
+     */
     public Model getModel() {
         return model;
     }
 
+    /**
+     * Returns the Renderer.
+     * @return The Renderer.
+     */
     public Renderer getRenderer() {
         return renderer;
     }
     
-
+    /**
+     * The Model for the calculation-result-JTable.
+     * Implements the access to the table data and some methods used by the Renderer.
+     */
     public class Model extends AbstractTableModel {
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public String getColumnName(int column) {
             if (column == 0) {
@@ -73,11 +106,17 @@ public class ReiseTableConfig {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public int getRowCount() {
             return ReiseTableConfig.this.data.STUNDEN;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public int getColumnCount() {
             if (ReiseTableConfig.this.data == null) {
@@ -86,6 +125,9 @@ public class ReiseTableConfig {
             return ReiseTableConfig.this.data.getHelden().size() + 1;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             if (columnIndex == 0) {
@@ -96,22 +138,34 @@ public class ReiseTableConfig {
             }
         }
         
-        public boolean isÜberanstrengt(int rowIndex, int columnIndex) {
-            if (columnIndex == 0) {
+        /**
+         * Returns whether or not a Held is überanstrengt in a certain hour.
+         * This is used by the Renderer to determine if a cell should be red or not.
+         * @param hour The hour. This directly corresponds to the table row.
+         * @param heldIndex The index of the Held, starting with 1. This directly corresponds to the table column.
+         * @return true if the Held is überanstrngt.
+         */
+        public boolean isÜberanstrengt(int hour, int heldIndex) {
+            if (heldIndex == 0) {
                 return false;
             } else {
-                ErgebnisTag.Zustand z = ReiseTableConfig.this.data.getZustand(ReiseTableConfig.this.data.getHelden().get(columnIndex - 1), rowIndex);
+                ErgebnisTag.Zustand z = ReiseTableConfig.this.data.getZustand(ReiseTableConfig.this.data.getHelden().get(heldIndex - 1), hour);
                 return z.getÜberanstregnung() > 0;
             }
         }
         
-        public double getErholung(int rowIndex) {
+        /**
+         * Returns how much Erholung a Held gets in a certain hour.
+         * @param hour The hour. This directly corresponds to the table row.
+         * @return The average Erholung in the given hour.
+         */
+        public double getErholung(int hour) {
             if(ReiseTableConfig.this.parameter == null) {
                 return 0;
             }
             
             Rast rast = ReiseTableConfig.this.parameter.getErholung().stream()
-                    .filter(r -> r.matchStunde(rowIndex))
+                    .filter(r -> r.matchStunde(hour))
                     .findFirst().orElse(null);
             
             if(rast == null) {
@@ -122,12 +176,24 @@ public class ReiseTableConfig {
         }
     }
     
+    /**
+     * The Renderer of the calculation-result-JTable.
+     * This uses the Model to determine the colour of a cell.
+     */
     public class Renderer extends DefaultTableCellRenderer {
+        /**
+         * Calculates the alpha depending on the Erholung.
+         * @param erholung The amount of Erholung.
+         * @return The alpha value.
+         */
         private int calcAlpha(double erholung) {
             int ret = (int)(erholung * 64);
             return Math.min(255, ret);
         }
         
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JLabel l = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

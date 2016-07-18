@@ -8,15 +8,22 @@ package reiseplugin.data;
 import reiseplugin.data.helden.entities.Daten;
 
 /**
- *
- * @author Luca Corbatto
+ * A dummy service for testing purposes.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class DummyService implements IService {
 
+    /**
+     * Returns the currently selected Held.
+     * @return The currently selected Held.
+     */
     public Daten getSelectedHeld() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Held[] getAllHelden() {
         Held h = new Held("Rimaldo", 12, 0);

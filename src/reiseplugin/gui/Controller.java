@@ -15,8 +15,8 @@ import reiseplugin.data.IService;
 import reiseplugin.data.Rast;
 
 /**
- *
- * @author Luca Corbatto
+ * The Controller class for the gui.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class Controller {
     private IService service;
@@ -24,6 +24,11 @@ public class Controller {
     private ReisePanel reisePanel;
     private JFrame parent;
     
+    /**
+     * Creates a new test Controller that automatically opens a new Window.
+     * Used only for testing purposes.
+     * @param service 
+     */
     public Controller(IService service) {
         this.service = service;
         this.dialog = new JDialog();
@@ -32,12 +37,20 @@ public class Controller {
         this.setupDialog();
     }
     
+    /**
+     * Creates a new Controller containing a new ReisePanel.
+     * @param service The IService to use for data requests.
+     * @param parent The JFrame containing the look and feel settings.
+     */
     public Controller(IService service, JFrame parent) {
         this.parent = parent;
         this.service = service;
         this.setupPanel();
     }
     
+    /**
+     * Creates the ReisePanel representing the gui of this plugin and assigns a default Model.
+     */
     private void setupPanel() {
         this.reisePanel = new ReisePanel();
         Rast[] defaultRasten = {
@@ -47,22 +60,36 @@ public class Controller {
         this.reisePanel.getModel().setParameter(new Parameter(this.service.getAllHelden(), 1, Arrays.asList(defaultRasten)));
     }
     
+    /**
+     * Creates a new Window using the earlier(!) created ReisePanel as its content.
+     */
     private void setupDialog() {
         this.dialog.setSize(800, 600);
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
     }
     
+    /**
+     * Creates a new Window with the earlier created ReisePanel as its content.
+     */
     public void showWindow() {
         this.dialog = new JDialog(this.parent, "Reise", false);
         this.setupDialog();
     }
     
+    /**
+     * Sets the text of a debug TextField at the bottom of the window.
+     * @param s 
+     */
     public void setText(String s) {
-        this.reisePanel.getjTextArea1().setText(s);
+        this.reisePanel.getjDebugTextArea().setText(s);
     }
     
-    public JPanel getPanel() {
+    /**
+     * Returns the ReisePanel.
+     * @return The ReisePanel.
+     */
+    public ReisePanel getPanel() {
         return this.reisePanel;
     }
 }

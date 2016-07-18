@@ -3,8 +3,8 @@ package reiseplugin;
 import reiseplugin.data.DummyService;
 
 /**
- *
- * @author Luca Corbatto
+ * Main class for testing purposes.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class Main {
 

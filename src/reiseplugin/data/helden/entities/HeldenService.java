@@ -19,20 +19,26 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- *
- * @author Luca Corbatto
+ * The class which implements the communication with the HeldenSoftware.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class HeldenService {
     private DatenAustausch3Interface dai;
     private DocumentBuilder documentBuilder;
     private Unmarshaller unmarshaller;
     
+    /**
+     * Creates a new HeldenService using the given interface.
+     * @param dai The interface.
+     */
     public HeldenService(DatenAustausch3Interface dai) {
         this.dai = dai;
         
@@ -61,18 +67,32 @@ public class HeldenService {
         }
     }
     
+    /**
+     * Converts a Document to String.
+     * Used only for testing purposes.
+     * @param doc The Document that is to be converted.
+     * @return A String representation of the XML-Document. 
+     */
     private String documentToString(Document doc) {
         DOMSource ds = new DOMSource(doc);
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
         try {
-            TransformerFactory.newInstance().newTransformer().transform(ds, result);
+            Transformer t = TransformerFactory.newInstance().newTransformer();
+            t.setOutputProperty(OutputKeys.INDENT, "yes");
+            t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            t.transform(ds, result);
         } catch(TransformerException e) {
             throw new RuntimeException(e);
         }
         return writer.toString();
     }
     
+    /**
+     * Unmarshalls a Document.
+     * @param doc The Document.
+     * @return The unmashalled Object.
+     */
     private Object unmarshal(Document doc) {
         try {
             return this.unmarshaller.unmarshal(doc);
@@ -81,6 +101,11 @@ public class HeldenService {
         }
     }
     
+    /**
+     * Sends a request Document to the HeldenSoftware.
+     * @param request A request Document
+     * @return The resulting Document.
+     */
     private Document sendRequest(Document request) {
         Object result = dai.exec(request);
 		if (result == null) {
@@ -93,6 +118,12 @@ public class HeldenService {
         return (Document)result;
     }
     
+    /**
+     * Comfortably build a new request Document.
+     * @param action The action.
+     * @param parameters The parameters of the action. In the for of name followed by the value.
+     * @return The resulting request Document.
+     */
     private Document buildRequest(String action, String... parameters) {
         assert(parameters.length % 2 == 0);
         
@@ -109,6 +140,12 @@ public class HeldenService {
         return request;
     }
     
+    /**
+     * Comfortably build a new request Document, automatically adding the xml parameters.
+     * @param action The action.
+     * @param parameters The parameters of the action. In the for of name followed by the value.
+     * @return The resulting request Document.
+     */
     private Document buildXMLRequest(String action, String... parameters) {
         List<String> tmp = new ArrayList<>(parameters.length + 2);
         tmp.addAll(Arrays.asList(parameters));
@@ -118,6 +155,10 @@ public class HeldenService {
         return this.buildRequest(action, tmp.toArray(new String[0]));
     }
     
+    /**
+     * Returns the selected hero in the native format (Daten).
+     * @return The selected hero in the native format (Daten).
+     */
     public Daten getSelectedHeld() {
         Daten d = (Daten)this.unmarshal(
                 this.sendRequest(
@@ -127,6 +168,11 @@ public class HeldenService {
         return d;
     }
     
+    /**
+     * Returns the i-th hero in the native format (Daten).
+     * @param i The index of the requested Held.
+     * @return The i-th hero in the native format (Daten).
+     */
     public Daten getHeld(int i) {
         Daten d = (Daten)this.unmarshal(
                 this.sendRequest(

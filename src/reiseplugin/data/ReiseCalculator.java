@@ -11,19 +11,28 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- *
+ * The class that does all the math.
  * @author Luca Corbatto<luca@corbatto.de>
  */
 public class ReiseCalculator extends Observable implements Observer {
     private final Parameter parameter;
     private final List<ErgebnisTag> ergebnis;
     
+    /**
+     * Creates a new ReiseCalculator with the given Parameter.
+     * @param parameter The Parameter for the calculations.
+     */
     public ReiseCalculator(Parameter parameter) {
         this.parameter = parameter;
         this.parameter.addObserver(this);
         this.ergebnis = new ArrayList<>();
     }
     
+    /**
+     * Returns the result for the given day.
+     * @param tag The day.
+     * @return The result for the given day.
+     */
     public ErgebnisTag getTag(int tag) {
         if(this.ergebnis.size() <= tag) {
             this.calculate(tag);
@@ -31,10 +40,18 @@ public class ReiseCalculator extends Observable implements Observer {
         return this.ergebnis.get(tag);
     }
 
+    /**
+     * Returns the Parameter.
+     * @return The Parameter.
+     */
     public Parameter getParameter() {
         return parameter;
     }
     
+    /**
+     * Calculates the result for the given day.
+     * @param tag The day to be calculated.
+     */
     private void calculate(int tag) {
         while(ergebnis.size() <= tag) {
             ErgebnisTag lastDay;
@@ -63,6 +80,14 @@ public class ReiseCalculator extends Observable implements Observer {
         }
     }
     
+    /**
+     * Calculates an hour for a Held.
+     * @param h The Held.
+     * @param lastZustand The previous Zustand of the Held.
+     * @param newDay The day.
+     * @param st The hour.
+     * @return The result for the given hour.
+     */
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
         Rast rast = this.parameter.getErholung().stream()
                 .filter(r -> r.matchStunde(st))
@@ -80,6 +105,13 @@ public class ReiseCalculator extends Observable implements Observer {
         return z;
     }
     
+    /**
+     * Caculates a followup Zustand.
+     * @param h The Held.
+     * @param lastZustand The previous Zustand.
+     * @param rast The Rast affecting this hour.
+     * @return The next Zustand.
+     */
     private ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
         int ersch = lastZustand.getErschöpfung();
         int überanst = lastZustand.getÜberanstregnung();
@@ -102,6 +134,12 @@ public class ReiseCalculator extends Observable implements Observer {
         return new ErgebnisTag.Zustand(ersch, überanst);
     }
 
+    /**
+     * Called when any of the Ovservables are updated.
+     * Cleares all calculated results, forcing a recalculation.
+     * @param o The Observable that was updated.
+     * @param arg An argument.
+     */
     @Override
     public void update(Observable o, Object arg) {
         this.ergebnis.clear();

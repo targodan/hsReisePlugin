@@ -8,15 +8,15 @@ package reiseplugin.gui;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author Luca Corbatto
+ * The JPanel containing the gui of the plugin.
+ * @author Luca Corbatto<luca@corbatto.de>
  */
 public class ReisePanel extends javax.swing.JPanel {
     
     private final Model model;
 
     /**
-     * Creates new form ReisePanel
+     * Creates new form ReisePanel.
      */
     public ReisePanel() {
         this.model = new Model();
@@ -26,11 +26,19 @@ public class ReisePanel extends javax.swing.JPanel {
         this.jTable4.setDefaultEditor(Object.class, this.model.getRastTableConfig().getEditor());
     }
 
+    /**
+     * Return the Model.
+     * @return The Model.
+     */
     public Model getModel() {
         return model;
     }
     
-    public JTextArea getjTextArea1() {
+    /**
+     * Returns the debug JTextArea at the bottom of the window.
+     * @return The debug JTextArea at the bottom of the window.
+     */
+    public JTextArea getjDebugTextArea() {
         return jTextArea1;
     }
 
