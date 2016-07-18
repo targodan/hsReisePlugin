@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ "$1" == "" ]]; then
+    echo "Usage: generateJavadoc <srcpath>"
+    exit
+fi
+
+javadoc -encoding utf8 -docencoding utf8 -d javadoc -sourcepath "$1" -exclude reiseplugin.data.helden.entities.jaxb -subpackages reiseplugin
