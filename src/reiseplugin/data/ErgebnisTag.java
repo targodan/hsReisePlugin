@@ -26,7 +26,7 @@ import java.util.Objects;
 
 /**
  * Represents the calculator results for one day.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ErgebnisTag {
     public static final int STUNDEN = 24;

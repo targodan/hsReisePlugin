@@ -22,7 +22,7 @@ import reiseplugin.data.DummyService;
 
 /**
  * Main class for testing purposes.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Main {
 

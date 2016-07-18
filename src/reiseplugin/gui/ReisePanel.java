@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 /**
  * The JPanel containing the gui of the plugin.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReisePanel extends javax.swing.JPanel {
     

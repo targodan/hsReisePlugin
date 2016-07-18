@@ -20,7 +20,7 @@ package reiseplugin.data;
 
 /**
  * Interface for the locally used service.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public interface IService {
     /**

@@ -30,7 +30,7 @@ import reiseplugin.gui.Controller;
 
 /**
  * Loader-class that gets instantiated by the HeldenSoftware.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     private IService service;

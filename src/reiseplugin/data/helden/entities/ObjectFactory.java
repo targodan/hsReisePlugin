@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * An example extension of the HeldenSoftware-native JAXB Factory.
  * Not really used, just left in here as an example for future use.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 @XmlRegistry
 public class ObjectFactory extends reiseplugin.data.helden.entities.jaxb.ObjectFactory {

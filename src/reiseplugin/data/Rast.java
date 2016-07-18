@@ -22,7 +22,7 @@ import java.util.Observable;
 
 /**
  * Contains all information of a Rast.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Rast extends Observable {
     private int start;

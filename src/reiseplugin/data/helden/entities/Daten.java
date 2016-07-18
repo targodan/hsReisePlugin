@@ -21,7 +21,7 @@ package reiseplugin.data.helden.entities;
 /**
  * An example extension of the HeldenSoftware-native Daten class.
  * Not really used, just left in here as an example for future use.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Daten extends reiseplugin.data.helden.entities.jaxb.Daten {
     @Override

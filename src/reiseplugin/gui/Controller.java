@@ -29,7 +29,7 @@ import reiseplugin.data.Rast;
 
 /**
  * The Controller class for the gui.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Controller {
     private IService service;

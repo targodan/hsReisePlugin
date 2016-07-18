@@ -41,7 +41,7 @@ import org.w3c.dom.Element;
 
 /**
  * The class which implements the communication with the HeldenSoftware.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class HeldenService {
     private DatenAustausch3Interface dai;

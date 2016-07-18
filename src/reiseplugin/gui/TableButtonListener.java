@@ -22,7 +22,7 @@ import java.util.EventListener;
 
 /**
  * Interface for listening to table button clicks.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public interface TableButtonListener extends EventListener {
     /**

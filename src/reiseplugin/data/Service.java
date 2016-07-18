@@ -27,7 +27,7 @@ import reiseplugin.data.helden.entities.HeldenService;
 
 /**
  * The service providing the necessary methods to access the HeldenSoftware data.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Service implements IService {
     private final HeldenService service;

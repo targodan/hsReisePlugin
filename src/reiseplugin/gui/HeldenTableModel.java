@@ -26,7 +26,7 @@ import reiseplugin.data.Held;
 
 /**
  * GUI Model for the JTable containing the Helden.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class HeldenTableModel extends AbstractTableModel {
     private static final String[] COLUMNS = {

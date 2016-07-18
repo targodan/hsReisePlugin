@@ -27,7 +27,7 @@ import reiseplugin.data.ReiseCalculator;
 
 /**
  * The big, all-containing Model for the gui.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Model implements Observer {
     private ReiseCalculator calculator = null;

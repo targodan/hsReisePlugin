@@ -30,7 +30,7 @@ import reiseplugin.data.Rast;
 
 /**
  * This class contains the Model and the Renderer for the JTable representing the calculated results.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReiseTableConfig {
     private ErgebnisTag data = null;

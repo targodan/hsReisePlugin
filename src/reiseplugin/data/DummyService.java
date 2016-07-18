@@ -22,7 +22,7 @@ import reiseplugin.data.helden.entities.Daten;
 
 /**
  * A dummy service for testing purposes.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class DummyService implements IService {
 

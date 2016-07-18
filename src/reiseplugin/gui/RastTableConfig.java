@@ -35,7 +35,7 @@ import reiseplugin.data.Rast;
 
 /**
  * This class contains the Model, the Renderer and the Editor for the JTable representing the Rasten.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class RastTableConfig implements TableButtonListener {
     private static final String[] COLUMNS = {

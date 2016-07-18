@@ -20,7 +20,7 @@ package reiseplugin;
 
 /**
  *
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class WTFException extends RuntimeException {
     /**

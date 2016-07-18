@@ -23,7 +23,7 @@ import java.util.Observable;
 
 /**
  * Contains the locally necessary informations about a Held.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Held extends Observable {
     private String name;

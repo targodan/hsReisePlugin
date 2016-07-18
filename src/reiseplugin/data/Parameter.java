@@ -27,7 +27,7 @@ import java.util.Observer;
 
 /**
  * Contains all parameters used by the ReiseCalculator.
- * @author Luca Corbatto<luca@corbatto.de>
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Parameter extends Observable implements Observer {
     private final Held[] helden;
