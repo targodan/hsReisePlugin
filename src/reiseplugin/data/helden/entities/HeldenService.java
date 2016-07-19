@@ -23,6 +23,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.PropertyException;
@@ -38,6 +39,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import reiseplugin.data.helden.entities.jaxb.Result;
 
 /**
  * The class which implements the communication with the HeldenSoftware.
@@ -182,7 +184,7 @@ public class HeldenService {
     }
     
     /**
-     * Returns the i-th hero in the native format (Daten).
+     * Returns the i-th Held in the native format (Daten).
      * @param i The index of the requested Held.
      * @return The i-th hero in the native format (Daten).
      */
@@ -193,5 +195,21 @@ public class HeldenService {
                         "id", String.valueOf(i)
                 )));
         return d;
+    }
+    
+    /**
+     * Returns all Helden in the native format (Daten).
+     * @return All Helden in the native format (Daten).
+     */
+    public List<Daten> getAllHelden() {
+        Result r = (Result)this.unmarshal(this.sendRequest(this.buildXMLRequest("listHelden")));
+        return r.getHeldAndProp().stream()
+                .map(h -> {
+                    Result.Held held = (Result.Held)h;
+                    return (Daten)this.unmarshal(
+                                    this.sendRequest(
+                                    this.buildXMLRequest("held", "id", held.getId().toString())
+                                ));
+                }).collect(Collectors.toList());
     }
 }

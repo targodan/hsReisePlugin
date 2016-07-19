@@ -21,6 +21,7 @@ package reiseplugin.data;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import reiseplugin.data.helden.entities.Daten;
 import reiseplugin.data.helden.entities.HeldenService;
@@ -54,15 +55,9 @@ public class Service implements IService {
      */
     @Override
     public Held[] getAllHelden() {
-        // Highly unclean but the best I can do until I find the documentation of the API
-        List<Held> ret = new ArrayList<>();
-        try {
-            for(int i = 0; true; ++i) {
-                ret.add(this.nativeToHeld(this.service.getHeld(i)));
-            }
-        } catch(Exception e) {
-            // last Held was read already
-        }
-        return ret.toArray(new Held[0]);
+        return this.service.getAllHelden().stream()
+                .map(d -> this.nativeToHeld(d))
+                .collect(Collectors.toList())
+                .toArray(new Held[0]);
     }
 }

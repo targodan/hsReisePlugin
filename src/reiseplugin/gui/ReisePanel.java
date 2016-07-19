@@ -60,7 +60,7 @@ public class ReisePanel extends javax.swing.JPanel {
      * Returns the debug JTextArea at the bottom of the window.
      * @return The debug JTextArea at the bottom of the window.
      */
-    public JTextArea getjDebugTextArea() {
+    public JTextArea getDebugTextArea() {
         return jTextAreaDebug;
     }
 

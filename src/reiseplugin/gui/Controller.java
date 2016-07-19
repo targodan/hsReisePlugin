@@ -21,7 +21,6 @@ package reiseplugin.gui;
 import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import reiseplugin.data.Parameter;
 import reiseplugin.data.IService;
@@ -32,7 +31,7 @@ import reiseplugin.data.Rast;
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Controller {
-    private IService service;
+    private final IService service;
     private JDialog dialog;
     private ReisePanel reisePanel;
     private JFrame parent;
@@ -96,7 +95,7 @@ public class Controller {
      * @param s 
      */
     public void setText(String s) {
-        this.reisePanel.getjDebugTextArea().setText(s);
+        this.reisePanel.getDebugTextArea().setText(s);
     }
     
     /**
