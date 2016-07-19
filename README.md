@@ -47,6 +47,11 @@ Die Benutzung von Umlauten ist nicht nur gestattet sondern erwünscht.
 Wenn ein "ü" in dem Wort vorkommt, dann schreibt auch bitte ein "ü" und kein "ue".
 Java kommt damit poblemlos klar und ich finde es macht das ganze etwas leserlicher.
 
+- **Einrückung:**
+Eingerückt wird ausschließlich mit Leerzeichen.
+Pull-requests mit Tabulatorschritten werden zurückgewiesen!
+Die standard Einrückungstiefe ist 4 Leerzeichen.
+
 - **Commits:**
 Die commit messages bitte auch möglichst auf Englisch halten.
 Es muss mindestens drin stehen, was ihr getan/verändert habt.
