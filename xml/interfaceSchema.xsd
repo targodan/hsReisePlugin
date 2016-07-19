@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="qualified">
+    elementFormDefault="qualified">
     <xs:simpleType name="action">
         <xs:restriction base="xs:string">
             <xs:enumeration value="selectedHeld" />
@@ -41,8 +41,8 @@
         <xs:attribute name="key" type="xs:string" />
         <xs:attribute name="value" type="xs:string" />
     </xs:complexType>
-	<xs:element name="result">
-		<xs:complexType>
+    <xs:element name="result">
+        <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element name="held">
                     <xs:complexType>
@@ -57,9 +57,9 @@
             <xs:attribute name="value" type="xs:string" use="optional" />
             <xs:attribute name="heldenkey" type="xs:string" use="optional" />
             <xs:attribute name="status" type="xs:string" use="optional" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="request">
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="request">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element name="prop" type="property" />
