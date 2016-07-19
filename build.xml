@@ -76,6 +76,7 @@
             <arg value="-d" /><arg path="src" />
             <arg value="-p" /><arg value="reiseplugin.data.helden.entities.jaxb" />
             <arg file="xml/datenXMLSchema.xsd" />
+            <arg file="xml/interfaceSchema.xsd" />
         </exec>
     </target>
     <target name="-post-clean">
