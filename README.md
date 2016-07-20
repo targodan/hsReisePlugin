@@ -16,14 +16,14 @@ Das hsReisePlugin benutzt [gradle](https://gradle.org/) zum Compilieren und Test
 Zum Compilieren einfach den mitgelieferten Wrapper mit den Parametern `xjc build` ausführen.
 
 Linux:
-``
+```bash
 ./gradlew xjc build
-``
+```
 
 Windows:
-``
+```batch
 gradlew.bat xjc build
-``
+```
 
 Anschließend findet ihr unter `build/lib` die gerade erstellte jar-Datei.
 
