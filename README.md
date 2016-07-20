@@ -12,14 +12,20 @@ Unter [Releases](https://github.com/targodan/hsReisePlugin/releases) die neueste
 Anschließend die HeldenSoftware neu starten und über das "Erweiterungen" Menü auf "Reisen" klicken. Der Rest sollte hoffentlich selbsterklärend sein.
 
 ## Compilieren
-Das Repo beinhaltet das XML-Schema ([xml/native.xsd](https://github.com/targodan/hsReisePlugin/blob/master/xml/native.xsd)), welches mit Hilfe von [JAXB](https://jaxb.java.net/) genutzt werden kann um die XML-Daten aus der HeldenSoftware in Java-Klassen umzuwandeln.
-Das enthaltene NetBeans-Projekt ist so konfiguriert, dass JAXB vor jedem
-Compilieren mit den nötigen Parametern aufgerufen wird. Hierzu muss die
-JAXB executable `xjc` im `PATH` enthalten sein.
+Das hsReisePlugin benutzt [gradle](https://gradle.org/) zum Compilieren und Testen.
+Zum Compilieren einfach den mitgelieferten Wrapper mit den Parametern `xjc build` ausführen.
 
-Außerdem muss die jar-Datei der HeldenSoftware in das NetBeans-Projekt
-eingebunden werden.
-Hierzu einfach die [HeldenSoftware](http://www.helden-software.de/) herunterladen und als "lib/helden.jar" Speichern.
+Linux:
+``
+./gradlew xjc build
+``
+
+Windows:
+``
+gradlew.bat xjc build
+``
+
+Anschließend findet ihr unter `build/lib` die gerade erstellte jar-Datei.
 
 ## Beitragen
 Ihr wollt zu diesem Projekt beitragen? Super! :grinning::thumbsup:
