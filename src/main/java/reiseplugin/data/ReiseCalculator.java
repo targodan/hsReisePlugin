@@ -65,7 +65,7 @@ public class ReiseCalculator extends Observable implements Observer {
      * Calculates the result for the given day.
      * @param tag The day to be calculated.
      */
-    private void calculate(int tag) {
+    protected void calculate(int tag) {
         while(ergebnis.size() <= tag) {
             ErgebnisTag lastDay;
             if(ergebnis.size() > 0) {
@@ -125,7 +125,7 @@ public class ReiseCalculator extends Observable implements Observer {
      * @param rast The Rast affecting this hour.
      * @return The next Zustand.
      */
-    private ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
+    protected ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
         int ersch = lastZustand.getErschöpfung();
         int überanst = lastZustand.getÜberanstregnung();
         
