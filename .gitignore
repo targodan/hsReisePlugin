@@ -22,6 +22,8 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 
+# All NetBeans Projectfiles from now on
+nbproject/
 
 # Generated stuff
 src/reiseplugin/data/helden/entities/jaxb/*
