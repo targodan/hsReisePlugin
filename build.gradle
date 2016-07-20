@@ -52,7 +52,7 @@ jaxb {
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
+        attributes 'Implementation-Title': 'hsReisePlugin',
                    'Implementation-Version': version,
                    'Main-Class': mainClassName,
                    'HeldenPluginClass': 'reiseplugin.HeldenStart.class'

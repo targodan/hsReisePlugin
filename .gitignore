@@ -21,6 +21,7 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+nbproject/
 
 # Generated stuff
 src/main/java/reiseplugin/data/helden/entities/jaxb/*
