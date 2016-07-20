@@ -82,4 +82,7 @@
     <target name="-post-clean">
         <deltree dir="src/reiseplugin/data/helden/entities/jaxb" />
     </target>
+    <target name="-javadoc-build">
+        <!-- Deactivated for now. -->
+    </target>
 </project>
