@@ -18,6 +18,7 @@ JAXB executable `xjc` im `PATH` enthalten sein.
 
 Außerdem muss die jar-Datei der HeldenSoftware in das NetBeans-Projekt
 eingebunden werden.
+Hierzu einfach die [HeldenSoftware](http://www.helden-software.de/) herunterladen und als "lib/helden.jar" Speichern.
 
 ## Beitragen
 Ihr wollt zu diesem Projekt beitragen? Super! :grinning::thumbsup:
@@ -88,6 +89,5 @@ Je nachdem wie groß das Projekt wird werden wenn nötig auch `feature` und evtl
 In Anlenung an den [git-flow Workflow](http://danielkummer.github.io/git-flow-cheatsheet/).
 
 ### Versionierung
-Die Versionsnummern werden nach dem [Semantic-Versioning](http://semver.org/) vergeben wobei ich um ehrlich zu sein zu faul bin zu diesem Zeitpunkt eine saubere Definition der API zu geben.
-Daher werde ich die Backwards-Compatibility hier eher intuitiv angehen.
-Wenn eine Änderung gefahr Läuft alten Code oder bereits aktive Pull-request kaputt zu machen, dann ist das für mich ein Bruch der Backwards-Compatibility.
+Die Versionsnummern werden nach dem [Semantic-Versioning](http://semver.org/) vergeben.
+Die aktuelle API ist definiert durch die [JavaDocs](https://targodan.github.io/hsReisePlugin).
