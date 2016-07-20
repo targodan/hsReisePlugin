@@ -1,7 +1,4 @@
 language: java
-install: ant
-before_install:
-    - mkdir lib
-    - wget http://www.helden-software.de/down/hs5/050502/helden.jar -O lib/helden.jar
+install: ./gradlew xjc check
 jdk:
     - oraclejdk8
