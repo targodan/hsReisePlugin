@@ -1,5 +1,7 @@
 language: java
 install: ant
+before_install:
+    - mkdir lib
+    - wget http://www.helden-software.de/down/hs5/050502/helden.jar -O lib/helden.jar
 jdk:
-        - oraclejdk8
-        - openjdk8
+    - oraclejdk8

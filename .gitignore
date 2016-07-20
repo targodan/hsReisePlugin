@@ -25,3 +25,6 @@ nb-configuration.xml
 
 # Generated stuff
 src/reiseplugin/data/helden/entities/jaxb/*
+
+# Dependencies
+lib/
