@@ -1,4 +1,5 @@
-# hsReisePlugin
+# hsReisePlugin [![Build Status](https://travis-ci.org/targodan/hsReisePlugin.svg?branch=development)](https://travis-ci.org/targodan/hsReisePlugin)
+
 Ein Plugin für die [HeldenSoftware](http://www.helden-software.de/), welches die Erschöpfung und Überanstrengung der Helden berechnet.
 
 Die JavaDocs sind [hier](https://targodan.github.io/hsReisePlugin/) zu finden.
