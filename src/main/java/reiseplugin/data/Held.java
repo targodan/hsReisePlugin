@@ -104,4 +104,12 @@ public class Held extends Observable {
         hash = 53 * hash + this.mod;
         return hash;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Held{" + "name=" + this.name + ", KO=" + this.KO + ", mod=" + this.mod + '}';
+    }
 }

@@ -147,4 +147,12 @@ public class Rast extends Observable {
             return this.start <= st && st < this.ende;
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Rast{" + "start=" + this.start + ", ende=" + this.ende + ", ersch\u00f6pfungProStunde=" + this.erschöpfungProStunde + ", \u00fcberanstrengungProStunde=" + this.überanstrengungProStunde + '}';
+    }
 }

@@ -163,6 +163,14 @@ public class ErgebnisTag {
             }
             return true;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            return "Zustand{" + "ersch\u00f6pfung=" + this.erschöpfung + ", \u00fcberanstregnung=" + this.überanstregnung + '}';
+        }
     }
     
     /**
@@ -195,5 +203,13 @@ public class ErgebnisTag {
         hash = 53 * hash + Objects.hashCode(this.ergebnis);
         hash = 53 * hash + Objects.hashCode(this.helden);
         return hash;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "ErgebnisTag{" + "ergebnis=" + this.ergebnis.toString() + ", helden=" + this.helden.toString() + '}';
     }
 }

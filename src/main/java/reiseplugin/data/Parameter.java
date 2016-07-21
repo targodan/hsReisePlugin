@@ -155,4 +155,12 @@ public class Parameter extends Observable implements Observer {
         this.setChanged();
         this.notifyObservers(o);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Parameter{" + "helden=" + Arrays.toString(this.helden) + ", ersch\u00f6pfungProStunde=" + this.erschöpfungProStunde + ", erholung=" + this.erholung + '}';
+    }
 }
