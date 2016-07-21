@@ -28,8 +28,8 @@ import java.util.Observer;
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReiseCalculator extends Observable implements Observer {
-    private final Parameter parameter;
-    private final List<ErgebnisTag> ergebnis;
+    protected final Parameter parameter;
+    protected final List<ErgebnisTag> ergebnis;
     
     /**
      * Creates a new ReiseCalculator with the given Parameter.
@@ -86,6 +86,7 @@ public class ReiseCalculator extends Observable implements Observer {
                 newDay.addHeld(h);
                 for(int st = 0; st < 24; ++st) {
                     lastZustand = this.calculateStunde(h, lastZustand, newDay, st);
+                    newDay.setZustand(h, st, lastZustand);
                 }
             });
             
@@ -114,7 +115,6 @@ public class ReiseCalculator extends Observable implements Observer {
                 });
         
         ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
-        newDay.setZustand(h, st, z);
         return z;
     }
     

@@ -31,8 +31,8 @@ import java.util.Objects;
 public class ErgebnisTag {
     public static final int STUNDEN = 24;
     
-    private final Map<Held, Zustand[]> ergebnis;
-    private final List<Held> helden;
+    protected final Map<Held, Zustand[]> ergebnis;
+    protected final List<Held> helden;
 
     /**
      * Creates a new ErgebnisTag.

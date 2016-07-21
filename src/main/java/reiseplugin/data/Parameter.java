@@ -41,7 +41,11 @@ public class Parameter extends Observable implements Observer {
      * @param erholung A Collection of Rasten. 
      */
     public Parameter(Held[] helden, int erschöpfungProStunde, Collection<Rast> erholung) {
-        this.helden = helden;
+        if(helden == null) {
+            this.helden = new Held[0];
+        } else {
+            this.helden = helden;
+        }
         for(Held h : this.helden) {
             h.addObserver(this);
         }
@@ -62,7 +66,7 @@ public class Parameter extends Observable implements Observer {
      * @return The i-th Held.
      */
     public Held getHeld(int i) {
-        return helden[i];
+        return this.helden[i];
     }
     
     /**
@@ -70,7 +74,7 @@ public class Parameter extends Observable implements Observer {
      * @return The number of Helden.
      */
     public int getHeldenCount() {
-        return helden.length;
+        return this.helden.length;
     }
     
     /**
@@ -78,7 +82,7 @@ public class Parameter extends Observable implements Observer {
      * @return A List containing the Helden.
      */
     public List<Held> getHelden() {
-        return Arrays.asList(helden);
+        return Arrays.asList(this.helden);
     }
 
     /**
@@ -86,7 +90,7 @@ public class Parameter extends Observable implements Observer {
      * @return The Erschöpfung per hour.
      */
     public int getErschöpfungProStunde() {
-        return erschöpfungProStunde;
+        return this.erschöpfungProStunde;
     }
 
     /**

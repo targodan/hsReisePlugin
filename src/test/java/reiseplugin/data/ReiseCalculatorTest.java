@@ -19,6 +19,7 @@
 package reiseplugin.data;
 
 import java.util.Observable;
+import static org.hamcrest.Matchers.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Luca Corbatto
+ * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReiseCalculatorTest {
     
@@ -48,26 +49,10 @@ public class ReiseCalculatorTest {
     public void testGetTag() {
         System.out.println("getTag");
         int tag = 0;
-        ReiseCalculator instance = null;
-        ErgebnisTag expResult = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, null));
+        ErgebnisTag expResult = new ErgebnisTag();
         ErgebnisTag result = instance.getTag(tag);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getParameter method, of class ReiseCalculator.
-     */
-    @Test
-    public void testGetParameter() {
-        System.out.println("getParameter");
-        ReiseCalculator instance = null;
-        Parameter expResult = null;
-        Parameter result = instance.getParameter();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertThat(result, equalTo(expResult));
     }
 
     /**
@@ -76,16 +61,14 @@ public class ReiseCalculatorTest {
     @Test
     public void testCalculateStunde() {
         System.out.println("calculateStunde");
-        Held h = null;
-        ErgebnisTag.Zustand lastZustand = null;
-        ErgebnisTag newDay = null;
+        Held h = new Held("Rimaldo", 0, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        ErgebnisTag newDay = new ErgebnisTag();
         int st = 0;
-        ReiseCalculator instance = null;
-        ErgebnisTag.Zustand expResult = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
         ErgebnisTag.Zustand result = instance.calculateStunde(h, lastZustand, newDay, st);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertThat(result, equalTo(expResult));
     }
 
     /**
@@ -96,10 +79,9 @@ public class ReiseCalculatorTest {
         System.out.println("update");
         Observable o = null;
         Object arg = null;
-        ReiseCalculator instance = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, null));
         instance.update(o, arg);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertThat(instance.ergebnis.size(), equalTo(0));
     }
 
     /**
@@ -109,10 +91,18 @@ public class ReiseCalculatorTest {
     public void testCalculate() {
         System.out.println("calculate");
         int tag = 0;
-        ReiseCalculator instance = null;
+        Held h = new Held("Rimaldo", 0, 0);
+        ErgebnisTag expResult = new ErgebnisTag();
+        expResult.addHeld(h);
+        for(int i = 0; i < 24; ++i) {
+            expResult.setZustand(h, i, 0, 0);
+        }
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
         instance.calculate(tag);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ErgebnisTag result = instance.getTag(tag);
+        assertThat(result.helden.toArray(), arrayContainingInAnyOrder(expResult.helden.toArray()));
+        assertThat(result.ergebnis.get(h), arrayContainingInAnyOrder(expResult.ergebnis.get(h)));
+        assertThat(result.ergebnis.get(h).length, equalTo(expResult.ergebnis.get(h).length));
     }
 
     /**
@@ -121,15 +111,13 @@ public class ReiseCalculatorTest {
     @Test
     public void testNextZustand() {
         System.out.println("nextZustand");
-        Held h = null;
-        ErgebnisTag.Zustand lastZustand = null;
-        Rast rast = null;
-        ReiseCalculator instance = null;
-        ErgebnisTag.Zustand expResult = null;
+        Held h = new Held("Rimaldo", 0, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = new Rast(0, 0, 0, 0);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
         ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertThat(result, equalTo(expResult));
     }
     
 }
