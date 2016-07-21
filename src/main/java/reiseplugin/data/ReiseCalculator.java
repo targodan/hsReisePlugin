@@ -126,6 +126,10 @@ public class ReiseCalculator extends Observable implements Observer {
      * @return The next Zustand.
      */
     protected ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
+        if(h == null || lastZustand == null) {
+            throw new IllegalArgumentException("Neither Held nor lastZustand may be null.");
+        }
+        
         int ersch = lastZustand.getErschöpfung();
         int überanst = lastZustand.getÜberanstregnung();
         

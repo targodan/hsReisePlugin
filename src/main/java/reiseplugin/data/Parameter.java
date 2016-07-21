@@ -41,6 +41,10 @@ public class Parameter extends Observable implements Observer {
      * @param erholung A Collection of Rasten. 
      */
     public Parameter(Held[] helden, int erschöpfungProStunde, Collection<Rast> erholung) {
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde cannot be negative");
+        }
+        
         if(helden == null) {
             this.helden = new Held[0];
         } else {
@@ -98,6 +102,10 @@ public class Parameter extends Observable implements Observer {
      * @param erschöpfungProStunde The Erschöpfung per hour.
      */
     public void setErschöpfungProStunde(int erschöpfungProStunde) {
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde cannot be negative");
+        }
+        
         if(this.erschöpfungProStunde != erschöpfungProStunde) {
             this.erschöpfungProStunde = erschöpfungProStunde;
             this.setChanged();

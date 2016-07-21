@@ -24,6 +24,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -59,7 +60,7 @@ public class ReiseCalculatorTest {
      * Test of calculateStunde method, of class ReiseCalculator.
      */
     @Test
-    public void testCalculateStunde() {
+    public void testCalculateStunde_Zero() {
         System.out.println("calculateStunde");
         Held h = new Held("Rimaldo", 0, 0);
         ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
@@ -88,7 +89,7 @@ public class ReiseCalculatorTest {
      * Test of calculate method, of class ReiseCalculator.
      */
     @Test
-    public void testCalculate() {
+    public void testCalculate_Zero() {
         System.out.println("calculate");
         int tag = 0;
         Held h = new Held("Rimaldo", 0, 0);
@@ -109,7 +110,7 @@ public class ReiseCalculatorTest {
      * Test of nextZustand method, of class ReiseCalculator.
      */
     @Test
-    public void testNextZustand() {
+    public void testNextZustand_Zero() {
         System.out.println("nextZustand");
         Held h = new Held("Rimaldo", 0, 0);
         ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
@@ -120,4 +121,68 @@ public class ReiseCalculatorTest {
         assertThat(result, equalTo(expResult));
     }
     
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testNextZustand_ThrowsFirstNull() {
+        System.out.println("nextZustand");
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[0], 1, null));
+        instance.nextZustand(null, new ErgebnisTag.Zustand(0, 0), null);
+    }
+    
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testNextZustand_ThrowsSecondNull() {
+        System.out.println("nextZustand");
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[0], 1, null));
+        instance.nextZustand(new Held("Rimaldo", 0, 0), null, null);
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_OneNoModNoRast() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 11, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 1, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(1, 0);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_TwoNoModNoRast() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 11, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(2, 0);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_TwoAndÜberanstrNoModNoRast() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 1, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(1, 1);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
 }
