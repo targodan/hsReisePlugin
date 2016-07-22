@@ -19,7 +19,6 @@
 package reiseplugin.data;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import org.junit.Test;
@@ -36,45 +35,28 @@ import org.mockito.runners.MockitoJUnitRunner;
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ParameterIT {
+public class ReiseCalculatorIT {
     
     @Mock
     protected Observer observer;
     
-    public ParameterIT() {
+    public ReiseCalculatorIT() {
     }
-    
+
     /**
-     * Test of the Obsevable behavior, of class Parameter.
+     * Test of the Obsevable behavior, of class ReiseCalculator.
      */
     @Test
-    public void testObservablePropagation_ModifyHeld() {
-        Held held = new Held("", 0, 0);
+    public void testObservablePropagation_ModifyParameter() {
+        Parameter parameter = new Parameter(null, 0, null);
+        ReiseCalculator rc = new ReiseCalculator(parameter);
+        rc.addObserver(this.observer);
         
-        Parameter parameter = new Parameter(new Held[]{held}, 0, null);
-        parameter.addObserver(this.observer);
+        // Only test the shallow propagation because propagaiton from Rast/Held
+        // -> Parameter is tested in ParameterIT.
+        parameter.setErschöpfungProStunde(1);
         
-        held.setMod(1);
-        
-        verify(this.observer, times(1)).update(parameter, held);
-        verifyNoMoreInteractions(this.observer);
-    }
-    
-    /**
-     * Test of the Obsevable behavior, of class Parameter.
-     */
-    @Test
-    public void testObservablePropagation_ModifyRast() {
-        Rast rast = new Rast(0, 0, 0, 0);
-        
-        Parameter parameter = new Parameter(null, 0, Arrays.asList(rast));
-        parameter.addObserver(this.observer);
-        
-        // Only test with setStart as a representative because the RastTest
-        // already tests, that all setters invoke the notification.
-        rast.setStart(1);
-        
-        verify(this.observer, times(1)).update(parameter, rast);
+        verify(this.observer, times(1)).update(rc, parameter);
         verifyNoMoreInteractions(this.observer);
     }
 }

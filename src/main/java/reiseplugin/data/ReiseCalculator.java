@@ -192,6 +192,6 @@ public class ReiseCalculator extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         this.ergebnis.clear();
         this.setChanged();
-        this.notifyObservers();
+        this.notifyObservers(o);
     }
 }

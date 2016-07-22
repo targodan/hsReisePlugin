@@ -95,7 +95,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_UpdateErschöpfung() {
@@ -107,7 +107,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_NoUpdateErschöpfung() {
@@ -119,7 +119,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_UpdateAddRast() {
@@ -135,7 +135,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_NoUpdateAddRast() {
@@ -150,7 +150,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_UpdateRemoveRast() {
@@ -167,7 +167,7 @@ public class ParameterTest {
     }
     
     /**
-     * Test of the Obsevable behavior, of class Rast.
+     * Test of the Obsevable behavior, of class Parameter.
      */
     @Test
     public void testObservable_NoUpdateRemoveRast() {
