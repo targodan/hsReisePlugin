@@ -36,6 +36,9 @@ public class ReiseCalculator extends Observable implements Observer {
      * @param parameter The Parameter for the calculations.
      */
     public ReiseCalculator(Parameter parameter) {
+        if(parameter == null) {
+            throw new IllegalArgumentException("Parameter may not null.");
+        }
         this.parameter = parameter;
         this.parameter.addObserver(this);
         this.ergebnis = new ArrayList<>();
@@ -85,7 +88,7 @@ public class ReiseCalculator extends Observable implements Observer {
                         
                 newDay.addHeld(h);
                 for(int st = 0; st < 24; ++st) {
-                    lastZustand = this.calculateStunde(h, lastZustand, newDay, st);
+                    lastZustand = this.calculateStunde(h, lastZustand, st);
                     newDay.setZustand(h, st, lastZustand);
                 }
             });
@@ -96,6 +99,13 @@ public class ReiseCalculator extends Observable implements Observer {
     
     /**
      * Calculates an hour for a Held.
+     * 
+     * @deprecated Will be removed in Version 2.0.0. From within ReiseCalculator
+     * please use {@link #calculateStunde(reiseplugin.data.Held,
+     * reiseplugin.data.ErgebnisTag.Zustand, reiseplugin.data.ErgebnisTag,
+     * int) calculateStunde} instead. This method should not be public, please
+     * use {@link #getTag(int) getTag} from outside of the class.
+     * 
      * @param h The Held.
      * @param lastZustand The previous Zustand of the Held.
      * @param newDay The day.
@@ -103,6 +113,19 @@ public class ReiseCalculator extends Observable implements Observer {
      * @return The result for the given hour.
      */
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
+        Rast rast = this.findRast(st);
+        ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
+        return z;
+    }
+    
+    /**
+     * Calculates an hour for a Held.
+     * @param h The Held.
+     * @param lastZustand The previous Zustand of the Held.
+     * @param st The hour.
+     * @return The result for the given hour.
+     */
+    protected ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, int st) {
         Rast rast = this.findRast(st);
         ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
         return z;
