@@ -103,7 +103,18 @@ public class ReiseCalculator extends Observable implements Observer {
      * @return The result for the given hour.
      */
     public ErgebnisTag.Zustand calculateStunde(Held h, ErgebnisTag.Zustand lastZustand, ErgebnisTag newDay, int st) {
-        Rast rast = this.parameter.getErholung().stream()
+        Rast rast = this.findRast(st);
+        ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
+        return z;
+    }
+    
+    /**
+     * Finds and sums Rasten in the given hour
+     * @param st The hour
+     * @return The resulting Rast
+     */
+    protected Rast findRast(int st) {
+        return this.parameter.getErholung().stream()
                 .filter(r -> r.matchStunde(st))
                 .reduce(null, (r1, r2) -> {
                     if(r1 == null) {
@@ -113,9 +124,6 @@ public class ReiseCalculator extends Observable implements Observer {
                             r1.getErschöpfungProStunde() + r2.getErschöpfungProStunde(),
                             r1.getÜberanstrengungProStunde() + r2.getÜberanstrengungProStunde());
                 });
-        
-        ErgebnisTag.Zustand z = this.nextZustand(h, lastZustand, rast);
-        return z;
     }
     
     /**

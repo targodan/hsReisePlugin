@@ -18,6 +18,7 @@
  */
 package reiseplugin.data;
 
+import java.util.Arrays;
 import java.util.Observable;
 import static org.hamcrest.Matchers.*;
 import org.junit.After;
@@ -56,6 +57,59 @@ public class ReiseCalculatorTest {
         assertThat(result, equalTo(expResult));
     }
 
+    /**
+     * Test of findRast method, of class ReiseCalculator.
+     */
+    @Test
+    public void testFindRast_Single() {
+        System.out.println("findRast");
+        Rast[] rasten = new Rast[]{
+            new Rast(11, 12, 100, 200),
+            new Rast(12, 13, 2, 4),
+            new Rast(13, 14, 100, 200)
+        };
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, Arrays.asList(rasten)));
+        Rast expResult = new Rast(0, 0, 2, 4);
+        Rast result = instance.findRast(12);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of findRast method, of class ReiseCalculator.
+     */
+    @Test
+    public void testFindRast_Multiple() {
+        System.out.println("findRast");
+        Rast[] rasten = new Rast[]{
+            new Rast(11, 12, 100, 200),
+            new Rast(12, 13, 2, 4),
+            new Rast(11, 14, 3, 5),
+            new Rast(13, 14, 100, 200)
+        };
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, Arrays.asList(rasten)));
+        Rast expResult = new Rast(0, 0, 5, 9);
+        Rast result = instance.findRast(12);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of findRast method, of class ReiseCalculator.
+     */
+    @Test
+    public void testFindRast_None() {
+        System.out.println("findRast");
+        Rast[] rasten = new Rast[]{
+            new Rast(11, 12, 100, 200),
+            new Rast(12, 13, 2, 4),
+            new Rast(11, 14, 3, 5),
+            new Rast(13, 14, 100, 200)
+        };
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, Arrays.asList(rasten)));
+        Rast expResult = null;
+        Rast result = instance.findRast(18);
+        assertThat(result, equalTo(expResult));
+    }
+    
     /**
      * Test of calculateStunde method, of class ReiseCalculator.
      */
@@ -182,6 +236,81 @@ public class ReiseCalculatorTest {
         Rast rast = null;
         ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
         ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(1, 1);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_TwoAndÜberanstrWithModNoRast() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 1, 2);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = null;
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(1, 3);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_WithZeroRast() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 1, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = new Rast(0, 0, 0, 0);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_WithRastÜberanst() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 1, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(1, 1);
+        Rast rast = new Rast(0, 0, 1, 1);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(1, 0);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_WithRastNoÜberanst() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 10, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(1, 0);
+        Rast rast = new Rast(0, 0, 1, 1);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
+        ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
+        assertThat(result, equalTo(expResult));
+    }
+
+    /**
+     * Test of nextZustand method, of class ReiseCalculator.
+     */
+    @Test
+    public void testNextZustand_WithRastNegResult() {
+        System.out.println("nextZustand");
+        Held h = new Held("Rimaldo", 10, 0);
+        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
+        Rast rast = new Rast(0, 0, 2, 2);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 2, null));
+        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
         ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
         assertThat(result, equalTo(expResult));
     }

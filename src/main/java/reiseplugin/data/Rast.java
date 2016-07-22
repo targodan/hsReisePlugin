@@ -40,6 +40,18 @@ public class Rast extends Observable {
      * @param überanstrengungProStunde The Überanstrengung the Helden regenerate per hour.
      */
     public Rast(int start, int ende, int erschöpfungProStunde, int überanstrengungProStunde) {
+        if(start < 0 || start > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
+        if(ende < 0 || ende > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde may not be less than 0.");
+        }
+        if(überanstrengungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde may not be less than 0.");
+        }
         this.start = start;
         this.ende = ende;
         this.erschöpfungProStunde = erschöpfungProStunde;
@@ -59,11 +71,10 @@ public class Rast extends Observable {
      * @param start The start hour.
      */
     public void setStart(int start) {
+        if(start < 0 || start > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
         if(this.start != start) {
-            if(start < 0 || start > 23) {
-                throw new IllegalArgumentException("The time must be between 0 and 23.");
-            }
-
             this.start = start;
             this.setChanged();
             this.notifyObservers();
@@ -83,10 +94,10 @@ public class Rast extends Observable {
      * @param ende The end hour.
      */
     public void setEnde(int ende) {
+        if(ende < 0 || ende > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
         if(this.ende != ende) {
-            if(start < 0 || start > 23) {
-                throw new IllegalArgumentException("The time must be between 0 and 23.");
-            }
             this.ende = ende;
             this.setChanged();
             this.notifyObservers();
@@ -106,6 +117,9 @@ public class Rast extends Observable {
      * @param erschöpfungProStunde The Erschöpfung the Helden regenerate per hour.
      */
     public void setErschöpfungProStunde(int erschöpfungProStunde) {
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde may not be less than 0.");
+        }
         if(this.erschöpfungProStunde != erschöpfungProStunde) {
             this.erschöpfungProStunde = erschöpfungProStunde;
             this.setChanged();
@@ -126,6 +140,9 @@ public class Rast extends Observable {
      * @param überanstrengungProStunde The Überanstrengung the Helden regenerate per hour.
      */
     public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
+        if(überanstrengungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde may not be less than 0.");
+        }
         if(this.überanstrengungProStunde != überanstrengungProStunde) {
             this.überanstrengungProStunde = überanstrengungProStunde;
             this.setChanged();
@@ -154,5 +171,42 @@ public class Rast extends Observable {
     @Override
     public String toString() {
         return "Rast{" + "start=" + this.start + ", ende=" + this.ende + ", ersch\u00f6pfungProStunde=" + this.erschöpfungProStunde + ", \u00fcberanstrengungProStunde=" + this.überanstrengungProStunde + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.start;
+        hash = 37 * hash + this.ende;
+        hash = 37 * hash + this.erschöpfungProStunde;
+        hash = 37 * hash + this.überanstrengungProStunde;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Rast other = (Rast) obj;
+        if (this.start != other.start) {
+            return false;
+        }
+        if (this.ende != other.ende) {
+            return false;
+        }
+        if (this.erschöpfungProStunde != other.erschöpfungProStunde) {
+            return false;
+        }
+        if (this.überanstrengungProStunde != other.überanstrengungProStunde) {
+            return false;
+        }
+        return true;
     }
 }
