@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Die Datei wurde vom Helden-Software-Team für Entwickler zur Verfügung
+gestellt, die Plugins für die Helden-Software entwickeln wollen oder die
+Schnittstelle von Helden-Online nutzen wollen.
+
+Diese Datei darf frei genutzt werden, so lange sich die Entwickler an
+folgende Punkte hält:
+- Ausschließliche Nutzung der dokumentierten oder auf anderer Weise vom Helden-Software-Team
+mitgeteilten Schnittstellen
+- Beachtung der Anforderungen von Ulisses
+siehe u.a.
+http://www.helden-software.de/index.php/2013/02/26/die-helden-software-und-open-source
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	elementFormDefault="qualified">
 	<xs:element name="daten">
