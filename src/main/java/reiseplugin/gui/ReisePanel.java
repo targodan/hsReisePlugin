@@ -83,14 +83,14 @@ public class ReisePanel extends javax.swing.JPanel {
         jSpinner1 = new javax.swing.JSpinner();
         jSpinnerTag = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -104,7 +104,7 @@ public class ReisePanel extends javax.swing.JPanel {
         jSplitPane2.setDividerLocation(130);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jSplitPane1.setDividerLocation(500);
+        jSplitPane1.setDividerLocation(250);
         jSplitPane1.setMinimumSize(new java.awt.Dimension(98, 100));
         jSplitPane1.setPreferredSize(new java.awt.Dimension(612, 120));
 
@@ -133,7 +133,7 @@ public class ReisePanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jSpinnerTag))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,6 +151,27 @@ public class ReisePanel extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Reise", jPanel1);
 
+        jSplitPane1.setLeftComponent(jTabbedPane2);
+
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(150, 100));
+
+        jTable3.setModel(this.model.getHeldenTableModel());
+        jTable3.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(jTable3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Helden", jPanel4);
+
         jTable4.setModel(this.model.getRastTableConfig().getModel());
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable4);
@@ -166,7 +187,7 @@ public class ReisePanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,28 +198,7 @@ public class ReisePanel extends javax.swing.JPanel {
                 .addComponent(jButton1))
         );
 
-        jTabbedPane2.addTab("Rast", jPanel2);
-
-        jSplitPane1.setLeftComponent(jTabbedPane2);
-
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(150, 100));
-
-        jTable3.setModel(this.model.getHeldenTableModel());
-        jTable3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(jTable3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Helden", jPanel4);
+        jTabbedPane1.addTab("Rast", jPanel2);
 
         jSplitPane1.setRightComponent(jTabbedPane1);
 
