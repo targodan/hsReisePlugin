@@ -35,10 +35,29 @@ public class Service implements IService {
     
     /**
      * Creates a new Service using the given interface.
+     * 
+     * @deprecated Please use
+     * {@link #Service(reiseplugin.data.helden.entities.HeldenService)
+     * Service(HeldenService)} instead, as that will make testing easier.
+     * 
      * @param dai The interface to the HeldenSoftware.
      */
     public Service(DatenAustausch3Interface dai) {
+        if(dai == null) {
+            throw new IllegalArgumentException("The DatenAustausch3Interface cannot be null.");
+        }
         this.service = new HeldenService(dai);
+    }
+    
+    /**
+     * Creates a new Service using the given interface.
+     * @param heldenService The HeldenService to be used.
+     */
+    public Service(HeldenService heldenService) {
+        if(heldenService == null) {
+            throw new IllegalArgumentException("The HeldenService cannot be null.");
+        }
+        this.service = heldenService;
     }
     
     /**
@@ -46,7 +65,7 @@ public class Service implements IService {
      * @param d The native Daten.
      * @return Return the local representation of the given Daten.
      */
-    private Held nativeToHeld(Daten d) {
+    protected Held nativeToHeld(Daten d) {
         return new Held(d.getAngaben().getName(), d.getEigenschaften().getKonstitution().getAkt().intValue(), 0);
     }
 

@@ -41,7 +41,15 @@ public class Parameter extends Observable implements Observer {
      * @param erholung A Collection of Rasten. 
      */
     public Parameter(Held[] helden, int erschöpfungProStunde, Collection<Rast> erholung) {
-        this.helden = helden;
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde cannot be negative");
+        }
+        
+        if(helden == null) {
+            this.helden = new Held[0];
+        } else {
+            this.helden = helden;
+        }
         for(Held h : this.helden) {
             h.addObserver(this);
         }
@@ -62,7 +70,7 @@ public class Parameter extends Observable implements Observer {
      * @return The i-th Held.
      */
     public Held getHeld(int i) {
-        return helden[i];
+        return this.helden[i];
     }
     
     /**
@@ -70,7 +78,7 @@ public class Parameter extends Observable implements Observer {
      * @return The number of Helden.
      */
     public int getHeldenCount() {
-        return helden.length;
+        return this.helden.length;
     }
     
     /**
@@ -78,7 +86,7 @@ public class Parameter extends Observable implements Observer {
      * @return A List containing the Helden.
      */
     public List<Held> getHelden() {
-        return Arrays.asList(helden);
+        return Arrays.asList(this.helden);
     }
 
     /**
@@ -86,7 +94,7 @@ public class Parameter extends Observable implements Observer {
      * @return The Erschöpfung per hour.
      */
     public int getErschöpfungProStunde() {
-        return erschöpfungProStunde;
+        return this.erschöpfungProStunde;
     }
 
     /**
@@ -94,6 +102,10 @@ public class Parameter extends Observable implements Observer {
      * @param erschöpfungProStunde The Erschöpfung per hour.
      */
     public void setErschöpfungProStunde(int erschöpfungProStunde) {
+        if(erschöpfungProStunde < 0) {
+            throw new IllegalArgumentException("ErschöpfungProStunde cannot be negative");
+        }
+        
         if(this.erschöpfungProStunde != erschöpfungProStunde) {
             this.erschöpfungProStunde = erschöpfungProStunde;
             this.setChanged();
@@ -123,10 +135,12 @@ public class Parameter extends Observable implements Observer {
      * @param r A Rast.
      */
     public void addRast(Rast r) {
-        this.erholung.add(r);
-        r.addObserver(this);
-        this.setChanged();
-        this.notifyObservers();
+        if(!this.erholung.contains(r)) {
+            this.erholung.add(r);
+            r.addObserver(this);
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
     
     /**
@@ -134,10 +148,12 @@ public class Parameter extends Observable implements Observer {
      * @param r The Rast to be removed.
      */
     public void removeRast(Rast r) {
-        this.erholung.remove(r);
-        r.deleteObserver(this);
-        this.setChanged();
-        this.notifyObservers();
+        if(this.erholung.contains(r)) {
+            this.erholung.remove(r);
+            r.deleteObserver(this);
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
 
     /**
@@ -150,5 +166,13 @@ public class Parameter extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         this.setChanged();
         this.notifyObservers(o);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Parameter{" + "helden=" + Arrays.toString(this.helden) + ", ersch\u00f6pfungProStunde=" + this.erschöpfungProStunde + ", erholung=" + this.erholung + '}';
     }
 }

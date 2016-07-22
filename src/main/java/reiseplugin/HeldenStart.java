@@ -26,6 +26,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import reiseplugin.data.IService;
 import reiseplugin.data.Service;
+import reiseplugin.data.helden.entities.HeldenService;
 import reiseplugin.gui.Controller;
 
 /**
@@ -140,7 +141,7 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     @Override
     public void init(DatenAustausch3Interface dai, JFrame jframe) {
         // called on opening the tool
-        this.service = new Service(dai);
+        this.service = new Service(new HeldenService(dai));
         this.controller = new Controller(this.service, jframe);
     }
 
