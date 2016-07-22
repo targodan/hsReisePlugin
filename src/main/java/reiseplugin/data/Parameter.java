@@ -135,10 +135,12 @@ public class Parameter extends Observable implements Observer {
      * @param r A Rast.
      */
     public void addRast(Rast r) {
-        this.erholung.add(r);
-        r.addObserver(this);
-        this.setChanged();
-        this.notifyObservers();
+        if(!this.erholung.contains(r)) {
+            this.erholung.add(r);
+            r.addObserver(this);
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
     
     /**
@@ -146,10 +148,12 @@ public class Parameter extends Observable implements Observer {
      * @param r The Rast to be removed.
      */
     public void removeRast(Rast r) {
-        this.erholung.remove(r);
-        r.deleteObserver(this);
-        this.setChanged();
-        this.notifyObservers();
+        if(this.erholung.contains(r)) {
+            this.erholung.remove(r);
+            r.deleteObserver(this);
+            this.setChanged();
+            this.notifyObservers();
+        }
     }
 
     /**

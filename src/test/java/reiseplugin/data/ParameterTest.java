@@ -18,29 +18,27 @@
  */
 package reiseplugin.data;
 
-import java.util.List;
-import java.util.Observable;
-import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
-import org.junit.After;
-import org.junit.Before;
+import java.util.Arrays;
+import java.util.Observer;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
 
 /**
  *
  * @author Luca Corbatto
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ParameterTest {
     
+    @Mock
+    protected Observer observer;
+    
     public ParameterTest() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -94,5 +92,93 @@ public class ParameterTest {
         int erschöpfungProStunde = 0;
         Parameter instance = new Parameter(null, 0, null);
         instance.setErschöpfungProStunde(erschöpfungProStunde);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateErschöpfung() {
+        Parameter parameter = new Parameter(null, 0, null);
+        parameter.addObserver(this.observer);
+        parameter.setErschöpfungProStunde(1);
+        
+        verify(this.observer).update(parameter, null);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateErschöpfung() {
+        Parameter parameter = new Parameter(null, 0, null);
+        parameter.addObserver(this.observer);
+        parameter.setErschöpfungProStunde(0);
+        
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateAddRast() {
+        Parameter parameter = new Parameter(null, 0, null);
+        parameter.addObserver(this.observer);
+        
+        Rast rast = new Rast(0, 0, 0, 0);
+        parameter.addRast(rast);
+        parameter.addRast(rast);
+        
+        verify(this.observer, times(1)).update(parameter, null);
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateAddRast() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        
+        Parameter parameter = new Parameter(null, 0, Arrays.asList(new Rast[]{rast}));
+        parameter.addObserver(this.observer);
+        
+        parameter.addRast(rast);
+        
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateRemoveRast() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        
+        Parameter parameter = new Parameter(null, 0, Arrays.asList(new Rast[]{rast}));
+        parameter.addObserver(this.observer);
+        
+        parameter.removeRast(rast);
+        parameter.removeRast(rast);
+        
+        verify(this.observer, times(1)).update(parameter, null);
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateRemoveRast() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        Rast rast2 = new Rast(1, 2, 0, 0);
+        
+        Parameter parameter = new Parameter(null, 0, Arrays.asList(new Rast[]{rast}));
+        parameter.addObserver(this.observer);
+        
+        parameter.removeRast(rast2);
+        
+        verifyNoMoreInteractions(this.observer);
     }
 }

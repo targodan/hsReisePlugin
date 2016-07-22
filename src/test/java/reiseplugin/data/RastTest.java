@@ -21,7 +21,7 @@ package reiseplugin.data;
 import java.util.Observer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
