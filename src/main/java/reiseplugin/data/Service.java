@@ -35,10 +35,23 @@ public class Service implements IService {
     
     /**
      * Creates a new Service using the given interface.
+     * 
+     * @deprecated Please use
+     * {@link #Service(reiseplugin.data.helden.entities.HeldenService)
+     * Service(HeldenService)} instead, as that will make testing easier.
+     * 
      * @param dai The interface to the HeldenSoftware.
      */
     public Service(DatenAustausch3Interface dai) {
         this.service = new HeldenService(dai);
+    }
+    
+    /**
+     * Creates a new Service using the given interface.
+     * @param heldenService The HeldenService to be used.
+     */
+    public Service(HeldenService heldenService) {
+        this.service = heldenService;
     }
     
     /**
