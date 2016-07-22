@@ -23,11 +23,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
-import org.junit.After;
-import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import static org.mockito.Mockito.*;
 
 

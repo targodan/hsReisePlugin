@@ -37,6 +37,9 @@ public class Held extends Observable {
      * @param mod The modificator for the Erschöpfung of this Held.
      */
     public Held(String name, int KO, int mod) {
+        if(KO < 0) {
+            throw new IllegalArgumentException("KO may not be less than 0.");
+        }
         this.name = name;
         this.KO = KO;
         this.mod = mod;
