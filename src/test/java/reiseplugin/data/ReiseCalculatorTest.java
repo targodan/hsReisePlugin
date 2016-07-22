@@ -63,19 +63,6 @@ public class ReiseCalculatorTest {
     }
 
     /**
-     * Test of getTag method, of class ReiseCalculator.
-     */
-    @Test
-    public void testGetTag() {
-        System.out.println("getTag");
-        int tag = 0;
-        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, null));
-        ErgebnisTag expResult = new ErgebnisTag();
-        ErgebnisTag result = instance.getTag(tag);
-        assertThat(result, equalTo(expResult));
-    }
-
-    /**
      * Test of findRast method, of class ReiseCalculator.
      */
     @Test
@@ -127,27 +114,12 @@ public class ReiseCalculatorTest {
         Rast result = instance.findRast(18);
         assertThat(result, equalTo(expResult));
     }
-    
-    /**
-     * Test of calculateStunde method, of class ReiseCalculator.
-     */
-    @Test
-    public void testCalculateStunde_Zero() {
-        System.out.println("calculateStunde");
-        Held h = new Held("Rimaldo", 0, 0);
-        ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
-        int st = 0;
-        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
-        ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
-        ErgebnisTag.Zustand result = instance.calculateStunde(h, lastZustand, st);
-        assertThat(result, equalTo(expResult));
-    }
 
     /**
      * Test of update method, of class ReiseCalculator.
      */
     @Test
-    public void testUpdate() {
+    public void testUpdate_ResetCalculatedDays() {
         System.out.println("update");
         Observable o = null;
         Object arg = null;
@@ -175,6 +147,68 @@ public class ReiseCalculatorTest {
         assertThat(result.helden.toArray(), arrayContainingInAnyOrder(expResult.helden.toArray()));
         assertThat(result.ergebnis.get(h), arrayContainingInAnyOrder(expResult.ergebnis.get(h)));
         assertThat(result.ergebnis.get(h).length, equalTo(expResult.ergebnis.get(h).length));
+    }
+    
+    /**
+     * Test of calculate method, of class ReiseCalculator.
+     */
+    @Test
+    public void testCalculate_OneWithRast() {
+        System.out.println("calculate");
+        int tag = 0;
+        Held h = new Held("Rimaldo", 12, 0);
+        Rast[] rasten = new Rast[] {
+            new Rast(12, 13, 2, 1)
+        };
+        ErgebnisTag expResult = new ErgebnisTag();
+        expResult.addHeld(h);
+        
+        int hour = 0;
+        expResult.setZustand(h, hour++, 1, 0);
+        expResult.setZustand(h, hour++, 2, 0);
+        expResult.setZustand(h, hour++, 3, 0);
+        expResult.setZustand(h, hour++, 4, 0);
+        expResult.setZustand(h, hour++, 5, 0);
+        expResult.setZustand(h, hour++, 6, 0);
+        expResult.setZustand(h, hour++, 7, 0);
+        expResult.setZustand(h, hour++, 8, 0);
+        expResult.setZustand(h, hour++, 9, 0);
+        expResult.setZustand(h, hour++, 10, 0);
+        expResult.setZustand(h, hour++, 11, 0);
+        expResult.setZustand(h, hour++, 12, 0);
+        expResult.setZustand(h, hour++, 10, 0);
+        expResult.setZustand(h, hour++, 11, 0);
+        expResult.setZustand(h, hour++, 12, 0);
+        expResult.setZustand(h, hour++, 12, 1);
+        expResult.setZustand(h, hour++, 12, 2);
+        expResult.setZustand(h, hour++, 12, 3);
+        expResult.setZustand(h, hour++, 12, 4);
+        expResult.setZustand(h, hour++, 12, 5);
+        expResult.setZustand(h, hour++, 12, 6);
+        expResult.setZustand(h, hour++, 12, 7);
+        expResult.setZustand(h, hour++, 12, 8);
+        expResult.setZustand(h, hour++, 12, 9);
+        
+        
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 1, Arrays.asList(rasten)));
+        instance.calculate(tag);
+        ErgebnisTag result = instance.getTag(tag);
+        assertThat(result.helden.toArray(), arrayContainingInAnyOrder(expResult.helden.toArray()));
+        assertThat(result.ergebnis.get(h), arrayContaining(expResult.ergebnis.get(h)));
+        assertThat(result.ergebnis.get(h).length, equalTo(expResult.ergebnis.get(h).length));
+    }
+    
+    /**
+     * Test of calculate method, of class ReiseCalculator.
+     */
+    @Test
+    public void testCalculate_ContinuousCalculation() {
+        System.out.println("calculate");
+        int tag = 42;
+        Held h = new Held("Rimaldo", 12, 0);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 1, null));
+        instance.calculate(tag);
+        assertThat(instance.ergebnis.size(), equalTo(tag+1));
     }
 
     /**
