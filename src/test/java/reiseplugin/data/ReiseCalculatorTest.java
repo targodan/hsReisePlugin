@@ -43,6 +43,24 @@ public class ReiseCalculatorTest {
     @After
     public void tearDown() {
     }
+    
+    /**
+     * Test of constructor, of class ReiseCalculator.
+     */
+    @Test
+    public void testConstructor_Ok() {
+        System.out.println("constructor");
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, null));
+    }
+    
+    /**
+     * Test of constructor, of class ReiseCalculator.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor_Null() {
+        System.out.println("constructor");
+        ReiseCalculator instance = new ReiseCalculator(null);
+    }
 
     /**
      * Test of getTag method, of class ReiseCalculator.
@@ -118,11 +136,10 @@ public class ReiseCalculatorTest {
         System.out.println("calculateStunde");
         Held h = new Held("Rimaldo", 0, 0);
         ErgebnisTag.Zustand lastZustand = new ErgebnisTag.Zustand(0, 0);
-        ErgebnisTag newDay = new ErgebnisTag();
         int st = 0;
         ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
         ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
-        ErgebnisTag.Zustand result = instance.calculateStunde(h, lastZustand, newDay, st);
+        ErgebnisTag.Zustand result = instance.calculateStunde(h, lastZustand, st);
         assertThat(result, equalTo(expResult));
     }
 
