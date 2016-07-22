@@ -18,15 +18,28 @@
  */
 package reiseplugin.data;
 
+import java.util.Observer;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
+import org.junit.After;
+import org.junit.Before;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.mockito.Mockito.*;
+
 
 /**
  *
  * @author Luca Corbatto
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RastTest {
+    
+    @Mock
+    protected Observer observer;
     
     public RastTest() {
     }
@@ -311,5 +324,101 @@ public class RastTest {
         boolean expResult = false;
         boolean result = instance.matchStunde(st);
         assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateStart() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setStart(1);
+        
+        verify(this.observer).update(rast, null);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateStart() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setStart(0);
+        
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateEnde() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setEnde(1);
+        
+        verify(this.observer).update(rast, null);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateEnde() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setEnde(0);
+        
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateErschöpfung() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setErschöpfungProStunde(1);
+        
+        verify(this.observer).update(rast, null);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateErschöpfung() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setErschöpfungProStunde(0);
+        
+        verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_UpdateÜberanstrengung() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setÜberanstrengungProStunde(1);
+        
+        verify(this.observer).update(rast, null);
+    }
+    
+    /**
+     * Test of the Obsevable behavior, of class Rast.
+     */
+    @Test
+    public void testObservable_NoUpdateÜberanstrengung() {
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.addObserver(this.observer);
+        rast.setÜberanstrengungProStunde(0);
+        
+        verifyNoMoreInteractions(this.observer);
     }
 }
