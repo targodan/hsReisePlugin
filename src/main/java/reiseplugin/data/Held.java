@@ -88,10 +88,16 @@ public class Held extends Observable {
      */
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Held)) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Held h = (Held)obj;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Held h = (Held)obj;
         return this.name.equals(h.name) && this.KO == h.KO && this.mod == h.mod;
     }
 
