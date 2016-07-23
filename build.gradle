@@ -64,7 +64,12 @@ jacocoTestReport {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: it,
                     exclude: [
+                        'reiseplugin/HeldenStart.class',
+                        'reiseplugin/Main.class',
+                        'reiseplugin/WTFException.class',
                         'reiseplugin/gui/**',
+                        'reiseplugin/data/helden/entities/Daten.class',
+                        'reiseplugin/data/helden/entities/ObjectFactory.class',
                         'reiseplugin/data/helden/entities/jaxb/**'
                     ]
             )
