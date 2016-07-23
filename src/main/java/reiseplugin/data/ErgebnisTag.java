@@ -19,6 +19,7 @@
 package reiseplugin.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,9 @@ public class ErgebnisTag {
      * @param h Held to be added.
      */
     public void addHeld(Held h) {
+        if(h == null) {
+            throw new IllegalArgumentException("Held cannot be null!");
+        }
         if(this.ergebnis.put(h, new Zustand[24]) == null) {
             // neuer Held
             this.helden.add(h);
@@ -60,6 +64,12 @@ public class ErgebnisTag {
      * @param z The Zustand.
      */
     public void setZustand(Held held, int stunde, Zustand z) {
+        if(!this.ergebnis.containsKey(held)) {
+            throw new IllegalArgumentException("Add Held before setting Zustand!");
+        }
+        if(stunde < 0 || stunde > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
         this.ergebnis.get(held)[stunde] = z;
     }
     
@@ -72,7 +82,7 @@ public class ErgebnisTag {
      * @param überanst The Überanstrengung.
      */
     public void setZustand(Held held, int stunde, int ersch, int überanst) {
-        this.ergebnis.get(held)[stunde] = new Zustand(ersch, überanst);
+        this.setZustand(held, stunde, new Zustand(ersch, überanst));
     }
     
     /**
@@ -82,6 +92,12 @@ public class ErgebnisTag {
      * @return The Zustand of a Held.
      */
     public Zustand getZustand(Held h, int stunde) {
+        if(!this.ergebnis.containsKey(h)) {
+            throw new IllegalArgumentException("Add Held before getting Zustand!");
+        }
+        if(stunde < 0 || stunde > 23) {
+            throw new IllegalArgumentException("The time must be between 0 and 23.");
+        }
         return this.ergebnis.get(h)[stunde];
     }
     
@@ -106,6 +122,9 @@ public class ErgebnisTag {
          * @param überanstregnung The Überanstrengung.
          */
         public Zustand(int erschöpfung, int überanstregnung) {
+            if(erschöpfung < 0 || überanstregnung < 0) {
+                throw new IllegalArgumentException("Neither Erschöpfung nor Überanstrengung can be less than 0.");
+            }
             this.erschöpfung = erschöpfung;
             this.überanstregnung = überanstregnung;
         }
@@ -158,10 +177,7 @@ public class ErgebnisTag {
             if (this.erschöpfung != other.erschöpfung) {
                 return false;
             }
-            if (this.überanstregnung != other.überanstregnung) {
-                return false;
-            }
-            return true;
+            return this.überanstregnung == other.überanstregnung;
         }
 
         /**
@@ -190,7 +206,13 @@ public class ErgebnisTag {
             return false;
         }
         ErgebnisTag et = (ErgebnisTag)obj;
-        return this.ergebnis.equals(et.ergebnis) && this.helden.equals(et.helden);
+        if(!(this.helden.containsAll(et.helden)
+                && this.helden.size() == et.helden.size())) {
+            return false;
+        }
+        return this.ergebnis.keySet().stream()
+                .allMatch(k -> Arrays.equals(this.ergebnis.get(k), et.ergebnis.get(k)));
+        // No need to check size.
     }
 
     /**

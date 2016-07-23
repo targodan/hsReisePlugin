@@ -64,7 +64,7 @@ public class Controller {
     /**
      * Creates the ReisePanel representing the gui of this plugin and assigns a default Model.
      */
-    private void setupPanel() {
+    protected void setupPanel() {
         this.reisePanel = new ReisePanel();
         Rast[] defaultRasten = {
             new Rast(22, 6, 2, 1),
@@ -76,7 +76,7 @@ public class Controller {
     /**
      * Creates a new Window using the earlier(!) created ReisePanel as its content.
      */
-    private void setupDialog() {
+    protected void setupDialog() {
         this.dialog.setSize(800, 600);
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
