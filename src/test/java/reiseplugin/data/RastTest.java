@@ -418,4 +418,135 @@ public class RastTest {
         
         verifyNoMoreInteractions(this.observer);
     }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_True() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 3, 6);
+        Rast r2 = new Rast(1, 2, 3, 6);
+        
+        boolean expResult = true;
+        boolean result = r1.equals(r2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseFirst() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(2, 2, 3, 6);
+        Rast r2 = new Rast(1, 2, 3, 6);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(r2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseSecond() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 5, 3, 6);
+        Rast r2 = new Rast(1, 2, 3, 6);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(r2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseThird() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 8, 6);
+        Rast r2 = new Rast(1, 2, 3, 6);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(r2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseFourth() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 3, 3);
+        Rast r2 = new Rast(1, 2, 3, 6);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(r2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseNull() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 3, 3);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(null);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_FalseClass() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 3, 3);
+        
+        boolean expResult = false;
+        boolean result = r1.equals(new Object());
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void testEquals_TrueSame() {
+        System.out.println("equals");
+        
+        Rast r1 = new Rast(1, 2, 3, 3);
+        
+        boolean expResult = true;
+        boolean result = r1.equals(r1);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class ErgebnisTag.
+     */
+    @Test
+    public void dummyForCoverage() {
+        System.out.println("dummy");
+        
+        Rast rast = new Rast(0, 0, 0, 0);
+        rast.getStart();
+        rast.getEnde();
+        rast.hashCode();
+        rast.toString();
+    }
 }

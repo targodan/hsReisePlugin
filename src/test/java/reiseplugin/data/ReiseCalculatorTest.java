@@ -148,6 +148,19 @@ public class ReiseCalculatorTest {
         assertThat(result.ergebnis.get(h), arrayContainingInAnyOrder(expResult.ergebnis.get(h)));
         assertThat(result.ergebnis.get(h).length, equalTo(expResult.ergebnis.get(h).length));
     }
+
+    /**
+     * Test of calculate method, of class ReiseCalculator.
+     * @deprecated 
+     */
+    @Test
+    public void testCalculate_DeprecatedZero() {
+        System.out.println("calculate");
+        Held h = new Held("Rimaldo", 0, 0);
+        ErgebnisTag.Zustand z = new ErgebnisTag.Zustand(0, 0);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
+        instance.calculateStunde(h, z, new ErgebnisTag(), 0);
+    }
     
     /**
      * Test of calculate method, of class ReiseCalculator.
@@ -364,5 +377,29 @@ public class ReiseCalculatorTest {
         ErgebnisTag.Zustand expResult = new ErgebnisTag.Zustand(0, 0);
         ErgebnisTag.Zustand result = instance.nextZustand(h, lastZustand, rast);
         assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testGetTag() {
+        System.out.println("getTag");
+        
+        Held h = new Held("Rimaldo", 10, 0);
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(new Held[]{h}, 0, null));
+        instance.getTag(2);
+        assertThat(instance.ergebnis.size(), equalTo(3));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void dummyForCoverage() {
+        System.out.println("dummy");
+        
+        ReiseCalculator instance = new ReiseCalculator(new Parameter(null, 0, null));
+        instance.getParameter();
     }
 }

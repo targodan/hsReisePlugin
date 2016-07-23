@@ -19,6 +19,8 @@
 package reiseplugin.data;
 
 import java.util.Observer;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -78,5 +80,108 @@ public class HeldTest {
         held.setMod(0);
         
         verifyNoMoreInteractions(this.observer);
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_True() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        Held h2 = new Held("Rimaldo", 0, 0);
+        
+        boolean expResult = true;
+        boolean result = h1.equals(h2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_FalseFirst() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        Held h2 = new Held("RimaldO", 0, 0);
+        
+        boolean expResult = false;
+        boolean result = h1.equals(h2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_FalseSecond() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        Held h2 = new Held("Rimaldo", 1, 0);
+        
+        boolean expResult = false;
+        boolean result = h1.equals(h2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_FalseThird() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        Held h2 = new Held("Rimaldo", 0, 1);
+        
+        boolean expResult = false;
+        boolean result = h1.equals(h2);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_FalseNull() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        
+        boolean expResult = false;
+        boolean result = h1.equals(null);
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void testEquals_FalseClass() {
+        System.out.println("equals");
+        
+        Held h1 = new Held("Rimaldo", 0, 0);
+        
+        boolean expResult = false;
+        boolean result = h1.equals(new Object());
+        assertThat(result, equalTo(expResult));
+    }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void dummyForCoverage() {
+        System.out.println("dummy");
+        
+        Held held = new Held("", 0, 0);
+        held.getName();
+        held.getKO();
+        held.getMod();
+        held.hashCode();
+        held.toString();
     }
 }

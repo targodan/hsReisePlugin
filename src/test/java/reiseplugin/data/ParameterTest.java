@@ -181,4 +181,18 @@ public class ParameterTest {
         
         verifyNoMoreInteractions(this.observer);
     }
+    
+    /**
+     * Test of equals method, of class Held.
+     */
+    @Test
+    public void dummyForCoverage() {
+        System.out.println("dummy");
+        
+        Parameter p = new Parameter(new Held[]{new Held("", 0, 0)}, 0, Arrays.asList(new Rast[]{new Rast(0, 0, 0, 0)}));
+        p.getHeld(0);
+        p.getHeldenCount();
+        p.getRast(0);
+        p.toString();
+    }
 }

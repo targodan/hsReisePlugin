@@ -68,6 +68,7 @@ jacocoTestReport {
                         'reiseplugin/Main.class',
                         'reiseplugin/WTFException.class',
                         'reiseplugin/gui/**',
+                        'reiseplugin/data/DummyService.class',
                         'reiseplugin/data/helden/entities/Daten.class',
                         'reiseplugin/data/helden/entities/ObjectFactory.class',
                         'reiseplugin/data/helden/entities/jaxb/**'

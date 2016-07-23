@@ -18,6 +18,7 @@
  */
 package reiseplugin.data;
 
+import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import java.math.BigInteger;
 import java.util.Arrays;
 import static org.hamcrest.Matchers.*;
@@ -89,6 +90,26 @@ public class ServiceTest {
     public void testConstructor_Ok() {
         System.out.println("constructor");
         Service instance = new Service(this.heldenService);
+    }
+
+    /**
+     * Test of constructor, of class Service.
+     * @deprecated 
+     */
+    @Test
+    public void testConstructor_DeprecatedOk() {
+        System.out.println("constructor");
+        Service instance = new Service(mock(DatenAustausch3Interface.class));
+    }
+
+    /**
+     * Test of constructor, of class Service.
+     * @deprecated 
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor_DeprecatedThrows() {
+        System.out.println("constructor");
+        Service instance = new Service((DatenAustausch3Interface)null);
     }
 
     /**
