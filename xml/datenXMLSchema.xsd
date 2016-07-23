@@ -959,7 +959,7 @@ http://www.helden-software.de/index.php/2013/02/26/die-helden-software-und-open-
 	<xs:element name="nummer" type="xs:integer" />
 	<xs:element name="spalte2" type="xs:string" />
 	<xs:element name="be" type="xs:string" />
-    <xs:simpleType name="action">
+    <xs:simpleType name="actionType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="selectedHeld" />
             <xs:enumeration value="anzahlHelden" />
@@ -993,21 +993,22 @@ http://www.helden-software.de/index.php/2013/02/26/die-helden-software-und-open-
                 </xs:element>
                 <xs:element name="prop" type="property" />
             </xs:sequence>
-            <xs:attribute name="action" type="action" use="required" />
+            <xs:attribute name="action" type="actionType" use="required" />
             <xs:attribute name="value" type="xs:string" use="optional" />
             <xs:attribute name="heldenkey" type="xs:string" use="optional" />
             <xs:attribute name="status" type="xs:string" use="optional" />
         </xs:complexType>
     </xs:element>
-    <xs:element name="request">
+    <xs:element name="action">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element name="prop" type="property" />
             </xs:sequence>
-            <xs:attribute name="action" type="action" use="required" />
+            <xs:attribute name="action" type="actionType" use="required" />
             <xs:attribute name="format" type="format" use="optional" />
             <xs:attribute name="version" type="xs:int" use="optional" />
             <xs:attribute name="pluginName" type="xs:string" use="optional" />
+            <xs:attribute name="id" type="xs:string" use="optional" />
             <xs:attribute name="key" type="xs:string" use="optional" />
         </xs:complexType>
     </xs:element>

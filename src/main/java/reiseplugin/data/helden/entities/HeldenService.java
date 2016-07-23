@@ -19,13 +19,18 @@
 package reiseplugin.data.helden.entities;
 
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
@@ -39,6 +44,11 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import reiseplugin.WTFException;
+import reiseplugin.data.helden.entities.jaxb.Action;
+import reiseplugin.data.helden.entities.jaxb.ActionType;
+import reiseplugin.data.helden.entities.jaxb.Format;
+import reiseplugin.data.helden.entities.jaxb.Request;
 import reiseplugin.data.helden.entities.jaxb.Result;
 
 /**
@@ -49,6 +59,7 @@ public class HeldenService {
     private DatenAustausch3Interface dai;
     private DocumentBuilder documentBuilder;
     private Unmarshaller unmarshaller;
+    private Marshaller marshaller;
     
     /**
      * Creates a new HeldenService using the given interface.
@@ -58,7 +69,7 @@ public class HeldenService {
         this.dai = dai;
         
         try {
-            documentBuilder = DocumentBuilderFactory
+            this.documentBuilder = DocumentBuilderFactory
                     .newInstance().newDocumentBuilder();
         } catch(ParserConfigurationException e) {
             throw new RuntimeException(e);
@@ -67,6 +78,7 @@ public class HeldenService {
         try {
             JAXBContext context = JAXBContext.newInstance(reiseplugin.data.helden.entities.jaxb.ObjectFactory.class);
             this.unmarshaller = context.createUnmarshaller();
+            this.marshaller = context.createMarshaller();
         } catch(JAXBException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -88,7 +100,7 @@ public class HeldenService {
      * @param doc The Document that is to be converted.
      * @return A String representation of the XML-Document. 
      */
-    private String documentToString(Document doc) {
+    protected String documentToString(Document doc) {
         DOMSource ds = new DOMSource(doc);
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
@@ -108,9 +120,24 @@ public class HeldenService {
      * @param doc The Document.
      * @return The unmashalled Object.
      */
-    private Object unmarshal(Document doc) {
+    protected Object unmarshal(Document doc) {
         try {
             return this.unmarshaller.unmarshal(doc);
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    /**
+     * Marshalls an Object.
+     * @param obj The Object.
+     * @return The mashalled Document.
+     */
+    protected Document marshal(Object obj) {
+        StringWriter writer = new StringWriter();
+        try {
+            this.marshaller.marshal(obj, writer);
+            return this.documentBuilder.parse(new ByteArrayInputStream(writer.toString().getBytes(StandardCharsets.UTF_8)));
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
@@ -121,7 +148,7 @@ public class HeldenService {
      * @param request A request Document
      * @return The resulting Document.
      */
-    private Document sendRequest(Document request) {
+    protected Document sendRequest(Document request) {
         Object result = dai.exec(request);
 		if (result == null) {
 			throw new RuntimeException("Unbekannter Rückgabewert auf Request: null");
@@ -134,7 +161,19 @@ public class HeldenService {
     }
     
     /**
+     * Sends a Request to the HeldenSoftware.
+     * @param request An Action
+     * @return The Result can either be an instance of Reques or Daten.
+     */
+    protected Object sendRequest(Action request) {
+        return this.unmarshal(this.sendRequest(this.marshal(request)));
+    }
+    
+    /**
      * Comfortably build a new request Document.
+     * 
+     * @deprecated Requests are now handled via JAXB generated classes and marshalling.
+     * 
      * @param action The action.
      * @param parameters The parameters of the action. In the for of name followed by the value.
      * @return The resulting request Document.
@@ -157,6 +196,9 @@ public class HeldenService {
     
     /**
      * Comfortably build a new request Document, automatically adding the xml parameters.
+     * 
+     * @deprecated Requests are now handled via JAXB generated classes and marshalling.
+     * 
      * @param action The action.
      * @param parameters The parameters of the action. In the for of name followed by the value.
      * @return The resulting request Document.
@@ -175,11 +217,12 @@ public class HeldenService {
      * @return The selected hero in the native format (Daten).
      */
     public Daten getSelectedHeld() {
-        Daten d = (Daten)this.unmarshal(
-                this.sendRequest(
-                this.buildXMLRequest("held", 
-                        "id", "selected"
-                )));
+        Action req = new Action();
+        req.setAction(ActionType.HELD);
+        req.setId("selected");
+        req.setFormat(Format.XML);
+        req.setVersion(3);
+        Daten d = (Daten)this.sendRequest(req);
         return d;
     }
     
@@ -189,11 +232,12 @@ public class HeldenService {
      * @return The i-th hero in the native format (Daten).
      */
     public Daten getHeld(int i) {
-        Daten d = (Daten)this.unmarshal(
-                this.sendRequest(
-                this.buildXMLRequest("held", 
-                        "id", String.valueOf(i)
-                )));
+        Action req = new Action();
+        req.setAction(ActionType.HELD);
+        req.setId(String.valueOf(i));
+        req.setFormat(Format.XML);
+        req.setVersion(3);
+        Daten d = (Daten)this.sendRequest(req);
         return d;
     }
     
@@ -202,14 +246,13 @@ public class HeldenService {
      * @return All Helden in the native format (Daten).
      */
     public List<Daten> getAllHelden() {
-        Result r = (Result)this.unmarshal(this.sendRequest(this.buildXMLRequest("listHelden")));
-        return r.getHeldAndProp().stream()
+        Action req = new Action();
+        req.setAction(ActionType.LIST_HELDEN);
+        Result result = (Result)this.sendRequest(req);
+        return result.getHeldAndProp().stream()
                 .map(h -> {
                     Result.Held held = (Result.Held)h;
-                    return (Daten)this.unmarshal(
-                                    this.sendRequest(
-                                    this.buildXMLRequest("held", "id", held.getId().toString())
-                                ));
+                    return (Daten)this.getHeld(held.getId());
                 }).collect(Collectors.toList());
     }
 }
