@@ -6,7 +6,7 @@ env:
     global:
         - secure: "l7+Wy4ILDdBShQWllULwAAwru02ivCTRQqHI0vs6R/mT8Pi/001y49uCHaFLDWZ4/nO/pfxjssUWmztLI5vyumgZ3MgHxGWlhusHDQEZVUkkGIQk/GtxihDSRHBAsISViO/YBEqJF1pGk20WAwasWFnTz2Bd6TzFUWC5nhO8YGlDkhwra71hXtgmaHL/8FfI2qDivSMFSgN2ZuACzQ9P3vR1OCQBkQBbp0ZwLgddpTZJ233Wws7ewNY6JvyTIk3CsS1O3D4RKRkc98foM8+DG2iBKFCDYJAwki7NYZgn2szlwamCx8+taT5Kkjww6prBQKaV8mc533tzjZZpjxt9OO+9pNbAVKmMoBIXn7Bx44kNyAS12UB4HatUi+uxDCT060DahAq+dBGA5bOo+MjtxgCLsa3zJiTImg5UdcXI4gsr4EPkU8eW/4PuFnaNIR9DKfH3Y+vzXinff5Uv8NtS5TvQbT+b0qveomNbrroB2lT+SOT/8QYosPMg8zGD2tE5+08RAybqHNjjER+ppfyY5+toOhhT728qXGVnhYpLEsoRnNB7is6q7TJaaqkW3R/sMwcF/hHXB1D7cHbUEUWFSZ8gCNV+XDstXHSD/U7sCbIYgmnw2rqwXC9kLRDvS9ywMySLIHSAN4n+LSXtUMD6WaYk+KTYI21R/IBvNiDT2x4="
 
-script:
+install:
     - ./gradlew xjc check
 
 after_success:
