@@ -3,10 +3,10 @@ jdk:
     - oraclejdk8
 
 install:
-    - ./gradlew xjc assemble --info
+    - ./gradlew xjc assemble
 
 script:
-    - ./gradlew check --info
+    - ./gradlew check
 
 after_success:
-    - ./gradlew test jacocoTestReport coveralls --info
+    - ./gradlew test jacocoTestReport coveralls
