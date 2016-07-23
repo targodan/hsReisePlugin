@@ -1,4 +1,6 @@
 language: java
-install: ./gradlew xjc check
 jdk:
     - oraclejdk8
+install: ./gradlew xjc check
+after_success:
+    - ./gradlew cobertura coveralls
