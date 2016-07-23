@@ -1,4 +1,4 @@
-# hsReisePlugin [![Build Status](https://travis-ci.org/targodan/hsReisePlugin.svg?branch=develop)](https://travis-ci.org/targodan/hsReisePlugin)
+# hsReisePlugin [![Build Status](https://travis-ci.org/targodan/hsReisePlugin.svg?branch=develop)](https://travis-ci.org/targodan/hsReisePlugin) [![Coverage Status](https://coveralls.io/repos/github/targodan/hsReisePlugin/badge.svg?branch=develop)](https://coveralls.io/github/targodan/hsReisePlugin?branch=develop)
 
 Ein Plugin für die [HeldenSoftware](http://www.helden-software.de/), welches die Erschöpfung und Überanstrengung der Helden berechnet.
 
@@ -38,8 +38,8 @@ Einfach ein [Issue auf machen](https://github.com/targodan/hsReisePlugin/issues/
 Wer selbst Code schreiben will, hier die Schritte zum beitragen.
 
 1. Forken
-2. Macht eure Änderungen bitte auf dem `development` Branch. Pull-requests auf den `master` Branch werde ich einfach löschen. Bitte schaut auch in die [Coding Richtlinien](#coding-richtlinien) unten.
-3. Sendet einen Pull-request auf den `development` Branch.
+2. Macht eure Änderungen bitte auf dem `develop` Branch. Pull-requests auf den `master` Branch werde ich einfach löschen. Bitte schaut auch in die [Coding Richtlinien](#coding-richtlinien) unten.
+3. Sendet einen Pull-request auf den `develop` Branch.
 4. Ich schaue mir das an und wenn alles gut ist werde ich euren Code mergen.
 
 ### Coding Richtlinien
@@ -91,7 +91,7 @@ Hier noch ein paar Worte zum Aufbau dieses Projekts.
 
 ### Die Branches
 Die `master` Branch soll ab dem ersten Release sauber bleiben und nur stabilen Code enthalten.
-Entwickelt wird auf dem `development` Branch.
+Entwickelt wird auf dem `develop` Branch.
 Je nachdem wie groß das Projekt wird werden wenn nötig auch `feature` und evtl. `release` Branches angelegt.
 In Anlenung an den [git-flow Workflow](http://danielkummer.github.io/git-flow-cheatsheet/).
 
