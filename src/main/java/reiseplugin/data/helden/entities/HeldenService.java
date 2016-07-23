@@ -48,7 +48,6 @@ import reiseplugin.WTFException;
 import reiseplugin.data.helden.entities.jaxb.Action;
 import reiseplugin.data.helden.entities.jaxb.ActionType;
 import reiseplugin.data.helden.entities.jaxb.Format;
-import reiseplugin.data.helden.entities.jaxb.Request;
 import reiseplugin.data.helden.entities.jaxb.Result;
 
 /**
