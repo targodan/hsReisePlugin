@@ -9,11 +9,9 @@ buildscript {
 }
 
 plugins {
-    id 'net.saliman.cobertura' version '2.3.1'
+    id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.6.3'
 }
-
-cobertura.coverageFormats = ['html', 'xml']
 
 apply plugin: 'java'
 apply plugin: 'com.github.jacobono.jaxb'
@@ -54,6 +52,23 @@ jaxb {
     xjc {
         generatePackage = 'reiseplugin.data.helden.entities.jaxb'
         args            = ["-encoding", "utf8"]
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                        'reiseplugin/gui/**',
+                        'reiseplugin/data/helden/entities/jaxb/**'
+                    ]
+            )
+        })
     }
 }
 
