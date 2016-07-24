@@ -18,6 +18,11 @@
  */
 package reiseplugin.gui;
 
+import java.awt.Toolkit;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -80,6 +85,11 @@ public class Controller {
         this.dialog.setSize(800, 600);
         this.dialog.getContentPane().add(this.reisePanel);
         this.dialog.setVisible(true);
+        ProtectionDomain currentProtectionDomain = getClass().getProtectionDomain();
+        CodeSource codeSource = currentProtectionDomain.getCodeSource();
+        URL icon = new URLClassLoader(new URL[]{codeSource.getLocation()})
+            .getResource("icon.png");
+        this.dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(icon));
     }
     
     /**
