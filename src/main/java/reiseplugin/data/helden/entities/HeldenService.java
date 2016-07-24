@@ -25,7 +25,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
 import java.util.stream.Collectors;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -51,7 +54,7 @@ import reiseplugin.data.helden.entities.jaxb.Result;
  * The class which implements the communication with the HeldenSoftware.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
-public class HeldenService {
+public class HeldenService extends Observable implements ChangeListener {
     private DatenAustausch3Interface dai;
     private DocumentBuilder documentBuilder;
     private Unmarshaller unmarshaller;
@@ -63,6 +66,7 @@ public class HeldenService {
      */
     public HeldenService(DatenAustausch3Interface dai) {
         this.dai = dai;
+        this.dai.addChangeListener(this);
         
         try {
             this.documentBuilder = DocumentBuilderFactory
@@ -251,5 +255,11 @@ public class HeldenService {
                     Result.Held held = (Result.Held)h;
                     return (Daten)this.getHeld(held.getId());
                 }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        this.setChanged();
+        this.notifyObservers();
     }
 }

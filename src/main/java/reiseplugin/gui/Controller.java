@@ -24,9 +24,12 @@ import java.net.URLClassLoader;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import reiseplugin.data.Held;
 import reiseplugin.data.Parameter;
 import reiseplugin.data.IService;
 import reiseplugin.data.Rast;
@@ -35,7 +38,7 @@ import reiseplugin.data.Rast;
  * The {@link reiseplugin.gui.Controller Controller} class for the gui.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
-public class Controller {
+public class Controller implements Observer {
     private final IService service;
     private JDialog dialog;
     private ReisePanel reisePanel;
@@ -109,6 +112,9 @@ public class Controller {
      */
     public Controller(IService service) {
         this.service = service;
+        if(this.service instanceof Observable) {
+            ((Observable)this.service).addObserver(this);
+        }
         this.dialog = new JDialog();
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupPanel();
@@ -220,5 +226,15 @@ public class Controller {
      */
     public ReisePanel getPanel() {
         return this.reisePanel;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof IService) {
+            IService service = (IService)o;
+            Held[] helden = service.getAllHelden();
+            Parameter p = this.reisePanel.getModel().getParameter();
+            this.reisePanel.getModel().setParameter(new Parameter(helden, p.getErschöpfungProStunde(), p.getErholung()));
+        }
     }
 }

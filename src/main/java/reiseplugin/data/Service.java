@@ -19,6 +19,8 @@
 package reiseplugin.data;
 
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 
 import reiseplugin.data.helden.entities.Daten;
@@ -28,7 +30,7 @@ import reiseplugin.data.helden.entities.HeldenService;
  * The service providing the necessary methods to access the HeldenSoftware data.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
-public class Service implements IService {
+public class Service extends Observable implements IService, Observer {
     private final HeldenService service;
     
     /**
@@ -56,6 +58,7 @@ public class Service implements IService {
             throw new IllegalArgumentException("The HeldenService cannot be null.");
         }
         this.service = heldenService;
+        this.service.addObserver(this);
     }
     
     /**
@@ -76,5 +79,11 @@ public class Service implements IService {
                 .map(d -> this.nativeToHeld(d))
                 .collect(Collectors.toList())
                 .toArray(new Held[0]);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.setChanged();
+        this.notifyObservers();
     }
 }
