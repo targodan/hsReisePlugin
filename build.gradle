@@ -88,18 +88,26 @@ jar {
 }
 
 task deploy(type:Exec) {
-    def Properties props = new Properties()
-    props.load(new FileInputStream("heldenSoftware.path"))
-    
-    if(props == null || !props.containsKey('pluginPath') || props['pluginPath'].equals("") || props['pluginPath'].equals("\"\"")) {
-        throw new InvalidUserDataException("The pluginPath ist not set!")
+    doFirst {
+        def Properties props = new Properties()
+        def File propFile = new File("heldenSoftware.path");
+
+        if(propFile == null || !propFile.exists() || !propFile.canRead()) {
+            throw new InvalidUserDataException("The file \"heldenSoftware.path\" does not exists! Please use the template \"heldenSoftware.path.example\" to create it.")
+        }
+
+        props.load(new FileInputStream(propFile))
+
+        if(props == null || !props.containsKey('pluginPath') || props['pluginPath'].equals("") || props['pluginPath'].equals("\"\"")) {
+            throw new InvalidUserDataException("The pluginPath ist not set! Please set the pluginPath in the file \"heldenSoftware.path\".")
+        }
+        
+        // windows
+        commandLine "copy", jar.archivePath, props['pluginPath']
+
+        // linux
+        commandLine "cp", jar.archivePath, props['pluginPath']
     }
-    
-    // windows
-    commandLine "copy", jar.archivePath, props['pluginPath']
-    
-    // linux
-    commandLine "cp", jar.archivePath, props['pluginPath']
 }
 
 deploy.dependsOn build
