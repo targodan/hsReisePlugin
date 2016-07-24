@@ -114,8 +114,16 @@ if(a == b) {
 - ***Credit where credit is due***
 
     Wer eine Klasse erweitert oder neu erstellt, der trägt sich bitte in den JavaDocs als (zusätzlicher) `@author` ein.
-    Hier könnt ihr selbstverständlich euren echten Namen angeben, ein Pseudonym ist aber auch in Ordnung.
-    Wer will kann auch seine E-Mail Adresse angeben, das ist allerdings keinesfalls Pflicht.
+    Wer will kann hier auch seine E-Mail Adresse angeben, das ist allerdings keinesfalls Pflicht.
+
+    Zusätzlich zum `@author` Eintrag fügt ihr euch bitte auch in den Copyright Bereich des Lizenz-Headers der bearbeiteten Datei ein. Die Reihenfolge der Namen geht nach dem Wer-zuerst-kommt-malt-zuerst-Prinzip, angefügt wird also immer Hinten. Wenn die Liste zu lang wird, bitte einen Zeilenumbruch machen und den nächsten Namen einrücken. Der Header sollte dann in etwa so aussehen.
+    ```java
+/*
+ * Copyright (C) 2016 Luca Corbatto, Melanie Musterfrau, Max Mustermann,
+ *                    Noch ein Name, ..., Euer Name
+ * ...
+*/
+    ```
 
 ## Aufbau dieses Projekts
 Hier noch ein paar Worte zum Aufbau dieses Projekts.
