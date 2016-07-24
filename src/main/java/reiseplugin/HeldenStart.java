@@ -143,7 +143,7 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
     public void init(DatenAustausch3Interface dai, JFrame jframe) {
         // called on opening the tool
         this.service = new Service(new HeldenService(dai));
-        this.controller = new Controller(this.service, jframe);
+        this.controller = new Controller(this.service, jframe, true);
     }
 
     /**

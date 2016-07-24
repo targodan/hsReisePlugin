@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import reiseplugin.gui.Controller;
 
 /**
  * Contains all parameters used by the {@link reiseplugin.data.ReiseCalculator ReiseCalculator}.
@@ -164,6 +165,7 @@ public class Parameter extends Observable implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        Controller.getInstance().appendDebugText(getClass().getCanonicalName() + "update("+(o == null ? "null" : o.getClass().getCanonicalName())+")\n");
         this.setChanged();
         this.notifyObservers(o);
     }

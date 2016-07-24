@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import reiseplugin.gui.Controller;
 
 /**
  * The class that does all the math.
@@ -190,6 +191,7 @@ public class ReiseCalculator extends Observable implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        Controller.getInstance().appendDebugText(getClass().getCanonicalName() + "update("+(o == null ? "null" : o.getClass().getCanonicalName())+")\n");
         this.ergebnis.clear();
         this.setChanged();
         this.notifyObservers(o);

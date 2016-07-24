@@ -230,6 +230,7 @@ public class Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        Controller.getInstance().appendDebugText(getClass().getCanonicalName() + "update("+(o == null ? "null" : o.getClass().getCanonicalName())+")\n");
         if(o instanceof IService) {
             IService service = (IService)o;
             Held[] helden = service.getAllHelden();

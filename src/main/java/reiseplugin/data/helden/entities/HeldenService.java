@@ -49,6 +49,7 @@ import reiseplugin.data.helden.entities.jaxb.Action;
 import reiseplugin.data.helden.entities.jaxb.ActionType;
 import reiseplugin.data.helden.entities.jaxb.Format;
 import reiseplugin.data.helden.entities.jaxb.Result;
+import reiseplugin.gui.Controller;
 
 /**
  * The class which implements the communication with the HeldenSoftware.
@@ -259,6 +260,7 @@ public class HeldenService extends Observable implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e) {
+        Controller.getInstance().appendDebugText(getClass().getCanonicalName() + "update("+(e == null ? "null" : e.getClass().getCanonicalName())+")\n");
         this.setChanged();
         this.notifyObservers();
     }

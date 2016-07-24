@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 import reiseplugin.data.helden.entities.Daten;
 import reiseplugin.data.helden.entities.HeldenService;
+import reiseplugin.gui.Controller;
 
 /**
  * The service providing the necessary methods to access the HeldenSoftware data.
@@ -83,6 +84,7 @@ public class Service extends Observable implements IService, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        Controller.getInstance().appendDebugText(getClass().getCanonicalName() + "update("+(o == null ? "null" : o.getClass().getCanonicalName())+")\n");
         this.setChanged();
         this.notifyObservers();
     }
