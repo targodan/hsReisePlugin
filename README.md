@@ -21,11 +21,27 @@ Linux:
 ```
 
 Windows:
-```batch
+```dos
 gradlew.bat xjc build
 ```
 
 Anschließend findet ihr unter `build/lib` die gerade erstellte jar-Datei.
+
+Wer zum Testen oft kompilieren und dann die jar-Datei kopieren muss, kann auch den `deploy` Task verwenden. Einfach die Datei `heldenSoftware.path.example` nach `heldenSoftware.path` kopieren und den Pfad zum Plugin-Ordner eintragen. Schon wird gradle euch die jar-Datei beim Aufruf des `deploy` Tasks dort hin kopieren.
+
+Linux:
+```bash
+cp heldenSoftware.path.example heldenSoftware.path
+$EDITOR heldenSoftware.path # Pfad mit Hilfe des lieblins-editor eintragen.
+./gradlew xjc build deploy
+```
+
+Windows:
+```dos
+copy heldenSoftware.path.example heldenSoftware.path
+:: Pfad mit Hilfe des lieblins-editors eintragen.
+gradlew.bat xjc build deploy
+```
 
 ## Beitragen
 Ihr wollt zu diesem Projekt beitragen? Super! :grinning::thumbsup:

@@ -86,3 +86,20 @@ jar {
                    'HeldenPluginClass': 'reiseplugin.HeldenStart.class'
     }
 }
+
+task deploy(type:Exec) {
+    def Properties props = new Properties()
+    props.load(new FileInputStream("heldenSoftware.path"))
+    
+    if(props == null || !props.containsKey('pluginPath') || props['pluginPath'].equals("") || props['pluginPath'].equals("\"\"")) {
+        throw new InvalidUserDataException("The pluginPath ist not set!")
+    }
+    
+    // windows
+    commandLine "copy", jar.archivePath, props['pluginPath']
+    
+    // linux
+    commandLine "cp", jar.archivePath, props['pluginPath']
+}
+
+deploy.dependsOn build

@@ -1,0 +1,7 @@
+// Set the plugin path for your HeldenSoftware here.
+// e.g. Linux
+// pluginPath = "~/heldensoftware/plugins"
+// e.g. Windows
+// pluginPath = "%AppData%/HeldenSoftware/plugins"
+
+pluginPath = ""
