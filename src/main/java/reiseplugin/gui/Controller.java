@@ -45,16 +45,9 @@ public class Controller {
      * A proxy for the Controller class that limits the access to methods.
      * @author Luca Corbatto {@literal <luca@corbatto.de>}
      */
-    public class ControllerProxy {
+    public static class ControllerProxy {
+        private Controller controller;
         private boolean debug = false;
-        
-        /**
-         * Creates a new ControllerProxy.
-         * @param debug Determines whether or not debug mode is on.
-         */
-        public ControllerProxy(boolean debug) {
-            this.debug = debug;
-        }
         
         /**
          * Sets the text of a debug TextField at the bottom of the window.
@@ -62,10 +55,10 @@ public class Controller {
          * @param text The text to be set.
          */
         public void setDebugText(String text) {
-            if(!this.debug) {
+            if(!this.debug || this.controller == null) {
                 return;
             }
-            Controller.this.setDebugText(text);
+            this.controller.setDebugText(text);
         }
         
         /**
@@ -74,18 +67,25 @@ public class Controller {
          * @param text The text to be appended.
          */
         public void appendDebugText(String text) {
-            if(!this.debug) {
+            if(!this.debug || this.controller == null) {
                 return;
             }
-            Controller.this.appendDebugText(text);
+            this.controller.appendDebugText(text);
+        }
+        
+        protected void setController(Controller c) {
+            this.controller = c;
+        }
+
+        protected void setDebug(boolean debug) {
+            this.debug = debug;
         }
     }
     
-    private ControllerProxy proxy;
-    public static Controller INSTANCE = null;
+    private static ControllerProxy INSTANCE = new ControllerProxy();
     
     public static ControllerProxy getInstance() {
-        return Controller.INSTANCE.proxy;
+        return Controller.INSTANCE;
     }
     
     /**
@@ -99,9 +99,9 @@ public class Controller {
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupPanel();
         this.setupDialog();
-        this.proxy = new ControllerProxy(true);
         this.reisePanel.setDebugVisibility(true);
-        Controller.INSTANCE = this;
+        Controller.INSTANCE.setController(this);
+        Controller.INSTANCE.setDebug(true);
     }
     
     /**
@@ -123,9 +123,9 @@ public class Controller {
         this.parent = parent;
         this.service = service;
         this.setupPanel();
-        this.proxy = new ControllerProxy(debug);
         this.reisePanel.setDebugVisibility(debug);
-        Controller.INSTANCE = this;
+        Controller.INSTANCE.setController(this);
+        Controller.INSTANCE.setDebug(debug);
     }
     
     /**
