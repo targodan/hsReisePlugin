@@ -1,12 +1,17 @@
 language: java
 jdk:
-- oraclejdk8
+    - oraclejdk8
 install:
-- "./gradlew xjc assemble"
+    - "./gradlew xjc assemble"
 script:
-- "./gradlew check"
+    - "./gradlew check"
 after_success:
-- "./gradlew test jacocoTestReport coveralls"
+    - "./gradlew test jacocoTestReport coveralls"
 notifications:
-  slack:
-    secure: 8YS9qU/RKswT0tfoxF2aUoYTxuo6BUEO9yoTGJtF8ttv3Y8kWYiLxuGOgljv0UOudMHCb7efdgPDZU9MpR/sSr+IdZ9aF4DFcECrFMWiQwV7wJImkKKBtULAgXkR99wWKIGmqZRDj0GldoLrAmibq3AeTISH7Hbe06ApAIh5U/nIDkencHBSe1n/mqenSF+K+k5eqZItcnFPP7Ue9IyZxUTqkqjEZJCi8JddzbPugKrvTig1izHWbemZsSIeQeuMKS7K3AD+Kic6LgcVUkjtOIDeOo/NxT176EbGPGAMQZWGXzjbWEijDAzuBAOcbDev1vHqy8AdcXEVXRDhZLpV21gL8OpgrgmoKqxt+JneC38HEuOD/xcqqwyVpdeIs9Y8awi1qorIAHRM+HQy1wZZyxq/Gb7Q+kzfesceCPH25bpTrKH8FCGZMsnM3sgjUeTUtfafQE58e1aQPObcgU3MMuQ9XKr76+G+uABkSExCVqljrZf2V/gRhcrKElpcxtAn1zaFDP+qQ97CdFDcydn9FNhnhwEy/lMU4FnhFfomQfCof/inuY7uUF6ZMFC3c1LUtWEh++4w4QKc5cHWsGfvf0dTyoYHsflREPYLHLDEotJG9t5bn1mEcxgrODgGVX5yrQpiWSpEBjvR/Rj6BcedsXwDn/Y646ho0x+vsp5kPdw=
+    email:
+        on_success: never
+	on_failure: never
+    slack:
+        on_success: always
+	on_failure: always
+        secure: 8YS9qU/RKswT0tfoxF2aUoYTxuo6BUEO9yoTGJtF8ttv3Y8kWYiLxuGOgljv0UOudMHCb7efdgPDZU9MpR/sSr+IdZ9aF4DFcECrFMWiQwV7wJImkKKBtULAgXkR99wWKIGmqZRDj0GldoLrAmibq3AeTISH7Hbe06ApAIh5U/nIDkencHBSe1n/mqenSF+K+k5eqZItcnFPP7Ue9IyZxUTqkqjEZJCi8JddzbPugKrvTig1izHWbemZsSIeQeuMKS7K3AD+Kic6LgcVUkjtOIDeOo/NxT176EbGPGAMQZWGXzjbWEijDAzuBAOcbDev1vHqy8AdcXEVXRDhZLpV21gL8OpgrgmoKqxt+JneC38HEuOD/xcqqwyVpdeIs9Y8awi1qorIAHRM+HQy1wZZyxq/Gb7Q+kzfesceCPH25bpTrKH8FCGZMsnM3sgjUeTUtfafQE58e1aQPObcgU3MMuQ9XKr76+G+uABkSExCVqljrZf2V/gRhcrKElpcxtAn1zaFDP+qQ97CdFDcydn9FNhnhwEy/lMU4FnhFfomQfCof/inuY7uUF6ZMFC3c1LUtWEh++4w4QKc5cHWsGfvf0dTyoYHsflREPYLHLDEotJG9t5bn1mEcxgrODgGVX5yrQpiWSpEBjvR/Rj6BcedsXwDn/Y646ho0x+vsp5kPdw=
