@@ -42,6 +42,53 @@ public class Controller {
     private JFrame parent;
     
     /**
+     * A proxy for the Controller class that limits the access to methods.
+     * @author Luca Corbatto {@literal <luca@corbatto.de>}
+     */
+    public class ControllerProxy {
+        private boolean debug = false;
+        
+        /**
+         * Creates a new ControllerProxy.
+         * @param debug Determines whether or not debug mode is on.
+         */
+        public ControllerProxy(boolean debug) {
+            this.debug = debug;
+        }
+        
+        /**
+         * Sets the text of a debug TextField at the bottom of the window.
+         * 
+         * @param text The text to be set.
+         */
+        public void setDebugText(String text) {
+            if(!this.debug) {
+                return;
+            }
+            Controller.this.setDebugText(text);
+        }
+        
+        /**
+         * Appends text to the debug TextField at the bottom of the window.
+         * 
+         * @param text The text to be appended.
+         */
+        public void appendDebugText(String text) {
+            if(!this.debug) {
+                return;
+            }
+            Controller.this.appendDebugText(text);
+        }
+    }
+    
+    private ControllerProxy proxy;
+    public static Controller INSTANCE = null;
+    
+    public static ControllerProxy getInstance() {
+        return Controller.INSTANCE.proxy;
+    }
+    
+    /**
      * Creates a new test Controller that automatically opens a new Window.
      * Used only for testing purposes.
      * @param service 
@@ -52,7 +99,9 @@ public class Controller {
         this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setupPanel();
         this.setupDialog();
+        this.proxy = new ControllerProxy(true);
         this.reisePanel.setDebugVisibility(true);
+        Controller.INSTANCE = this;
     }
     
     /**
@@ -61,9 +110,22 @@ public class Controller {
      * @param parent The JFrame containing the look and feel settings.
      */
     public Controller(IService service, JFrame parent) {
+        this(service, parent, false);
+    }
+    
+    /**
+     * Creates a new Controller containing a new ReisePanel.
+     * @param service The IService to use for data requests.
+     * @param parent The JFrame containing the look and feel settings.
+     * @param debug Determines whether or not debug mode is on.
+     */
+    public Controller(IService service, JFrame parent, boolean debug) {
         this.parent = parent;
         this.service = service;
         this.setupPanel();
+        this.proxy = new ControllerProxy(debug);
+        this.reisePanel.setDebugVisibility(debug);
+        Controller.INSTANCE = this;
     }
     
     /**
@@ -101,11 +163,32 @@ public class Controller {
     }
     
     /**
-     * Sets the text of a debug TextField at the bottom of the window.
+     * Sets the text of the debug TextField at the bottom of the window.
+     * 
+     * @deprecated Renamed to {@link #setDebugText setDebugText}.
+     * 
      * @param s 
      */
     public void setText(String s) {
         this.reisePanel.getDebugTextArea().setText(s);
+    }
+    
+    /**
+     * Sets the text of a debug TextField at the bottom of the window.
+     * 
+     * @param s The text to be set.
+     */
+    public void setDebugText(String s) {
+        this.reisePanel.getDebugTextArea().setText(s);
+    }
+    
+    /**
+     * Appends text to the debug TextField at the bottom of the window.
+     * 
+     * @param s The text to be appended.
+     */
+    public void appendDebugText(String s) {
+        this.reisePanel.getDebugTextArea().append(s);
     }
     
     /**
