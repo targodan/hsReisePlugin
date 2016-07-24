@@ -172,7 +172,7 @@ Um dies zu erreichen habe ich folgende Anpassungen an die Berechnung vorgenommen
 
     - `reiseplugin.gui.*`
 
-    Hier bin ich noch unentschlossen. Ich denke ich werde zumindest das Observable verhalten der Models Testen.
+        Hier bin ich noch unentschlossen. Ich denke ich werde zumindest das Observable verhalten der Models Testen.
 
     - `reiseplugin.data.DummyService`
 
