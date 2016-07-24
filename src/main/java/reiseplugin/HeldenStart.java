@@ -20,6 +20,10 @@ package reiseplugin;
 
 import helden.plugin.HeldenXMLDatenPlugin3;
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -69,14 +73,11 @@ public class HeldenStart implements helden.plugin.HeldenXMLDatenPlugin3 {
      */
     @Override
     public ImageIcon getIcon() {
-        /*
         ProtectionDomain currentProtectionDomain = getClass().getProtectionDomain();
         CodeSource codeSource = currentProtectionDomain.getCodeSource();
         URL icon = new URLClassLoader(new URL[]{codeSource.getLocation()})
-            .getResource("FILE");
+            .getResource("icon.png");
         return new ImageIcon(icon);
-        */
-        return null;
     }
 
     /**
