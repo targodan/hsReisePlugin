@@ -77,11 +77,11 @@ Hier sind ein paar Richtlinien, an die ihr euch bitte halten sollt, wenn ihr zu 
 </div>
 
     Sondern so:
-```java
-if(a == b) {
-    return b;
-}
-```
+    ```java
+    if(a == b) {
+        return b;
+    }
+    ```
 
 - **Commits**
 
