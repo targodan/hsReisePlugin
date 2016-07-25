@@ -86,7 +86,7 @@ jar {
         attributes 'Implementation-Title': 'hsReisePlugin',
                    'Implementation-Version': version,
                    'Main-Class': mainClassName,
-                   'HeldenPluginClass': 'reiseplugin.HeldenStart.class'
+                   'HeldenPluginClass': 'reiseplugin.SWTStart.class'
     }
     from {configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
