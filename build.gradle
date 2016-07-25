@@ -37,8 +37,9 @@ repositories {
 dependencies {
     compile name: 'helden'
 
+    compile "org.eclipse.swt:org.eclipse.swt.win32.win32.x86_64:4.3"
+    compile "org.eclipse.swt:org.eclipse.swt.gtk.linux.x86_64:4.3"
 
-    compile "org.eclipse.swt.gtk.linux:x86_64:3.3.0-v3346"
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
     jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
     jaxb 'javax.xml.bind:jaxb-api:2.2.7'
@@ -87,6 +88,7 @@ jar {
                    'Main-Class': mainClassName,
                    'HeldenPluginClass': 'reiseplugin.HeldenStart.class'
     }
+    from {configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 task deploy(type:Exec) {
@@ -103,7 +105,7 @@ task deploy(type:Exec) {
         if(props == null || !props.containsKey('pluginPath') || props['pluginPath'].equals("") || props['pluginPath'].equals("\"\"")) {
             throw new InvalidUserDataException("The pluginPath ist not set! Please set the pluginPath in the file \"heldenSoftware.path\".")
         }
-        
+
         // windows
         commandLine "copy", jar.archivePath, props['pluginPath']
 
