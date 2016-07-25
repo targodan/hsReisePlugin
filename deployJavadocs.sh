@@ -4,7 +4,7 @@ repo="$(git config remote.origin.url)"
 repo="${repo/https:\/\/github.com\//git@github.com:}"
 commit=$(git rev-parse --verify HEAD)
 user="$DEPLOY_GIT_NAME"
-mail="$DEPLOY_GIT_EMAIL"
+email="$DEPLOY_GIT_EMAIL"
 commitMessage="$DEPLOY_COMMIT_MSG"
 
 branch="$(git branch | grep '*' | cut -d' ' -f 2)"
@@ -19,7 +19,7 @@ git clone --branch=gh-pages "$repo" pagesOut
 cd pagesOut
 
 git config user.name "$user"
-git config user.email "$mail"
+git config user.email "$email"
 
 rm -rf "$branch/*"
 ./generateJavadoc "../src/main/java" "$branch"
