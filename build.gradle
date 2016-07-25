@@ -37,7 +37,8 @@ repositories {
 dependencies {
     compile name: 'helden'
 
-    compile "org.eclipse:swt:3.3.0-v3346"
+
+    compile "org.eclipse.swt.gtk.linux:x86_64:3.3.0-v3346"
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
     jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
     jaxb 'javax.xml.bind:jaxb-api:2.2.7'
