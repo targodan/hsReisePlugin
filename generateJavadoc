@@ -1,7 +1,11 @@
 #!/bin/bash
 if [[ "$1" == "" ]]; then
-    echo "Usage: generateJavadoc <srcpath>"
+    echo "Usage: generateJavadoc <srcpath> <targetDir>"
+    exit
+fi
+if [[ "$2" == "" ]]; then
+    echo "Usage: generateJavadoc <srcpath> <targetDir>"
     exit
 fi
 
-javadoc -encoding utf8 -docencoding utf8 -d . -sourcepath "$1" -exclude reiseplugin.data.helden.entities.jaxb -subpackages reiseplugin
+javadoc -encoding utf8 -docencoding utf8 -d "$2" -sourcepath "$1" -exclude reiseplugin.data.helden.entities.jaxb -subpackages reiseplugin
