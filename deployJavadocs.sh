@@ -1,11 +1,13 @@
 #!/bin/bash
 
-repo="git@github.com:targodan/hsReisePlugin.git"
-user="TravisCI"
+repo="$(git config remote.origin.url)"
+repo="${repo/https:\/\/github.com\//git@github.com:}"
+commit=$(git rev-parse --verify HEAD)
+user="$DEPLOY_GIT_NAME"
 mail="$COMMIT_AUTHOR_EMAIL"
-commitMessage="Automatically updated JavaDocs."
+commitMessage="$DEPLOY_COMMIT_MSG"
 
-branch=$(git branch | grep '*' | cut -d' ' -f 2)
+branch="$(git branch | grep '*' | cut -d' ' -f 2)"
 if [[ "$branch" != "master" && "$branch" != "develop" ]]; then
     exit
 fi
@@ -16,9 +18,12 @@ ssh-add deployKey
 git clone --branch=gh-pages "$repo" pagesOut
 cd pagesOut
 
+git config user.name "$user"
+git config user.email "$mail"
+
 rm -rf "$branch/*"
 ./generateJavadoc "../src/main/java" "$branch"
 
 git add -A
-git commit -m "$commitMessage"
+git commit -m "${commitMessage/COMMIT_SHA/$commit}"
 git push
