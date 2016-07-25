@@ -4,7 +4,7 @@ repo="$(git config remote.origin.url)"
 repo="${repo/https:\/\/github.com\//git@github.com:}"
 commit=$(git rev-parse --verify HEAD)
 user="$DEPLOY_GIT_NAME"
-mail="$COMMIT_AUTHOR_EMAIL"
+mail="$DEPLOY_GIT_EMAIL"
 commitMessage="$DEPLOY_COMMIT_MSG"
 
 branch="$(git branch | grep '*' | cut -d' ' -f 2)"
