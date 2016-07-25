@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlRegistry;
 public class ObjectFactory extends reiseplugin.data.helden.entities.jaxb.ObjectFactory {
 
     /**
-     * Creates a new (extended) Daten instance.
-     * @return A new (extended) Daten instance.
+     * Creates a new (extended) {@code Daten} instance.
+     * @return A new (extended) {@code Daten} instance.
      */
     @Override
     public reiseplugin.data.helden.entities.jaxb.Daten createDaten() {

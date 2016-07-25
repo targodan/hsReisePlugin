@@ -32,8 +32,8 @@ public class ReiseCalculator extends Observable implements Observer {
     protected final List<ErgebnisTag> ergebnis;
     
     /**
-     * Creates a new ReiseCalculator with the given Parameter.
-     * @param parameter The Parameter for the calculations.
+     * Creates a new {@link reiseplugin.data.ReiseCalculator ReiseCalculator} with the given {@link reiseplugin.data.Parameter Parameter}.
+     * @param parameter The {@link reiseplugin.data.Parameter Parameter} for the calculations.
      */
     public ReiseCalculator(Parameter parameter) {
         if(parameter == null) {
@@ -57,8 +57,8 @@ public class ReiseCalculator extends Observable implements Observer {
     }
 
     /**
-     * Returns the Parameter.
-     * @return The Parameter.
+     * Returns the {@link reiseplugin.data.Parameter Parameter}.
+     * @return The {@link reiseplugin.data.Parameter Parameter}.
      */
     public Parameter getParameter() {
         return parameter;
@@ -98,16 +98,16 @@ public class ReiseCalculator extends Observable implements Observer {
     }
     
     /**
-     * Calculates an hour for a Held.
+     * Calculates an hour for a {@link reiseplugin.data.Held Held}.
      * 
      * @deprecated Will be removed in Version 2.0.0. From within ReiseCalculator
      * please use {@link #calculateStunde(reiseplugin.data.Held,
      * reiseplugin.data.ErgebnisTag.Zustand, reiseplugin.data.ErgebnisTag,
-     * int) calculateStunde} instead. This method should not be public, please
+     * int) calculateStunde(Held, Zustand, EreignisTag, int)} instead. This method should not be public, please
      * use {@link #getTag(int) getTag} from outside of the class.
      * 
-     * @param h The Held.
-     * @param lastZustand The previous Zustand of the Held.
+     * @param h The {@link reiseplugin.data.Held Held}.
+     * @param lastZustand The previous Zustand of the {@link reiseplugin.data.Held Held}.
      * @param newDay The day.
      * @param st The hour.
      * @return The result for the given hour.
@@ -119,9 +119,9 @@ public class ReiseCalculator extends Observable implements Observer {
     }
     
     /**
-     * Calculates an hour for a Held.
-     * @param h The Held.
-     * @param lastZustand The previous Zustand of the Held.
+     * Calculates an hour for a {@link reiseplugin.data.Held Held}.
+     * @param h The {@link reiseplugin.data.Held Held}.
+     * @param lastZustand The previous {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} of the {@link reiseplugin.data.Held Held}.
      * @param st The hour.
      * @return The result for the given hour.
      */
@@ -132,9 +132,9 @@ public class ReiseCalculator extends Observable implements Observer {
     }
     
     /**
-     * Finds and sums Rasten in the given hour
+     * Finds and sums {@link reiseplugin.data.Rast Rast}en in the given hour
      * @param st The hour
-     * @return The resulting Rast
+     * @return The resulting {@link reiseplugin.data.Rast Rast}
      */
     protected Rast findRast(int st) {
         return this.parameter.getErholung().stream()
@@ -150,11 +150,11 @@ public class ReiseCalculator extends Observable implements Observer {
     }
     
     /**
-     * Caculates a followup Zustand.
-     * @param h The Held.
-     * @param lastZustand The previous Zustand.
-     * @param rast The Rast affecting this hour.
-     * @return The next Zustand.
+     * Caculates a followup {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
+     * @param h The {@link reiseplugin.data.Held Held}.
+     * @param lastZustand The previous {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
+     * @param rast The {@link reiseplugin.data.Rast Rast} affecting this hour.
+     * @return The next {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
      */
     protected ErgebnisTag.Zustand nextZustand(Held h, ErgebnisTag.Zustand lastZustand, Rast rast) {
         if(h == null || lastZustand == null) {
@@ -183,9 +183,9 @@ public class ReiseCalculator extends Observable implements Observer {
     }
 
     /**
-     * Called when any of the Ovservables are updated.
+     * Called when any of the {@link java.util.Observable Observable}s are updated.
      * Cleares all calculated results, forcing a recalculation.
-     * @param o The Observable that was updated.
+     * @param o The {@link java.util.Observable Observable} that was updated.
      * @param arg An argument.
      */
     @Override

@@ -26,7 +26,7 @@ import java.util.EventListener;
  */
 public interface TableButtonListener extends EventListener {
     /**
-     * Invoked when a button in a Table was clicked.
+     * Invoked when a button in a {@link javax.swing.JTable JTable} was clicked.
      * @param row The row of the clicked button.
      * @param col The column of the clicked button.
      */

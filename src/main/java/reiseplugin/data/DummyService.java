@@ -27,8 +27,11 @@ import reiseplugin.data.helden.entities.Daten;
 public class DummyService implements IService {
 
     /**
-     * Returns the currently selected Held.
-     * @return The currently selected Held.
+     * Returns the currently selected {@link reiseplugin.data.Held Held}.
+     * 
+     * @deprecated This method is an unused remnant of an earlier version.
+     * 
+     * @return The currently selected {@link reiseplugin.data.Held Held}.
      */
     public Daten getSelectedHeld() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

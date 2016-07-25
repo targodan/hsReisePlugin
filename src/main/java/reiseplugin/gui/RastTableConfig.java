@@ -34,7 +34,12 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
 
 /**
- * This class contains the Model, the Renderer and the Editor for the JTable representing the Rasten.
+ * This class contains the
+ * {@link reiseplugin.gui.RastTableConfig.Model RastTableConfig.Model}, the
+ * {@link reiseplugin.gui.RastTableConfig.Renderer RastTableConfig.Renderer}
+ * and the {@link reiseplugin.gui.RastTableConfig.Editor RastTableConfig.Editor}
+ * for the {@link javax.swing.JTable JTable} representing the
+ * {@link reiseplugin.data.Rast Rast}en.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class RastTableConfig implements TableButtonListener {
@@ -51,7 +56,7 @@ public class RastTableConfig implements TableButtonListener {
     private Editor editor = null;
     
     /**
-     * Creates a new RastTableConfig.
+     * Creates a new {@link reiseplugin.gui.RastTableConfig RastTableConfig}.
      */
     public RastTableConfig() {
         this.model = new Model();
@@ -61,16 +66,16 @@ public class RastTableConfig implements TableButtonListener {
     }
     
     /**
-     * Returns the Parameter.
-     * @return The Parameter.
+     * Returns the {@link reiseplugin.data.Parameter Parameter}.
+     * @return The {@link reiseplugin.data.Parameter Parameter}.
      */
     public Parameter getParameter() {
         return this.data;
     }
 
     /**
-     * Sets the Parameter and triggers a redraw.
-     * @param data The new Parameter.
+     * Sets the {@link reiseplugin.data.Parameter Parameter} and triggers a redraw.
+     * @param data The new {@link reiseplugin.data.Parameter Parameter}.
      */
     public void setParameter(Parameter data) {
         this.data = data;
@@ -79,24 +84,24 @@ public class RastTableConfig implements TableButtonListener {
     }
     
     /**
-     * Returns the Model.
-     * @return The Model.
+     * Returns the {@link reiseplugin.gui.RastTableConfig.Model RastTableConfig.Model}.
+     * @return The {@link reiseplugin.gui.RastTableConfig.Model RastTableConfig.Model}.
      */
     public Model getModel() {
         return this.model;
     }
 
     /**
-     * Returns the Renderer.
-     * @return The Renderer.
+     * Returns the {@link reiseplugin.gui.RastTableConfig.Renderer RastTableConfig.Renderer}.
+     * @return The {@link reiseplugin.gui.RastTableConfig.Renderer RastTableConfig.Renderer}.
      */
     public Renderer getRenderer() {
         return renderer;
     }
 
     /**
-     * Returns the Editor.
-     * @return The Editor.
+     * Returns the {@link reiseplugin.gui.RastTableConfig.Editor RastTableConfig.Editor}.
+     * @return The {@link reiseplugin.gui.RastTableConfig.Editor RastTableConfig.Editor}.
      */
     public Editor getEditor() {
         return editor;
@@ -111,8 +116,10 @@ public class RastTableConfig implements TableButtonListener {
     }
     
     /**
-     * The Model of the RastTable.
-     * This class implements the access to the table data and the ability to change the data.
+     * The {@link reiseplugin.gui.RastTableConfig.Model RastTableConfig.Model}
+     * of the {@code rastTable}.
+     * This class implements the access to the table data and the ability to
+     * change the data.
      */
     public class Model extends AbstractTableModel {
         /**
@@ -220,7 +227,8 @@ public class RastTableConfig implements TableButtonListener {
     }
     
     /**
-     * The Renderer of the RastTable.
+     * The {@link reiseplugin.gui.RastTableConfig.Renderer RastTableConfig.Renderer}
+     * of the {@code rastTable}.
      * This makes the delete-buttons look like buttons.
      */
     public class Renderer extends DefaultTableCellRenderer {
@@ -239,7 +247,8 @@ public class RastTableConfig implements TableButtonListener {
     }
     
     /**
-     * The Editor of the RastTable.
+     * The {@link reiseplugin.gui.RastTableConfig.Editor RastTableConfig.Editor}
+     * of the {@code rastTable}.
      * This makes the buttons actually trigger and makes the other fields editable.
      */
     public class Editor extends DefaultCellEditor {
@@ -255,8 +264,8 @@ public class RastTableConfig implements TableButtonListener {
         }
         
         /**
-         * Registers a new TableButtonListener.
-         * @param e A TableButtonListener.
+         * Registers a new {@link reiseplugin.gui.TableButtonListener TableButtonListener}.
+         * @param e A {@link reiseplugin.gui.TableButtonListener TableButtonListener}.
          * @return true (as specified in {@link java.util.Collection.add})
          */
         public boolean addTableButtonListener(TableButtonListener e) {
@@ -264,15 +273,15 @@ public class RastTableConfig implements TableButtonListener {
         }
 
         /**
-         * Removed a TableButtonListener.
-         * @param e The TableButtonListener to be removed.
+         * Removed a {@link reiseplugin.gui.TableButtonListener TableButtonListener}.
+         * @param e The {@link reiseplugin.gui.TableButtonListener TableButtonListener} to be removed.
          */
         public void removeTableButtonListener(TableButtonListener e) {
             listeners.remove(e);
         }
         
         /**
-         * Notifies the TableButtonListeners.
+         * Notifies the {@link reiseplugin.gui.TableButtonListener TableButtonListener}s.
          * @param row The row of the clicked button.
          * @param column The column of the clicked button.
          */

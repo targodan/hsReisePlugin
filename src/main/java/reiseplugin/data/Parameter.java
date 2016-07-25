@@ -26,7 +26,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Contains all parameters used by the ReiseCalculator.
+ * Contains all parameters used by the {@link reiseplugin.data.ReiseCalculator ReiseCalculator}.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Parameter extends Observable implements Observer {
@@ -35,10 +35,10 @@ public class Parameter extends Observable implements Observer {
     private final List<Rast> erholung;
     
     /**
-     * Creates a new Parameter with the given values.
-     * @param helden An array of Helden.
-     * @param erschöpfungProStunde The Erschöpfung the Helden gain per hour.
-     * @param erholung A Collection of Rasten. 
+     * Creates a new {@link reiseplugin.data.Parameter Parameter} with the given values.
+     * @param helden An array of {@link reiseplugin.data.Held Held}en.
+     * @param erschöpfungProStunde The Erschöpfung the {@link reiseplugin.data.Held Held}en gain per hour.
+     * @param erholung A Collection of {@link reiseplugin.data.Rast Rast}en. 
      */
     public Parameter(Held[] helden, int erschöpfungProStunde, Collection<Rast> erholung) {
         if(erschöpfungProStunde < 0) {
@@ -65,25 +65,25 @@ public class Parameter extends Observable implements Observer {
     }
 
     /**
-     * Returns the i-th Held.
-     * @param i The index of the Held.
-     * @return The i-th Held.
+     * Returns the i-th {@link reiseplugin.data.Held Held}.
+     * @param i The index of the {@link reiseplugin.data.Held Held}.
+     * @return The i-th {@link reiseplugin.data.Held Held}.
      */
     public Held getHeld(int i) {
         return this.helden[i];
     }
     
     /**
-     * Returns the number of Helden.
-     * @return The number of Helden.
+     * Returns the number of {@link reiseplugin.data.Held Held}en.
+     * @return The number of {@link reiseplugin.data.Held Held}en.
      */
     public int getHeldenCount() {
         return this.helden.length;
     }
     
     /**
-     * Returns a List containing the Helden.
-     * @return A List containing the Helden.
+     * Returns a {@link java.util.List List} containing the {@link reiseplugin.data.Held Held}en.
+     * @return A {@link java.util.List List} containing the {@link reiseplugin.data.Held Held}en.
      */
     public List<Held> getHelden() {
         return Arrays.asList(this.helden);
@@ -114,25 +114,25 @@ public class Parameter extends Observable implements Observer {
     }
     
     /**
-     * Returns a List containing all Rasten.
-     * @return A List containing all Rasten.
+     * Returns a {@link java.util.List List} containing all {@link reiseplugin.data.Rast Rast}en.
+     * @return A {@link java.util.List List} containing all {@link reiseplugin.data.Rast Rast}en.
      */
     public List<Rast> getErholung() {
         return this.erholung;
     }
     
     /**
-     * Returns the i-th Rast.
-     * @param i The index of the Rast.
-     * @return The i-th Rast.
+     * Returns the i-th {@link reiseplugin.data.Rast Rast}.
+     * @param i The index of the {@link reiseplugin.data.Rast Rast}.
+     * @return The i-th {@link reiseplugin.data.Rast Rast}.
      */
     public Rast getRast(int i) {
         return this.erholung.get(i);
     }
     
     /**
-     * Adds a Rast.
-     * @param r A Rast.
+     * Adds a {@link reiseplugin.data.Rast Rast}.
+     * @param r A {@link reiseplugin.data.Rast Rast}.
      */
     public void addRast(Rast r) {
         if(!this.erholung.contains(r)) {
@@ -144,8 +144,8 @@ public class Parameter extends Observable implements Observer {
     }
     
     /**
-     * Removes a Rast.
-     * @param r The Rast to be removed.
+     * Removes a {@link reiseplugin.data.Rast Rast}.
+     * @param r The {@link reiseplugin.data.Rast Rast} to be removed.
      */
     public void removeRast(Rast r) {
         if(this.erholung.contains(r)) {
@@ -157,9 +157,9 @@ public class Parameter extends Observable implements Observer {
     }
 
     /**
-     * Called when any of the Ovservables are updated.
-     * Passes the update on to it's Observers.
-     * @param o The Observable that was updated.
+     * Called when any of the {@link java.util.Observable Observable}s are updated.
+     * Passes the update on to it's {@link java.util.Observer Observer}.
+     * @param o The {@link java.util.Observable Observable} that was updated.
      * @param arg An argument.
      */
     @Override

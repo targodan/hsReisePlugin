@@ -19,19 +19,23 @@
 package reiseplugin;
 
 /**
- *
+ * This Exception should only be used for errors that should never happen.
+ * 
+ * If this Exception is thrown the programmer has made a mistake that should not
+ * happen in production!
+ * 
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class WTFException extends RuntimeException {
     /**
-     * Creates a new WTFException.
+     * Creates a new {@link reiseplugin.WTFException WTFException}.
      */
     public WTFException() {
         super("This should never have happened.");
     }
 
     /**
-     * Creates a new WTFException with a message.
+     * Creates a new {@link reiseplugin.WTFException WTFException} with a message.
      * @param message The exception message.
      */
     public WTFException(String message) {
@@ -39,7 +43,7 @@ public class WTFException extends RuntimeException {
     }
 
     /**
-     * Creates a new WTFException with a message and a cause.
+     * Creates a new {@link reiseplugin.WTFException WTFException} with a message and a cause.
      * @param message The exception message.
      * @param cause The cause.
      */
@@ -48,7 +52,7 @@ public class WTFException extends RuntimeException {
     }
 
     /**
-     * Creates a new WTFException with a cause.
+     * Creates a new {@link reiseplugin.WTFException WTFException} with a cause.
      * @param cause The cause.
      */
     public WTFException(Throwable cause) {

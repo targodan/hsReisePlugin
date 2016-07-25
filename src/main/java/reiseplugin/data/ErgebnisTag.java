@@ -36,7 +36,7 @@ public class ErgebnisTag {
     protected final List<Held> helden;
 
     /**
-     * Creates a new ErgebnisTag.
+     * Creates a new {@link reiseplugin.data.ErgebnisTag ErgebnisTag}.
      */
     public ErgebnisTag() {
         this.ergebnis = new HashMap<>();
@@ -44,8 +44,8 @@ public class ErgebnisTag {
     }
     
     /**
-     * Adds a Held to the result.
-     * @param h Held to be added.
+     * Adds a {@link reiseplugin.data.Held Held} to the result.
+     * @param h {@link reiseplugin.data.Held Held} to be added.
      */
     public void addHeld(Held h) {
         if(h == null) {
@@ -58,10 +58,10 @@ public class ErgebnisTag {
     }
     
     /**
-     * Sets the Zustand for a Held on a particular hour.
-     * @param held Held
+     * Sets the {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} for a {@link reiseplugin.data.Held Held} on a particular hour.
+     * @param held {@link reiseplugin.data.Held Held}
      * @param stunde The hour.
-     * @param z The Zustand.
+     * @param z The {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
      */
     public void setZustand(Held held, int stunde, Zustand z) {
         if(!this.ergebnis.containsKey(held)) {
@@ -75,8 +75,8 @@ public class ErgebnisTag {
     
     
     /**
-     * Sets the Zustand for a Held on a particular hour.
-     * @param held Held
+     * Sets the {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} for a {@link reiseplugin.data.Held Held} on a particular hour.
+     * @param held The {@link reiseplugin.data.Held Held}
      * @param stunde The hour.
      * @param ersch The Erschöpfung.
      * @param überanst The Überanstrengung.
@@ -86,10 +86,10 @@ public class ErgebnisTag {
     }
     
     /**
-     * Returns the Zustand of a Held in a particular hour.
-     * @param h The Held.
+     * Returns the {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} of a {@link reiseplugin.data.Held Held} in a particular hour.
+     * @param h The {@link reiseplugin.data.Held Held}.
      * @param stunde The hour.
-     * @return The Zustand of a Held.
+     * @return The {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} of a {@link reiseplugin.data.Held Held}.
      */
     public Zustand getZustand(Held h, int stunde) {
         if(!this.ergebnis.containsKey(h)) {
@@ -102,8 +102,8 @@ public class ErgebnisTag {
     }
     
     /**
-     * Returns all contained Helden.
-     * @return All contained Helden.
+     * Returns all contained {@link reiseplugin.data.Held Held}en.
+     * @return All contained {@link reiseplugin.data.Held Held}en.
      */
     public List<Held> getHelden() {
         return this.helden;
@@ -117,7 +117,7 @@ public class ErgebnisTag {
         private final int überanstregnung;
 
         /**
-         * Creates a new Zustand with the given Erschöpfung and Überanstrengung.
+         * Creates a new {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} with the given Erschöpfung and Überanstrengung.
          * @param erschöpfung The Erschöpfung.
          * @param überanstregnung The Überanstrengung.
          */
@@ -158,9 +158,9 @@ public class ErgebnisTag {
         }
 
         /**
-         * Compares a Zustand to this Zustand.
-         * @param obj The other Zustand.
-         * @return true if the other Zustand is equals to this.
+         * Compares a {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} to this {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
+         * @param obj The other {@link reiseplugin.data.ErgebnisTag.Zustand Zustand}.
+         * @return true if the other {@link reiseplugin.data.ErgebnisTag.Zustand Zustand} is equals to this.
          */
         @Override
         public boolean equals(Object obj) {
@@ -190,9 +190,9 @@ public class ErgebnisTag {
     }
     
     /**
-     * Compares an ErgebnisTag to this ErgebnisTag.
-     * @param obj The other ErgebnisTag.
-     * @return true if the other ErgebnisTag is equals to this.
+     * Compares an {@link reiseplugin.data.ErgebnisTag ErgebnisTag} to this {@link reiseplugin.data.ErgebnisTag ErgebnisTag}.
+     * @param obj The other {@link reiseplugin.data.ErgebnisTag ErgebnisTag}.
+     * @return true if the other {@link reiseplugin.data.ErgebnisTag ErgebnisTag} is equals to this.
      */
     @Override
     public boolean equals(Object obj) {

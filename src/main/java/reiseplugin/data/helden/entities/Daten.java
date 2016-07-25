@@ -19,7 +19,7 @@
 package reiseplugin.data.helden.entities;
 
 /**
- * An example extension of the HeldenSoftware-native Daten class.
+ * An example extension of the HeldenSoftware-native {@code Daten} class.
  * Not really used, just left in here as an example for future use.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */

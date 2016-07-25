@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.Observable;
 
 /**
- * Contains the locally necessary informations about a Held.
+ * Contains the locally necessary informations about a {@link reiseplugin.data.Held Held}.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Held extends Observable {
@@ -31,10 +31,10 @@ public class Held extends Observable {
     private int mod;
 
     /**
-     * Creates a new Held with the given properties.
-     * @param name The name of the Held.
-     * @param KO The Konstitution of the Held.
-     * @param mod The modificator for the Erschöpfung of this Held.
+     * Creates a new {@link reiseplugin.data.Held Held} with the given properties.
+     * @param name The name of the {@link reiseplugin.data.Held Held}.
+     * @param KO The Konstitution of the {@link reiseplugin.data.Held Held}.
+     * @param mod The modificator for the Erschöpfung of this {@link reiseplugin.data.Held Held}.
      */
     public Held(String name, int KO, int mod) {
         if(KO < 0) {
@@ -46,32 +46,32 @@ public class Held extends Observable {
     }
 
     /**
-     * Returns the name of the Held.
-     * @return The name of the Held.
+     * Returns the name of the {@link reiseplugin.data.Held Held}.
+     * @return The name of the {@link reiseplugin.data.Held Held}.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Returns the Konstitution of this Held.
-     * @return The Konstitution of this Held.
+     * Returns the Konstitution of this {@link reiseplugin.data.Held Held}.
+     * @return The Konstitution of this {@link reiseplugin.data.Held Held}.
      */
     public int getKO() {
         return KO;
     }
 
     /**
-     * Returns the modificator for the Erschöpfung of this Held.
-     * @return The modificator for the Erschöpfung of this Held.
+     * Returns the modificator for the Erschöpfung of this {@link reiseplugin.data.Held Held}.
+     * @return The modificator for the Erschöpfung of this {@link reiseplugin.data.Held Held}.
      */
     public int getMod() {
         return mod;
     }
 
     /**
-     * Sets the modificator for the Erschöpfung of this Held.
-     * @param mod The modificator for the Erschöpfung of this Held.
+     * Sets the modificator for the Erschöpfung of this {@link reiseplugin.data.Held Held}.
+     * @param mod The modificator for the Erschöpfung of this {@link reiseplugin.data.Held Held}.
      */
     public void setMod(int mod) {
         if(this.mod != mod) {
@@ -82,9 +82,9 @@ public class Held extends Observable {
     }
     
     /**
-     * Compares a Held to this Held.
-     * @param obj The other Held.
-     * @return true if the other Held is equals to this.
+     * Compares a {@link reiseplugin.data.Held Held} to this {@link reiseplugin.data.Held Held}.
+     * @param obj The other {@link reiseplugin.data.Held Held}.
+     * @return true if the other {@link reiseplugin.data.Held Held} is equals to this.
      */
     @Override
     public boolean equals(Object obj) {

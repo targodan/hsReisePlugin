@@ -26,7 +26,7 @@ import reiseplugin.data.Rast;
 import reiseplugin.data.ReiseCalculator;
 
 /**
- * The big, all-containing Model for the gui.
+ * The big, all-containing {@link reiseplugin.gui.Model Model} for the gui.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Model implements Observer {
@@ -40,7 +40,7 @@ public class Model implements Observer {
     private ReiseTableConfig reiseTableConfig = null;
 
     /**
-     * Creates a new Model with all default values.
+     * Creates a new {@link reiseplugin.gui.Model Model} with all default values.
      */
     public Model() {
         this.reiseTableConfig = new ReiseTableConfig();
@@ -51,16 +51,17 @@ public class Model implements Observer {
     }
 
     /**
-     * Returns the Parameter.
-     * @return The Parameter.
+     * Returns the {@link reiseplugin.data.Parameter Parameter}.
+     * @return The {@link reiseplugin.data.Parameter Parameter}.
      */
     public Parameter getParameter() {
         return parameter;
     }
 
     /**
-     * Sets the Parameter and triggers a redraw where necessary.
-     * @param parameter The new Parameter.
+     * Sets the {@link reiseplugin.data.Parameter Parameter} and triggers a
+     * redraw where necessary.
+     * @param parameter The new {@link reiseplugin.data.Parameter Parameter}.
      */
     public void setParameter(Parameter parameter) {
         this.parameter = parameter;
@@ -73,16 +74,20 @@ public class Model implements Observer {
     }
 
     /**
-     * Returns the RastTableConfig containing the model for the JTable representing the Rasten.
-     * @return The RastTableConfig.
+     * Returns the {@link reiseplugin.gui.RastTableConfig RastTableConfig}
+     * containing the model for the {@link javax.swing.JTable JTable}
+     * representing the {@link reiseplugin.data.Rast Rast}en.
+     * @return The {@link reiseplugin.gui.RastTableConfig RastTableConfig}.
      */
     public RastTableConfig getRastTableConfig() {
         return rastTableConfig;
     }
 
     /**
-     * Returns the ReiseTableConfig containing the model for the JTable representing the results.
-     * @return The ReiseTableConfig.
+     * Returns the {@link reiseplugin.gui.ReiseTableConfig ReiseTableConfig}
+     * containing the model for the {@link javax.swing.JTable JTable}
+     * representing the results.
+     * @return The {@link reiseplugin.gui.ReiseTableConfig ReiseTableConfig}.
      */
     public ReiseTableConfig getReiseTableConfig() {
         return reiseTableConfig;
@@ -105,31 +110,38 @@ public class Model implements Observer {
     }
 
     /**
-     * Returns the SpinnerModel, the model for the JSpinner representing the currently selected day.
-     * @return The SpinnerModel.
+     * Returns the {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel}, the
+     * model for the {@link javax.swing.JSpinner JSpinner} representing the
+     * currently selected day.
+     * @return The {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel}.
      */
     public SpinnerModel getTagSpinnerModel() {
         return tagSpinnerModel;
     }
 
     /**
-     * Returns the SpinnerModel, the model for the JSpinner representing the Erschöpfung per hour.
-     * @return The SpinnerModel.
+     * Returns the {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel}, the
+     * model for the {@link javax.swing.JSpinner JSpinner} representing the
+     * Erschöpfung per hour.
+     * @return The {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel}.
      */
     public SpinnerModel getErschöpfungSpinnerModel() {
         return erschSpinnerModel;
     }
 
     /**
-     * Returns the HeldenTableModel, the model for the JTable representing the Helden.
-     * @return The HeldenTableModel.
+     * Returns the {@link reiseplugin.gui.HeldenTableModel HeldenTableModel},
+     * the model for the {@link javax.swing.JTable JTable} representing the
+     * Helden.
+     * @return The {@link reiseplugin.gui.HeldenTableModel HeldenTableModel}.
      */
     public HeldenTableModel getHeldenTableModel() {
         return heldenTableModel;
     }
     
     /**
-     * Adds a new Rast with default values and triggers a redraw.
+     * Adds a new {@link reiseplugin.data.Rast Rast} with default values and
+     * triggers a redraw.
      */
     public void addRast() {
         this.parameter.addRast(new Rast(0, 0, 0, 0));
@@ -137,9 +149,10 @@ public class Model implements Observer {
     }
     
     /**
-     * Called when any of the Ovservables are updated.
+     * Called when any of the {@link java.util.Observable Observable}s are
+     * updated.
      * Delegates the relevant calls to the sub models and triggers a redraw.
-     * @param o The Observable that was updated.
+     * @param o The {@link java.util.Observable Observable} that was updated.
      * @param arg An argument.
      */
     @Override
@@ -150,13 +163,15 @@ public class Model implements Observer {
     }
     
     /**
-     * The SpinnerModel used for the JSpinners in the gui.
+     * The {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel} used for the
+     * {@link javax.swing.JSpinner JSpinner}s in the gui.
      */
     public class SpinnerModel extends SpinnerNumberModel {
         private int value = 0;
 
         /**
-         * Creates a new SpinnerModel with the given inital value.
+         * Creates a new {@link reiseplugin.gui.Model.SpinnerModel SpinnerModel}
+         * with the given inital value.
          * @param value The initial value.
          */
         public SpinnerModel(int value) {

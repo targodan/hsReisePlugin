@@ -21,7 +21,7 @@ package reiseplugin.data;
 import java.util.Observable;
 
 /**
- * Contains all information of a Rast.
+ * Contains all information of a {@link reiseplugin.data.Rast Rast}.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Rast extends Observable {
@@ -31,13 +31,13 @@ public class Rast extends Observable {
     private int überanstrengungProStunde;
 
     /**
-     * Creates a new Rast with the given parameters.
-     * If you give start = 12 and ende = 14 that results in a Rast from
+     * Creates a new {@link reiseplugin.data.Rast Rast} with the given parameters.
+     * If you give start = 12 and ende = 14 that results in a {@link reiseplugin.data.Rast Rast} from
      * 12:00 - 14:00.
      * @param start The start hour.
      * @param ende The end hour.
-     * @param erschöpfungProStunde The Erschöpfung the Helden regenerate per hour.
-     * @param überanstrengungProStunde The Überanstrengung the Helden regenerate per hour.
+     * @param erschöpfungProStunde The Erschöpfung the {@link reiseplugin.data.Held Held}en regenerate per hour.
+     * @param überanstrengungProStunde The Überanstrengung the {@link reiseplugin.data.Held Held}en regenerate per hour.
      */
     public Rast(int start, int ende, int erschöpfungProStunde, int überanstrengungProStunde) {
         if(start < 0 || start > 23) {
@@ -105,16 +105,16 @@ public class Rast extends Observable {
     }
 
     /**
-     * Returns the Erschöpfung the Helden regenerate per hour.
-     * @return The Erschöpfung the Helden regenerate per hour.
+     * Returns the Erschöpfung the {@link reiseplugin.data.Held Held}en regenerate per hour.
+     * @return The Erschöpfung the {@link reiseplugin.data.Held Held}en regenerate per hour.
      */
     public int getErschöpfungProStunde() {
         return erschöpfungProStunde;
     }
 
     /**
-     * Sets the Erschöpfung the Helden regenerate per hour.
-     * @param erschöpfungProStunde The Erschöpfung the Helden regenerate per hour.
+     * Sets the Erschöpfung the {@link reiseplugin.data.Held Held}en regenerate per hour.
+     * @param erschöpfungProStunde The Erschöpfung the {@link reiseplugin.data.Held Held}en regenerate per hour.
      */
     public void setErschöpfungProStunde(int erschöpfungProStunde) {
         if(erschöpfungProStunde < 0) {
@@ -128,16 +128,16 @@ public class Rast extends Observable {
     }
 
     /**
-     * Returns the Überanstrengung the Helden regenerate per hour.
-     * @return The Überanstrengung the Helden regenerate per hour.
+     * Returns the Überanstrengung the {@link reiseplugin.data.Held Held}en regenerate per hour.
+     * @return The Überanstrengung the {@link reiseplugin.data.Held Held}en regenerate per hour.
      */
     public int getÜberanstrengungProStunde() {
         return überanstrengungProStunde;
     }
 
     /**
-     * Sets the Überanstrengung the Helden regenerate per hour.
-     * @param überanstrengungProStunde The Überanstrengung the Helden regenerate per hour.
+     * Sets the Überanstrengung the {@link reiseplugin.data.Held Held}en regenerate per hour.
+     * @param überanstrengungProStunde The Überanstrengung the {@link reiseplugin.data.Held Held}en regenerate per hour.
      */
     public void setÜberanstrengungProStunde(int überanstrengungProStunde) {
         if(überanstrengungProStunde < 0) {
@@ -151,9 +151,9 @@ public class Rast extends Observable {
     }
 
     /**
-     * Returns true if the given hour is within this Rasts start and end.
+     * Returns true if the given hour is within this {@link reiseplugin.data.Rast Rast}en start and end.
      * @param st The hour to test.
-     * @return true if the given hour is within this Rasts start and end.
+     * @return true if the given hour is within this {@link reiseplugin.data.Rast Rast}en start and end.
      */
     public boolean matchStunde(int st) {
         if(this.start > this.ende) {
@@ -173,6 +173,9 @@ public class Rast extends Observable {
         return "Rast{" + "start=" + this.start + ", ende=" + this.ende + ", ersch\u00f6pfungProStunde=" + this.erschöpfungProStunde + ", \u00fcberanstrengungProStunde=" + this.überanstrengungProStunde + '}';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -183,6 +186,9 @@ public class Rast extends Observable {
         return hash;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

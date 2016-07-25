@@ -32,7 +32,7 @@ import reiseplugin.data.IService;
 import reiseplugin.data.Rast;
 
 /**
- * The Controller class for the gui.
+ * The {@link reiseplugin.gui.Controller Controller} class for the gui.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class Controller {
@@ -42,7 +42,7 @@ public class Controller {
     private JFrame parent;
     
     /**
-     * A proxy for the Controller class that limits the access to methods.
+     * A proxy for the {@link reiseplugin.gui.Controller Controller} class that limits the access to methods.
      * @author Luca Corbatto {@literal <luca@corbatto.de>}
      */
     public static class ControllerProxy {
@@ -50,7 +50,7 @@ public class Controller {
         private boolean debug = false;
         
         /**
-         * Sets the text of a debug TextField at the bottom of the window.
+         * Sets the text of a debug {@link javax.swing.JTextArea JTextArea} at the bottom of the window.
          * 
          * @param text The text to be set.
          */
@@ -62,7 +62,7 @@ public class Controller {
         }
         
         /**
-         * Appends text to the debug TextField at the bottom of the window.
+         * Appends text to the debug {@link javax.swing.JTextArea JTextArea} at the bottom of the window.
          * 
          * @param text The text to be appended.
          */
@@ -73,10 +73,18 @@ public class Controller {
             this.controller.appendDebugText(text);
         }
         
+        /**
+         * Sets the {@link reiseplugin.gui.Controller Controller} to use.
+         * @param c The {@link reiseplugin.gui.Controller Controller}.
+         */
         protected void setController(Controller c) {
             this.controller = c;
         }
 
+        /**
+         * Sets whether or not debug mode should be on.
+         * @param debug True if debug mode should be on, false otherwise.
+         */
         protected void setDebug(boolean debug) {
             this.debug = debug;
         }
@@ -84,12 +92,18 @@ public class Controller {
     
     private static ControllerProxy INSTANCE = new ControllerProxy();
     
+    /**
+     * Returns the instance of the {@link reiseplugin.gui.Controller.ControllerProxy ControllerProxy}
+     * that can be used to output debug information.
+     * 
+     * @return The instance of the {@link reiseplugin.gui.Controller.ControllerProxy ControllerProxy}.
+     */
     public static ControllerProxy getInstance() {
         return Controller.INSTANCE;
     }
     
     /**
-     * Creates a new test Controller that automatically opens a new Window.
+     * Creates a new test {@link reiseplugin.gui.Controller Controller} that automatically opens a new window.
      * Used only for testing purposes.
      * @param service 
      */
@@ -105,7 +119,8 @@ public class Controller {
     }
     
     /**
-     * Creates a new Controller containing a new ReisePanel.
+     * Creates a new {@link reiseplugin.gui.Controller Controller} containing a
+     * new {@link reiseplugin.gui.ReisePanel ReisePanel}.
      * @param service The IService to use for data requests.
      * @param parent The JFrame containing the look and feel settings.
      */
@@ -114,9 +129,11 @@ public class Controller {
     }
     
     /**
-     * Creates a new Controller containing a new ReisePanel.
-     * @param service The IService to use for data requests.
-     * @param parent The JFrame containing the look and feel settings.
+     * Creates a new {@link reiseplugin.gui.Controller Controller} containing a
+     * new {@link reiseplugin.gui.ReisePanel ReisePanel}.
+     * @param service The {@link reiseplugin.data.IService IService} to use for
+     * data requests.
+     * @param parent The {@link javax.swing.JFrame JFrame} containing the look and feel settings.
      * @param debug Determines whether or not debug mode is on.
      */
     public Controller(IService service, JFrame parent, boolean debug) {
@@ -129,7 +146,8 @@ public class Controller {
     }
     
     /**
-     * Creates the ReisePanel representing the gui of this plugin and assigns a default Model.
+     * Creates the {@link reiseplugin.gui.ReisePanel ReisePanel} representing
+     * the gui of this plugin and assigns a default {@link reiseplugin.gui.Model Model}.
      */
     protected void setupPanel() {
         this.reisePanel = new ReisePanel();
@@ -141,7 +159,8 @@ public class Controller {
     }
     
     /**
-     * Creates a new Window using the earlier(!) created ReisePanel as its content.
+     * Creates a new window using the earlier(!) created
+     * {@link reiseplugin.gui.ReisePanel ReisePanel} as its content.
      */
     protected void setupDialog() {
         this.dialog.setSize(800, 600);
@@ -155,7 +174,8 @@ public class Controller {
     }
     
     /**
-     * Creates a new Window with the earlier created ReisePanel as its content.
+     * Creates a new window with the earlier created
+     * {@link reiseplugin.gui.ReisePanel ReisePanel} as its content.
      */
     public void showWindow() {
         this.dialog = new JDialog(this.parent, "Reise", false);
@@ -163,7 +183,8 @@ public class Controller {
     }
     
     /**
-     * Sets the text of the debug TextField at the bottom of the window.
+     * Sets the text of the debug {@link javax.swing.JTextArea JTextArea} at
+     * the bottom of the window.
      * 
      * @deprecated Renamed to {@link #setDebugText setDebugText}.
      * 
@@ -174,7 +195,8 @@ public class Controller {
     }
     
     /**
-     * Sets the text of a debug TextField at the bottom of the window.
+     * Sets the text of a debug {@link javax.swing.JTextArea JTextArea} at the
+     * bottom of the window.
      * 
      * @param s The text to be set.
      */
@@ -183,7 +205,8 @@ public class Controller {
     }
     
     /**
-     * Appends text to the debug TextField at the bottom of the window.
+     * Appends text to the debug {@link javax.swing.JTextArea JTextArea} at the
+     * bottom of the window.
      * 
      * @param s The text to be appended.
      */
@@ -192,8 +215,8 @@ public class Controller {
     }
     
     /**
-     * Returns the ReisePanel.
-     * @return The ReisePanel.
+     * Returns the {@link reiseplugin.gui.ReisePanel ReisePanel}.
+     * @return The {@link reiseplugin.gui.ReisePanel ReisePanel}.
      */
     public ReisePanel getPanel() {
         return this.reisePanel;

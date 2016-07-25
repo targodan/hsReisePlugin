@@ -29,7 +29,10 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Rast;
 
 /**
- * This class contains the Model and the Renderer for the JTable representing the calculated results.
+ * This class contains the
+ * {@link reiseplugin.gui.ReiseTableConfig.Model ReiseTableConfig.Model} and
+ * the {@link reiseplugin.gui.ReiseTableConfig.Renderer ReiseTableConfig.Renderer}
+ * for the {@link javax.swing.JTable JTable} representing the calculated results.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReiseTableConfig {
@@ -40,7 +43,7 @@ public class ReiseTableConfig {
     private final Renderer renderer;
 
     /**
-     * Creates a new ReiseTableConfig.
+     * Creates a new {@link reiseplugin.gui.ReiseTableConfig ReiseTableConfig}.
      */
     public ReiseTableConfig() {
         this.model = new Model();
@@ -68,16 +71,16 @@ public class ReiseTableConfig {
     }
 
     /**
-     * Returns the Parameter.
-     * @return The Parameter.
+     * Returns the {@link reiseplugin.data.Parameter Parameter}.
+     * @return The {@link reiseplugin.data.Parameter Parameter}.
      */
     public Parameter getParameter() {
         return parameter;
     }
 
     /**
-     * Sets the Parameter and triggers a redraw.
-     * @param parameter The new Parameter.
+     * Sets the {@link reiseplugin.data.Parameter Parameter} and triggers a redraw.
+     * @param parameter The new {@link reiseplugin.data.Parameter Parameter}.
      */
     public void setParameter(Parameter parameter) {
         this.parameter = parameter;
@@ -85,24 +88,25 @@ public class ReiseTableConfig {
     }
 
     /**
-     * Returns the Model.
-     * @return The Model.
+     * Returns the {@link reiseplugin.gui.ReiseTableConfig.Model ReiseTableConfig.Model}.
+     * @return The {@link reiseplugin.gui.ReiseTableConfig.Model ReiseTableConfig.Model}.
      */
     public Model getModel() {
         return model;
     }
 
     /**
-     * Returns the Renderer.
-     * @return The Renderer.
+     * Returns the {@link reiseplugin.gui.ReiseTableConfig.Renderer ReiseTableConfig.Renderer}.
+     * @return The {@link reiseplugin.gui.ReiseTableConfig.Renderer ReiseTableConfig.Renderer}.
      */
     public Renderer getRenderer() {
         return renderer;
     }
     
     /**
-     * The Model for the calculation-result-JTable.
-     * Implements the access to the table data and some methods used by the Renderer.
+     * The Model for the calculation-result-{@link javax.swing.JTable JTable}.
+     * Implements the access to the table data and some methods used by the
+     * {@link reiseplugin.gui.ReiseTableConfig.Renderer ReiseTableConfig.Renderer}.
      */
     public class Model extends AbstractTableModel {
         /**
@@ -152,11 +156,15 @@ public class ReiseTableConfig {
         }
         
         /**
-         * Returns whether or not a Held is überanstrengt in a certain hour.
-         * This is used by the Renderer to determine if a cell should be red or not.
+         * Returns whether or not a {@link reiseplugin.data.Held Held} is
+         * überanstrengt in a certain hour.
+         * This is used by the
+         * {@link reiseplugin.gui.ReiseTableConfig.Renderer ReiseTableConfig.Renderer}
+         * to determine if a cell should be red or not.
          * @param hour The hour. This directly corresponds to the table row.
-         * @param heldIndex The index of the Held, starting with 1. This directly corresponds to the table column.
-         * @return true if the Held is überanstrngt.
+         * @param heldIndex The index of the {@link reiseplugin.data.Held Held},
+         * starting with 1. This directly corresponds to the table column.
+         * @return true if the {@link reiseplugin.data.Held Held} is überanstrngt.
          */
         public boolean isÜberanstrengt(int hour, int heldIndex) {
             if (heldIndex == 0) {
@@ -168,7 +176,8 @@ public class ReiseTableConfig {
         }
         
         /**
-         * Returns how much Erholung a Held gets in a certain hour.
+         * Returns how much Erholung a {@link reiseplugin.data.Held Held} gets
+         * in a certain hour.
          * @param hour The hour. This directly corresponds to the table row.
          * @return The average Erholung in the given hour.
          */
@@ -190,8 +199,9 @@ public class ReiseTableConfig {
     }
     
     /**
-     * The Renderer of the calculation-result-JTable.
-     * This uses the Model to determine the colour of a cell.
+     * The Renderer of the calculation-result-{@link javax.swing.JTable JTable}.
+     * This uses the {@link reiseplugin.data.Held Held} to determine the colour
+     * of a cell.
      */
     public class Renderer extends DefaultTableCellRenderer {
         /**

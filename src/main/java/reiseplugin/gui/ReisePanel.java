@@ -21,7 +21,7 @@ package reiseplugin.gui;
 import javax.swing.JTextArea;
 
 /**
- * The JPanel containing the gui of the plugin.
+ * The {@link javax.swing.JPanel JPanel} containing the gui of the plugin.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class ReisePanel extends javax.swing.JPanel {
@@ -29,7 +29,7 @@ public class ReisePanel extends javax.swing.JPanel {
     private final Model model;
 
     /**
-     * Creates new form ReisePanel.
+     * Creates new form {@link reiseplugin.gui.ReisePanel ReisePanel}.
      */
     public ReisePanel() {
         this.model = new Model();
@@ -41,8 +41,8 @@ public class ReisePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Return the Model.
-     * @return The Model.
+     * Return the {@link reiseplugin.gui.Model Model}.
+     * @return The {@link reiseplugin.gui.Model Model}.
      */
     public Model getModel() {
         return model;
@@ -57,8 +57,10 @@ public class ReisePanel extends javax.swing.JPanel {
     }
     
     /**
-     * Returns the debug JTextArea at the bottom of the window.
-     * @return The debug JTextArea at the bottom of the window.
+     * Returns the debug {@link javax.swing.JTextArea JTextArea} at the bottom
+     * of the window.
+     * @return The debug {@link javax.swing.JTextArea JTextArea} at the bottom
+     * of the window.
      */
     public JTextArea getDebugTextArea() {
         return jTextAreaDebug;

@@ -25,7 +25,8 @@ import reiseplugin.data.Parameter;
 import reiseplugin.data.Held;
 
 /**
- * GUI Model for the JTable containing the Helden.
+ * GUI Model for the {@link javax.swing.JTable JTable} containing the
+ * {@link reiseplugin.data.Held Held}en.
  * @author Luca Corbatto {@literal <luca@corbatto.de>}
  */
 public class HeldenTableModel extends AbstractTableModel {
@@ -36,16 +37,16 @@ public class HeldenTableModel extends AbstractTableModel {
     private Parameter data = null;
 
     /**
-     * Returns the Parameter.
-     * @return The Parameter.
+     * Returns the {@link reiseplugin.data.Parameter Parameter}.
+     * @return The {@link reiseplugin.data.Parameter Parameter}.
      */
     public Parameter getParameter() {
         return this.data;
     }
 
     /**
-     * Sets the Parameter and triggers a redraw.
-     * @param data The Parameter.
+     * Sets the {@link reiseplugin.data.Parameter Parameter} and triggers a redraw.
+     * @param data The {@link reiseplugin.data.Parameter Parameter}.
      */
     public void setParameter(Parameter data) {
         this.data = data;

@@ -19,8 +19,6 @@
 package reiseplugin.data;
 
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import reiseplugin.data.helden.entities.Daten;

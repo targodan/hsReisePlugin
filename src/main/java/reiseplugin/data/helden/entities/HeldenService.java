@@ -20,8 +20,6 @@ package reiseplugin.data.helden.entities;
 
 import helden.plugin.datenxmlplugin.DatenAustausch3Interface;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -44,7 +42,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import reiseplugin.WTFException;
 import reiseplugin.data.helden.entities.jaxb.Action;
 import reiseplugin.data.helden.entities.jaxb.ActionType;
 import reiseplugin.data.helden.entities.jaxb.Format;
@@ -94,10 +91,10 @@ public class HeldenService {
     }
     
     /**
-     * Converts a Document to String.
+     * Converts a {@link org.w3c.dom.Document Document} to {@link java.lang.String String}.
      * Used only for testing purposes.
-     * @param doc The Document that is to be converted.
-     * @return A String representation of the XML-Document. 
+     * @param doc The {@link org.w3c.dom.Document Document} that is to be converted.
+     * @return A {@link java.lang.String String} representation of the XML-Document. 
      */
     protected String documentToString(Document doc) {
         DOMSource ds = new DOMSource(doc);
@@ -115,9 +112,9 @@ public class HeldenService {
     }
     
     /**
-     * Unmarshalls a Document.
-     * @param doc The Document.
-     * @return The unmashalled Object.
+     * Unmarshalls a {@link org.w3c.dom.Document Document}.
+     * @param doc The {@link org.w3c.dom.Document Document}.
+     * @return The unmashalled {@link java.lang.Object Object}.
      */
     protected Object unmarshal(Document doc) {
         try {
@@ -128,9 +125,9 @@ public class HeldenService {
     }
     
     /**
-     * Marshalls an Object.
-     * @param obj The Object.
-     * @return The mashalled Document.
+     * Marshalls an {@link java.lang.Object Object}.
+     * @param obj The {@link java.lang.Object Object}.
+     * @return The mashalled {@link org.w3c.dom.Document Document}.
      */
     protected Document marshal(Object obj) {
         StringWriter writer = new StringWriter();
@@ -143,9 +140,9 @@ public class HeldenService {
     }
     
     /**
-     * Sends a request Document to the HeldenSoftware.
-     * @param request A request Document
-     * @return The resulting Document.
+     * Sends a request {@link org.w3c.dom.Document Document} to the HeldenSoftware.
+     * @param request A request {@link org.w3c.dom.Document Document}
+     * @return The resulting {@link org.w3c.dom.Document Document}.
      */
     protected Document sendRequest(Document request) {
         Object result = dai.exec(request);
@@ -160,22 +157,22 @@ public class HeldenService {
     }
     
     /**
-     * Sends a Request to the HeldenSoftware.
-     * @param request An Action
-     * @return The Result can either be an instance of Reques or Daten.
+     * Sends a request to the HeldenSoftware.
+     * @param request An {@code Action} representing the request
+     * @return The result can either be an instance of {@code Result} or {@code Daten}.
      */
     protected Object sendRequest(Action request) {
         return this.unmarshal(this.sendRequest(this.marshal(request)));
     }
     
     /**
-     * Comfortably build a new request Document.
+     * Comfortably build a new request {@link org.w3c.dom.Document Document}.
      * 
      * @deprecated Requests are now handled via JAXB generated classes and marshalling.
      * 
      * @param action The action.
      * @param parameters The parameters of the action. In the for of name followed by the value.
-     * @return The resulting request Document.
+     * @return The resulting request {@link org.w3c.dom.Document Document}.
      */
     private Document buildRequest(String action, String... parameters) {
         assert(parameters.length % 2 == 0);
@@ -194,13 +191,14 @@ public class HeldenService {
     }
     
     /**
-     * Comfortably build a new request Document, automatically adding the xml parameters.
+     * Comfortably build a new request {@link org.w3c.dom.Document Document},
+     * automatically adding the xml parameters.
      * 
      * @deprecated Requests are now handled via JAXB generated classes and marshalling.
      * 
      * @param action The action.
      * @param parameters The parameters of the action. In the for of name followed by the value.
-     * @return The resulting request Document.
+     * @return The resulting request {@link org.w3c.dom.Document Document}.
      */
     private Document buildXMLRequest(String action, String... parameters) {
         List<String> tmp = new ArrayList<>(parameters.length + 2);
@@ -212,8 +210,8 @@ public class HeldenService {
     }
     
     /**
-     * Returns the selected hero in the native format (Daten).
-     * @return The selected hero in the native format (Daten).
+     * Returns the selected hero in the native format ({@code Daten}).
+     * @return The selected hero in the native format ({@code Daten}).
      */
     public Daten getSelectedHeld() {
         Action req = new Action();
@@ -226,9 +224,9 @@ public class HeldenService {
     }
     
     /**
-     * Returns the i-th Held in the native format (Daten).
-     * @param i The index of the requested Held.
-     * @return The i-th hero in the native format (Daten).
+     * Returns the i-th {@link reiseplugin.data.Held Held} in the native format ({@code Daten}).
+     * @param i The index of the requested {@link reiseplugin.data.Held Held}.
+     * @return The i-th hero in the native format ({@code Daten}).
      */
     public Daten getHeld(int i) {
         Action req = new Action();
@@ -241,8 +239,8 @@ public class HeldenService {
     }
     
     /**
-     * Returns all Helden in the native format (Daten).
-     * @return All Helden in the native format (Daten).
+     * Returns all {@link reiseplugin.data.Held Held}en in the native format ({@code Daten}).
+     * @return All {@link reiseplugin.data.Held Held}en in the native format ({@code Daten}).
      */
     public List<Daten> getAllHelden() {
         Action req = new Action();
