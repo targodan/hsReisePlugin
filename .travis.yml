@@ -18,6 +18,6 @@ notifications:
         secure: 8YS9qU/RKswT0tfoxF2aUoYTxuo6BUEO9yoTGJtF8ttv3Y8kWYiLxuGOgljv0UOudMHCb7efdgPDZU9MpR/sSr+IdZ9aF4DFcECrFMWiQwV7wJImkKKBtULAgXkR99wWKIGmqZRDj0GldoLrAmibq3AeTISH7Hbe06ApAIh5U/nIDkencHBSe1n/mqenSF+K+k5eqZItcnFPP7Ue9IyZxUTqkqjEZJCi8JddzbPugKrvTig1izHWbemZsSIeQeuMKS7K3AD+Kic6LgcVUkjtOIDeOo/NxT176EbGPGAMQZWGXzjbWEijDAzuBAOcbDev1vHqy8AdcXEVXRDhZLpV21gL8OpgrgmoKqxt+JneC38HEuOD/xcqqwyVpdeIs9Y8awi1qorIAHRM+HQy1wZZyxq/Gb7Q+kzfesceCPH25bpTrKH8FCGZMsnM3sgjUeTUtfafQE58e1aQPObcgU3MMuQ9XKr76+G+uABkSExCVqljrZf2V/gRhcrKElpcxtAn1zaFDP+qQ97CdFDcydn9FNhnhwEy/lMU4FnhFfomQfCof/inuY7uUF6ZMFC3c1LUtWEh++4w4QKc5cHWsGfvf0dTyoYHsflREPYLHLDEotJG9t5bn1mEcxgrODgGVX5yrQpiWSpEBjvR/Rj6BcedsXwDn/Y646ho0x+vsp5kPdw=
 env:
     global:
-        - DEPLOY_GIT_NAME: TravisCI
-        - DEPLOY_GIT_EMAIL: tavisci@noreply.corbatto.de
-        - DEPLOY_COMMIT_MSG: 'Automatically updated JavaDocs for COMMIT_SHA'
+        - DEPLOY_GIT_NAME=TravisCI
+        - DEPLOY_GIT_EMAIL=tavisci@noreply.corbatto.de
+        - DEPLOY_COMMIT_MSG='Automatically updated JavaDocs for COMMIT_SHA'
