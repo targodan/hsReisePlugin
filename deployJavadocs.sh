@@ -27,7 +27,8 @@ fi
 cd ..
 
 echo "Decrypting deploy key..."
-openssl aes-256-cbc -K $encrypted_f0f45782d3d4_key -iv $encrypted_f0f45782d3d4_iv -in deployKey.enc -out deployKey -d && echo "Done." || echo "Error decoding!"
+openssl aes-256-cbc -K $encrypted_f0f45782d3d4_key -iv $encrypted_f0f45782d3d4_iv -in hsReisePlugin/deployKey.enc -out deployKey -d && echo "Done." || echo "Error decoding!"
+chmod 600 deployKey
 eval "$(ssh-agent -s)"
 ssh-add deployKey
 
