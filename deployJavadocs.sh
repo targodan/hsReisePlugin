@@ -6,7 +6,7 @@ commit=$(git rev-parse --verify HEAD)
 user="$DEPLOY_GIT_NAME"
 email="$DEPLOY_GIT_EMAIL"
 commitMessage="${DEPLOY_COMMIT_MSG/COMMIT_SHA/$commit}"
-branch="$(git branch | grep '*' | cut -d' ' -f 2)"
+branch="$TRAVIS_BRANCH"
 
 echo "---- DEBUG ----"
 echo "repo = $repo"
