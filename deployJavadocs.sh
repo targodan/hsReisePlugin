@@ -5,7 +5,7 @@ repo="${repo/https:\/\/github.com\//git@github.com:}"
 commit=$(git rev-parse --verify HEAD)
 user="$DEPLOY_GIT_NAME"
 email="$DEPLOY_GIT_EMAIL"
-commitMessage="${DEPLOY_COMMIT_MSG/COMMIT_SHA/$commit}"
+commitMessage="$(echo $DEPLOY_COMMIT_MSG | sed "s/COMMIT_SHA/$commit/g")"
 branch="$TRAVIS_BRANCH"
 
 echo "---- DEBUG ----"
@@ -19,16 +19,16 @@ echo "---------------"
 
 echo "Starting deploy script on branch \"$branch\"."
 
-pwd
-git status
-
 if [[ "$branch" != "master" && "$branch" != "develop" ]]; then
     echo "Wrong branch, wont deploy."
     exit
 fi
 
+cd ..
+
 echo "Decrypting deploy key..."
 openssl aes-256-cbc -K $encrypted_f0f45782d3d4_key -iv $encrypted_f0f45782d3d4_iv -in deployKey.enc -out deployKey -d && echo "Done." || echo "Error decoding!"
+eval "$(ssh-agent -s)"
 ssh-add deployKey
 
 echo "Cloning gh-pages..."
@@ -43,7 +43,7 @@ rm -rf "$branch/*"
 echo "Done."
 
 echo "Generating java docs..."
-./generateJavadoc "../src/main/java" "$branch" && echo "Done." || echo "Error generating."
+./generateJavadoc "../hsReisePlugin/src/main/java" "$branch" && echo "Done." || echo "Error generating."
 
 echo "Committing..."
 git add -A
