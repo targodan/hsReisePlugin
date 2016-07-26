@@ -51,6 +51,6 @@ git add -A
 git commit -m "$commitMessage" && echo "Done." || echo "Error committing."
 
 echo "Pushing..."
-git push && echo "Done." || echo "Error pushing."
+git push origin gh-pages && echo "Done." || echo "Error pushing."
 
 echo "Deploy script finished."

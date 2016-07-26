@@ -6,8 +6,8 @@ install:
 script:
     - ./gradlew check
 after_success:
-    - ./gradlew test jacocoTestReport coveralls
     - ./deployJavadocs.sh
+    - ./gradlew test jacocoTestReport coveralls
 notifications:
     email:
         on_success: never
