@@ -21,12 +21,27 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
-
-# All NetBeans Projectfiles from now on
 nbproject/
 
 # Generated stuff
-src/reiseplugin/data/helden/entities/jaxb/*
+src/main/java/reiseplugin/data/helden/entities/jaxb/*
 
 # Dependencies
 lib/
+
+# JAXB episodes
+*.episode
+schema/
+
+# GRADLE
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# This is different on every machine
+heldenSoftware.path
