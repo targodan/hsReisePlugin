@@ -101,12 +101,12 @@ task deploy(type:Exec) {
         if(props == null || !props.containsKey('pluginPath') || props['pluginPath'].equals("") || props['pluginPath'].equals("\"\"")) {
             throw new InvalidUserDataException("The pluginPath ist not set! Please set the pluginPath in the file \"heldenSoftware.path\".")
         }
-        
+
         // windows
-        commandLine "copy", jar.archivePath, props['pluginPath']
+        commandLine "copy", jar.archivePath, props['pluginPath'] + "\\" + jar.baseName + "." + jar.extension
 
         // linux
-        commandLine "cp", jar.archivePath, props['pluginPath']
+        commandLine "cp", jar.archivePath, props['pluginPath'] + "/" + jar.baseName + "." + jar.extension
     }
 }
 
