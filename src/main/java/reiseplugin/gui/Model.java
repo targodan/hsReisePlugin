@@ -143,8 +143,8 @@ public class Model implements Observer {
      * Adds a new {@link reiseplugin.data.Rast Rast} with default values and
      * triggers a redraw.
      */
-    public void addRast() {
-        this.parameter.addRast(new Rast(0, 0, 0, 0));
+    public void addRast(int start, int end) {
+        this.parameter.addRast(new Rast(start, end, 0, 0));
         this.getRastTableConfig().getModel().fireTableDataChanged();
     }
     

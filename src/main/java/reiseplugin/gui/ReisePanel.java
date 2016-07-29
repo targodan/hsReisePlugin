@@ -231,7 +231,21 @@ public class ReisePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.model.addRast();
+        int[] selectedRows = this.jTable1.getSelectedRows();
+        if(selectedRows.length == 0) {
+            this.model.addRast(0, 0);
+            return;
+        }
+        int start = selectedRows[0];
+        int last = start;
+        for(int i = 1; i < selectedRows.length; ++i) {
+            if(selectedRows[i] - last > 1) {
+                this.model.addRast(start, last+1);
+                start = selectedRows[i];
+            }
+            last = selectedRows[i];
+        }
+        this.model.addRast(start, last+1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

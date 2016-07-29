@@ -236,6 +236,10 @@ public class ReiseTableConfig {
                 }
             }
             
+            if(isSelected) {
+                l.setBackground(l.getBackground().darker());
+            }
+            
             return l;
         }
     }
