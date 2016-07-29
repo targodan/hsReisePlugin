@@ -20,4 +20,4 @@ env:
     global:
         - DEPLOY_GIT_NAME=TravisCI
         - DEPLOY_GIT_EMAIL=tavisci@noreply.corbatto.de
-        - DEPLOY_COMMIT_MSG='Automatically updated JavaDocs for COMMIT_SHA'
+        - DEPLOY_COMMIT_MSG='Automatically updated JavaDocs for COMMIT_SHA on branch BRANCH.'

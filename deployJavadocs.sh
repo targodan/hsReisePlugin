@@ -3,10 +3,10 @@
 repo="$(git config remote.origin.url)"
 repo="${repo/https:\/\/github.com\//git@github.com:}"
 commit=$(git rev-parse --verify HEAD)
+branch="$TRAVIS_BRANCH"
 user="$DEPLOY_GIT_NAME"
 email="$DEPLOY_GIT_EMAIL"
-commitMessage="$(echo $DEPLOY_COMMIT_MSG | sed "s/COMMIT_SHA/$commit/g")"
-branch="$TRAVIS_BRANCH"
+commitMessage="$(echo $DEPLOY_COMMIT_MSG | sed "s/COMMIT_SHA/$commit/g" | sed "s/BRANCH/$branch/g")"
 
 echo "---- DEBUG ----"
 echo "repo = $repo"
