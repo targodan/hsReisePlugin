@@ -1,4 +1,4 @@
-# ![Icon](images/icon_64.png) hsReisePlugin [![Build Status](https://travis-ci.org/targodan/hsReisePlugin.svg?branch=develop)](https://travis-ci.org/targodan/hsReisePlugin) [![Coverage Status](https://coveralls.io/repos/github/targodan/hsReisePlugin/badge.svg?branch=develop)](https://coveralls.io/github/targodan/hsReisePlugin?branch=develop)[\*](#code-coverage)
+# ![Icon](images/icon_64.png) hsReisePlugin [![Build Status](https://travis-ci.org/targodan/hsReisePlugin.svg?branch=master)](https://travis-ci.org/targodan/hsReisePlugin) [![Coverage Status](https://coveralls.io/repos/github/targodan/hsReisePlugin/badge.svg?branch=master)](https://coveralls.io/github/targodan/hsReisePlugin?branch=master)[\*](#code-coverage)
 
 Ein Plugin für die [HeldenSoftware](http://www.helden-software.de/), welches die Erschöpfung und Überanstrengung der Helden berechnet.
 
